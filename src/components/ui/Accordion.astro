@@ -1,0 +1,106 @@
+---
+import { Icon } from 'astro-icon/components';
+
+interface IAccordionLink {
+  label: string;
+  href: string;
+}
+
+export interface IAccordion {
+  label: string;
+  links: IAccordionLink[];
+}
+
+type Props = IAccordion;
+
+const { label, links } = Astro.props;
+---
+
+<div class='accordion' data-component='accordion'>
+  <button class='accordion__trigger' data-component='accordion-trigger'>
+    <span>{label}</span>
+    <div class="accordion__trigger-icon">
+      <Icon name='arrow-down' />
+    </div>
+  </button>
+  <div class='accordion__body' data-component='accordion-body'>
+    {
+      links.map(({ label, href }) => (
+        <a class='accordion__link' href={href}>
+          {label}
+        </a>
+      ))
+    }
+  </div>
+</div>
+
+<style>
+  .accordion {
+  }
+
+  .accordion__trigger {
+    cursor: pointer;
+    padding: 10px 12px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--light);
+    width: 100%;
+
+    font-family: var(--font-primary);
+    color: var(--secondary);
+    font-weight: 800;
+    font-size: 12px;
+    text-transform: uppercase;
+  }
+
+  .open .accordion__trigger {
+    margin-bottom: 4px;
+  }
+
+  .accordion__trigger-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 8px;
+    height: 4px;
+  }
+
+  .open .accordion__trigger-icon {
+    transform: rotate(180deg);
+  }
+
+  .accordion__body {
+    display: none;
+  }
+
+  .open .accordion__body {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .accordion__link {
+    padding: 10px 12px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    background-color: transparent;
+    border: 1px solid var(--light-2);
+
+    font-weight: 800;
+    font-size: 12px;
+    text-transform: uppercase;
+    color: var(--dark);
+  }
+</style>
+
+<script>
+  document.querySelectorAll<HTMLDivElement>("[data-component='accordion']").forEach((item) => {
+    item.querySelector<HTMLDivElement>("[data-component='accordion-trigger']")?.addEventListener('click', () => {
+      item.classList.toggle('open');
+    });
+  });
+</script>

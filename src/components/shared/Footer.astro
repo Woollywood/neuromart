@@ -1,0 +1,55 @@
+---
+import Accordion from '../ui/Accordion.astro';
+import { accordions } from '../../constants/footer';
+---
+
+<footer class='footer'>
+  <div class='footer__container container'>
+    <div class='footer__inner'>
+      <div class='footer__accordions'>{accordions.map((accordion) => <Accordion {...accordion} />)}</div>
+      <div class='footer__copyright copyright'>
+        <p class='copyright__text'>
+          2025 stayer-tex.ru © Все права защищены biznetman ® - создание сайта <br />
+          <span class='copyright__text-span'>Пользовательское соглашение</span>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style lang='scss'>
+  .footer {
+    &__container {
+    }
+
+    &__inner {
+      padding: 8px 0 20px;
+    }
+
+    &__accordions {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+
+      margin-bottom: 20px;
+    }
+
+    &__copyright {
+    }
+  }
+
+  .copyright {
+    &__text {
+      text-align: center;
+      color: var(--primary);
+      font-family: var(--font-secondary);
+      font-weight: 500;
+      font-size: 10px;
+    }
+
+    &__text-span {
+      text-align: center;
+      display: block;
+    }
+  }
+</style>

@@ -1,0 +1,129 @@
+---
+import { Icon } from 'astro-icon/components';
+import Hamburger from './Hamburger.astro';
+import HeaderModal from './HeaderModal.astro';
+import { Picture } from 'astro:assets';
+
+import logoImg from '@assets/img/logo.svg';
+---
+
+<header class='header' data-component='header'>
+  <div class='header__container'>
+    <a href='/' class='header__logo'>
+      <Picture inferSize layout='constrained' formats={['avif', 'webp']} src={logoImg} alt='logo' />
+    </a>
+    <div class='header__blocks'>
+      <div class='header__top-block'>
+        <div class='header__input input-header'>
+          <Icon class='input-header__icon' name='stars' />
+          <input class='input-header__input' type='text' placeholder='Найти  или задать вопрос...' />
+        </div>
+        <div class='header__actions'>
+          <a href='#' class='header__action'>
+            <Icon name='account-icon' />
+          </a>
+          <a href='#' class='header__action'>
+            <Icon name='cart-icon' />
+          </a>
+        </div>
+      </div>
+      <div class='header__bottom-block'>
+        <Hamburger />
+      </div>
+    </div>
+    <HeaderModal />
+  </div>
+</header>
+
+<style lang='scss'>
+  .header {
+    position: relative;
+    overflow: hidden;
+
+    &.open {
+      overflow: visible;
+    }
+
+    &__container {
+      overflow: hidden;
+      padding: 6px 8px 0;
+      padding-right: 0px;
+
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    &__logo {
+    }
+
+    &__blocks {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      overflow: hidden;
+    }
+
+    &__top-block {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 8px;
+      padding-right: 8px;
+    }
+
+    &__input {
+    }
+
+    &__actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    &__action {
+      color: var(--primary);
+
+      svg {
+        width: 20px;
+        height: 20px;
+      }
+    }
+
+    &__bottom-block {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+  }
+
+  .input-header {
+    padding: 6px;
+    border-radius: 8px;
+    background-color: var(--light);
+
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-grow: 1;
+
+    &__icon {
+      color: var(--primary);
+      width: 24px;
+      height: 16px;
+    }
+
+    &__input {
+      font-family: var(--font-secondary);
+      font-weight: 500;
+      font-size: 12px;
+      line-height: 16px;
+      background-color: transparent;
+
+      &::placeholder {
+        color: var(--light-3);
+      }
+    }
+  }
+</style>

@@ -1,0 +1,266 @@
+---
+import Footer from './Footer.astro';
+import { Icon } from 'astro-icon/components';
+
+interface IProduct {
+  image: string;
+  title: string;
+  subtitle: string;
+  href: string;
+}
+
+interface IContact {
+  phone: string;
+  name: string;
+  email: string;
+}
+
+const products: IProduct[] = [
+  {
+    image: '/products/card-picture.png',
+    title: 'Мужская',
+    subtitle: 'Одежда для охоты, рыбалки и активного отдыха',
+    href: '#',
+  },
+  {
+    image: '/products/card-picture.png',
+    title: 'Мужская',
+    subtitle: 'Одежда для охоты, рыбалки и активного отдыха',
+    href: '#',
+  },
+  {
+    image: '/products/card-picture.png',
+    title: 'Мужская',
+    subtitle: 'Одежда для охоты, рыбалки и активного отдыха',
+    href: '#',
+  },
+  {
+    image: '/products/card-picture.png',
+    title: 'Мужская',
+    subtitle: 'Одежда для охоты, рыбалки и активного отдыха',
+    href: '#',
+  },
+];
+
+const contacts: IContact[] = [
+  { phone: '+7-906-512-25-55', name: 'Татьяна', email: 'mta37@stayer-tex.ru' },
+  { phone: '+7-906-512-25-55', name: 'Татьяна', email: 'mta37@stayer-tex.ru' },
+];
+---
+
+<div class='header-modal' data-component='header-modal'>
+  <div class='header-modal__products'>
+    {
+      products.map(({ image, title, subtitle, href }) => (
+        <a href={href} class='header-modal__product'>
+          <div class='header-modal__product-image-wrapper'>
+            <div class='header-modal__product-image'>
+              <img src={image} alt='product-image' />
+            </div>
+          </div>
+          <div class='header-modal__product-body'>
+            <h3 class='header-modal__product-title'>{title}</h3>
+            <h4 class='header-modal__product-subtitle'>{subtitle}</h4>
+          </div>
+        </a>
+      ))
+    }
+  </div>
+  <div class='header-modal__buttons'>
+    <a href='#' class='button'>Прайс</a>
+    <a href='#' class='button'>Акции</a>
+  </div>
+  <div class='header-modal__contacts'>
+    {
+      contacts.map(({ name, phone, email }) => (
+        <div class='contact'>
+          <div class='contact__name'>{name}</div>
+          <div class='contact__button button'>
+            <div class='contact__phone'>
+              <a href={`tel:${phone}`}>{phone}</a>
+            </div>
+            <div class='contact__icons'>
+              <a href='#' class='contact__icon'>
+                <Icon name='whatsapp' />
+              </a>
+              <a href='#' class='contact__icon'>
+                <Icon name='telegram' />
+              </a>
+            </div>
+          </div>
+          <div class='button-outlined'>{email}</div>
+        </div>
+      ))
+    }
+  </div>
+  <Footer />
+</div>
+
+<style>
+  .button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 16px;
+    background-color: var(--light-2);
+    border-radius: 8px;
+
+    font-weight: 800;
+    font-size: 16px;
+    text-transform: uppercase;
+    color: var(--secondary);
+  }
+
+  .button-outlined {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 10px 12px;
+    border-radius: 8px;
+    background-color: transparent;
+    border: 1px solid var(--light-2);
+
+    font-weight: 800;
+    font-size: 14px;
+    text-transform: uppercase;
+    color: var(--secondary);
+  }
+
+  .header-modal {
+    display: none;
+  }
+
+  .header-modal.open {
+    display: block;
+    position: absolute;
+    z-index: 10;
+    top: calc(100% + 12px);
+    left: 0;
+    width: 100%;
+    max-height: 100%;
+    min-height: calc(100svh - 68px);
+    background-color: var(--white);
+    padding: 0 8px;
+    overflow-y: auto;
+  }
+
+  .header-modal__products {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4px;
+    margin-bottom: 4px;
+  }
+
+  .header-modal__product {
+    display: flex;
+    flex-direction: column;
+    padding: 0 8px 12px;
+    border-radius: 8px;
+    border: 1px solid var(--light-2);
+  }
+
+  .header-modal__product-image-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 8px;
+    border-bottom: 1px solid var(--light-2);
+  }
+
+  .header-modal__product-image {
+    width: 94px;
+    height: 124px;
+    position: relative;
+  }
+
+  .header-modal__product-image img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .header-modal__product-body {
+  }
+
+  .header-modal__product-title {
+    font-weight: 800;
+    font-size: 16px;
+    text-transform: uppercase;
+    color: var(--secondary);
+
+    margin-bottom: 2px;
+    text-align: center;
+  }
+
+  .header-modal__product-subtitle {
+    font-weight: 600;
+    font-size: 10px;
+    line-height: 12px;
+    text-transform: uppercase;
+    color: var(--primary);
+
+    text-align: center;
+  }
+
+  .header-modal__buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4px;
+    margin-bottom: 38px;
+  }
+
+  .header-modal__contacts {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4px;
+    margin-bottom: 40px;
+  }
+
+  .contact__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .contact__name {
+    font-weight: 900;
+    font-size: 12px;
+    text-transform: uppercase;
+    color: var(--primary);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    margin-bottom: 6px;
+  }
+
+  .contact__name::before,
+  .contact__name::after {
+    content: '';
+    width: 100%;
+    height: 1px;
+    background-color: var(--light-2);
+  }
+
+  .contact__phone {
+    margin-bottom: 4px;
+  }
+
+  .contact__button {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 4px;
+  }
+
+  .contact__icons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    color: var(--primary);
+  }
+</style>

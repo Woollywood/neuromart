@@ -1,0 +1,123 @@
+---
+import { Icon } from 'astro-icon/components';
+
+interface ITag {
+  label: string;
+  href: string;
+}
+
+const tags: ITag[] = [
+  { label: 'Мужская одежда', href: '#' },
+  { label: 'Трикотаж', href: '#' },
+  { label: 'Детская', href: '#' },
+  { label: 'Спецодежда', href: '#' },
+  { label: 'Прайс', href: '#' },
+  { label: 'Акции', href: '#' },
+];
+---
+
+<div class='hamburger' data-component='hamburger'>
+  <div class='hamburger__closed'>
+    <button class='hamburger__button'>
+      <Icon name='menu' />
+    </button>
+    <div class='hamburger__tags'>
+      {
+        tags.map(({ label, href }) => (
+          <a class='hamburger__tag' href={href}>
+            {label}
+          </a>
+        ))
+      }
+    </div>
+  </div>
+  <div class='hamburger__opened'>
+    <button class='hamburger__button'>
+      <span>Закрыть</span>
+      <Icon name='close' />
+    </button>
+  </div>
+</div>
+
+<style lang='scss'>
+  .hamburger {
+    overflow: hidden;
+
+    &__closed {
+      .open & {
+        display: none;
+      }
+
+      display: flex;
+      align-items: center;
+      gap: 4px;
+
+      svg {
+        width: 16px;
+        height: 6px;
+      }
+    }
+
+    &__button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border-radius: 8px;
+      background-color: var(--light);
+      padding: 4px 8px;
+
+      font-family: var(--font-primary);
+      color: var(--secondary);
+      font-weight: 800;
+      font-size: 12px;
+      text-transform: uppercase;
+      height: 28px;
+    }
+
+    &__tags {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      overflow-x: auto;
+      padding-right: 8px;
+    }
+
+    &__tag {
+      padding: 8px;
+      border-radius: 8px;
+      background-color: transparent;
+      border: 1px solid var(--light-2);
+      white-space: nowrap;
+
+      font-weight: 800;
+      font-size: 12px;
+      text-transform: uppercase;
+    }
+
+    &__opened {
+      .open & {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      display: none;
+
+      svg {
+        width: 10px;
+        height: 10px;
+      }
+    }
+  }
+</style>
+
+<script>
+  document.querySelectorAll<HTMLDivElement>("[data-component='hamburger']").forEach((item) => {
+    item.addEventListener('click', () => {
+      item.classList.toggle('open');
+      document.querySelector("[data-component='header-modal']")?.classList.toggle('open');
+      document.querySelector("[data-component='header']")?.classList.toggle('open');
+    });
+  });
+</script>
