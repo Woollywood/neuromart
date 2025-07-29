@@ -28,7 +28,7 @@ const links: Link[] = [
           — от спокойной рыбалки до тяжёлой работы на улице.
         </p>
       </div>
-      <div class='about__link'>
+      <div class='about__links'>
         {
           links.map(({ href, label }) => (
             <a href={href} class='about__link'>
@@ -43,6 +43,8 @@ const links: Link[] = [
 
 <style lang='scss'>
   .about {
+    margin-bottom: 40px;
+
     &__container {
     }
 
@@ -50,12 +52,49 @@ const links: Link[] = [
     }
 
     &__title {
+      font-weight: 800;
+      font-size: 18px;
+      line-height: 20px;
+      text-transform: uppercase;
+      color: var(--secondary);
+      margin-bottom: 8px;
     }
 
     &__description-wrapper {
+      margin-bottom: 12px;
+
+      p {
+        font-family: var(--font-secondary);
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 16px;
+        color: var(--secondary);
+
+        &:not(:last-child) {
+          margin-bottom: 16px;
+        }
+      }
+    }
+
+    &__links {
+      display: flex;
+      align-items: center;
+      gap: 4px;
     }
 
     &__link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px;
+      border-radius: 8px;
+      background-color: transparent;
+      border: 1px solid var(--light-2);
+
+      font-weight: 800;
+      font-size: 12px;
+      text-transform: uppercase;
+      color: var(--secondary);
     }
   }
   .container {

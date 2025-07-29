@@ -1,4 +1,5 @@
 ---
+import BackgroundGradient from '@/components/shared/BackgroundGradient.astro';
 import { Picture } from 'astro:assets';
 
 export interface PreviewHitProps {
@@ -15,6 +16,7 @@ const { backgroundImage, description, tags } = Astro.props;
 <div class='preview-hit'>
   <div class='preview-hit__background'>
     <Picture inferSize layout='constrained' formats={['avif', 'webp']} src={backgroundImage} alt='image' />
+    <BackgroundGradient />
   </div>
   <div class='preview-hit__content'>
     <p class='preview-hit__description'>{description}</p>
@@ -65,6 +67,7 @@ const { backgroundImage, description, tags } = Astro.props;
       line-height: 14px;
       text-align: center;
       margin-bottom: 12px;
+      color: rgba(255, 255, 255, 0.48);
     }
 
     &__tags {
@@ -77,7 +80,7 @@ const { backgroundImage, description, tags } = Astro.props;
     &__tag {
       padding: 4px 8px;
       border-radius: 6px;
-      border: 1px solid rgba($color: var(--white), $alpha: 0.32);
+      border: 1px solid rgba(255, 255, 255, 0.32);
       background-color: transparent;
 
       font-family: var(--font-secondary);
