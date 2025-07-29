@@ -120,3 +120,12 @@ const tags: string[] = [
     }
   }
 </style>
+
+<script>
+  const inputWrapper = document.querySelector<HTMLDivElement>('.question__input');
+  const input = inputWrapper?.querySelector<HTMLInputElement>('input');
+
+  inputWrapper?.addEventListener('click', () => {
+    input?.focus();
+  });
+</script>

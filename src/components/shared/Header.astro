@@ -99,6 +99,7 @@ import logoImg from '@assets/img/logo.svg';
   }
 
   .input-header {
+    cursor: pointer;
     padding: 6px;
     border-radius: 8px;
     background-color: var(--light);
@@ -129,3 +130,12 @@ import logoImg from '@assets/img/logo.svg';
     }
   }
 </style>
+
+<script>
+  const inputWrapper = document.querySelector<HTMLDivElement>('.header__input');
+  const input = inputWrapper?.querySelector<HTMLInputElement>('input');
+
+  inputWrapper?.addEventListener('click', () => {
+    input?.focus();
+  });
+</script>
