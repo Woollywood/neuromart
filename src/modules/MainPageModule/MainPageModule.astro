@@ -1,27 +1,12 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import type { MainBannerSlide } from './components/MainBanner.astro';
+import Hits from './components/Hits.astro';
 import MainBanner from './components/MainBanner.astro';
-
-const bannerSlides: MainBannerSlide[] = [
-  {
-    title: 'Производим в России Проверено природой',
-    subtitle: 'Сделано для охоты, рыбалки и настоящей погоды',
-    image: '/home/banner-slide-img.jpg',
-  },
-  {
-    title: 'Производим в России Проверено природой',
-    subtitle: 'Сделано для охоты, рыбалки и настоящей погоды',
-    image: '/home/banner-slide-img.jpg',
-  },
-  {
-    title: 'Производим в России Проверено природой',
-    subtitle: 'Сделано для охоты, рыбалки и настоящей погоды',
-    image: '/home/banner-slide-img.jpg',
-  },
-];
+import Question from './components/Question.astro';
 ---
 
 <Layout>
-  <!-- <MainBanner slides={bannerSlides} /> -->
+  <MainBanner />
+  <Question />
+  <Hits />
 </Layout>

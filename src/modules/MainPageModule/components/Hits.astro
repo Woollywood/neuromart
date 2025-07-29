@@ -1,0 +1,32 @@
+---
+interface Slide {
+  image: string;
+  country: string;
+  title: string;
+  number: string;
+  description: string;
+  price: string;
+}
+
+const slides: Slide[] = [
+  {
+    image: '/src/assets/img/home/hits/hits-slide-image.png',
+    country: 'Финляндия',
+    title: 'Костюм Горка Зима Финл.',
+    number: 'ПК #309',
+    description: 'Морозоустойчивая, Непромокаемая, Дышащая, Морозоустойчивая, Непромокаемая, Дышащая,',
+    price: '7 712',
+  },
+];
+
+const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/img/home/hits/*.{jpeg,jpg,png,gif}');
+---
+
+<section class='hits'>
+  <div class='hits__container container'>
+    <h2 class='hits__title'>
+      <span>Летние Хиты</span> для рыбалки и охоты
+    </h2>
+    <p class='hits__description'>Текст комментария от нейросети для расшифровки и разные подробности</p>
+  </div>
+</section>

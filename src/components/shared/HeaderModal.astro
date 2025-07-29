@@ -1,4 +1,5 @@
 ---
+import { Picture } from 'astro:assets';
 import Footer from './Footer.astro';
 import { Icon } from 'astro-icon/components';
 
@@ -17,25 +18,25 @@ interface IContact {
 
 const products: IProduct[] = [
   {
-    image: '/products/card-picture.png',
+    image: '/src/assets/img/products/card-picture.png',
     title: 'Мужская',
     subtitle: 'Одежда для охоты, рыбалки и активного отдыха',
     href: '#',
   },
   {
-    image: '/products/card-picture.png',
+    image: '/src/assets/img/products/card-picture.png',
     title: 'Мужская',
     subtitle: 'Одежда для охоты, рыбалки и активного отдыха',
     href: '#',
   },
   {
-    image: '/products/card-picture.png',
+    image: '/src/assets/img/products/card-picture.png',
     title: 'Мужская',
     subtitle: 'Одежда для охоты, рыбалки и активного отдыха',
     href: '#',
   },
   {
-    image: '/products/card-picture.png',
+    image: '/src/assets/img/products/card-picture.png',
     title: 'Мужская',
     subtitle: 'Одежда для охоты, рыбалки и активного отдыха',
     href: '#',
@@ -46,6 +47,8 @@ const contacts: IContact[] = [
   { phone: '+7-906-512-25-55', name: 'Татьяна', email: 'mta37@stayer-tex.ru' },
   { phone: '+7-906-512-25-55', name: 'Татьяна', email: 'mta37@stayer-tex.ru' },
 ];
+
+const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/img/products/*.{jpeg,jpg,png,gif}');
 ---
 
 <div class='header-modal' data-component='header-modal'>
@@ -55,7 +58,13 @@ const contacts: IContact[] = [
         <a href={href} class='header-modal__product'>
           <div class='header-modal__product-image-wrapper'>
             <div class='header-modal__product-image'>
-              <img src={image} alt='product-image' />
+              <Picture
+                inferSize
+                layout='constrained'
+                formats={['avif', 'webp']}
+                src={images[image]()}
+                alt='product-image'
+              />
             </div>
           </div>
           <div class='header-modal__product-body'>
