@@ -1,0 +1,95 @@
+---
+import Hits, { type SlideHit } from '../components/Hits.astro';
+import type { PreviewHitProps } from '../components/PreviewHit.astro';
+import PreviewHit from '../components/PreviewHit.astro';
+
+const hitsImages = import.meta.glob<{ default: ImageMetadata }>('/src/assets/img/home/hits/*.{jpeg,jpg,png,gif}');
+const previewHitsimages = import.meta.glob<{ default: ImageMetadata }>(
+  '/src/assets/img/home/preview-hits/*.{jpeg,jpg,png,gif}'
+);
+
+const imageSrcList: string[] = [
+  '/src/assets/img/home/hits/hits-slide-image.png',
+  '/src/assets/img/home/hits/hits-slide-image.png',
+  '/src/assets/img/home/hits/hits-slide-image.png',
+  '/src/assets/img/home/hits/hits-slide-image.png',
+  '/src/assets/img/home/hits/hits-slide-image.png',
+];
+
+const slides: SlideHit[] = [
+  {
+    image: hitsImages[imageSrcList[0]](),
+    country: 'Финляндия',
+    title: 'Костюм Горка Зима Финл. ПК #309',
+    description: 'Морозоустойчивая, Непромокаемая, Дышащая, Морозоустойчивая, Непромокаемая, Дышащая,',
+    price: '7 712',
+  },
+  {
+    image: hitsImages[imageSrcList[1]](),
+    country: 'Финляндия',
+    title: 'Костюм Горка Зима Финл. ПК #309',
+    description: 'Морозоустойчивая, Непромокаемая, Дышащая, Морозоустойчивая, Непромокаемая, Дышащая,',
+    price: '7 712',
+  },
+  {
+    image: hitsImages[imageSrcList[2]](),
+    country: 'Финляндия',
+    title: 'Костюм Горка Зима Финл. ПК #309',
+    description: 'Морозоустойчивая, Непромокаемая, Дышащая, Морозоустойчивая, Непромокаемая, Дышащая,',
+    price: '7 712',
+  },
+  {
+    image: hitsImages[imageSrcList[3]](),
+    country: 'Финляндия',
+    title: 'Костюм Горка Зима Финл. ПК #309',
+    description: 'Морозоустойчивая, Непромокаемая, Дышащая, Морозоустойчивая, Непромокаемая, Дышащая,',
+    price: '7 712',
+  },
+  {
+    image: hitsImages[imageSrcList[4]](),
+    country: 'Финляндия',
+    title: 'Костюм Горка Зима Финл. ПК #309',
+    description: 'Морозоустойчивая, Непромокаемая, Дышащая, Морозоустойчивая, Непромокаемая, Дышащая,',
+    price: '7 712',
+  },
+];
+
+const previewProps: PreviewHitProps = {
+  backgroundImage: previewHitsimages['/src/assets/img/home/preview-hits/background.png'](),
+  description: 'Весной на рыбалке важно не промокнуть, не замёрзнуть и не вспотеть.',
+  tags: [
+    'одежда для охоты',
+    'одежда для охоты',
+    'одежда для охоты',
+    'одежда для охоты',
+    'одежда для охоты',
+    'одежда для охоты',
+  ],
+};
+---
+
+<section class='preview-hits'>
+  <div class='preview-hits__container container'>
+    <div class='preview-hits__blocks'>
+      <PreviewHit {...previewProps} />
+      <Hits title='Одежда Для Рыбалки' description='Текст комментария от нейросети для расшифровки' slides={slides} />
+    </div>
+  </div>
+</section>
+
+<style lang='scss'>
+  .preview-hits {
+    margin-bottom: 40px;
+
+    &__container {
+    }
+
+    &__blocks {
+      display: flex;
+      flex-direction: column;
+      gap: 38px;
+    }
+  }
+  .container {
+  }
+</style>

@@ -1,0 +1,98 @@
+---
+import { Icon } from 'astro-icon/components';
+import { Picture } from 'astro:assets';
+
+const previewHitsimages = import.meta.glob<{ default: ImageMetadata }>(
+  '/src/assets/img/home/preview-hits/*.{jpeg,jpg,png,gif}'
+);
+
+const image = previewHitsimages['/src/assets/img/home/preview-hits/background.png']();
+
+interface Contact {
+  name: string;
+  phone: string;
+  email: string;
+}
+
+const contacts: Contact[] = [
+  { name: 'Татьяна', phone: '+7-906-512-25-55', email: 'mta37@stayer-tex.ru' },
+  { name: 'Татьяна', phone: '+7-906-512-25-55', email: 'mta37@stayer-tex.ru' },
+];
+---
+
+<section class='contacts'>
+  <div class='contacts__container container'>
+    <div class='contacts__wrapp'>
+      <div class='contacts__background'>
+        <Picture inferSize layout='constrained' formats={['avif', 'webp']} src={image} alt='image' />
+      </div>
+      <div class='contacts__content'>
+        {
+          contacts.map(({ name, phone, email }) => (
+            <div class='contacts__contact contact'>
+              <p class='contact__name'>{name}</p>
+              <div class='contact__button'>
+                <div class='contact__button-inner'>
+                  <a href={`tel:${phone}`} class='contact__phone'>
+                    {phone}
+                  </a>
+                  <div class='contact__icons'>
+                    <a href='#' class='contact__icon'>
+                      <Icon name='whatsapp' />
+                    </a>
+                    <a href='#' class='contact__icon'>
+                      <Icon name='telegram' />
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <a href={`mailto:${email}`} class='contact__button'>
+                {email}
+              </a>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<style lang='scss'>
+  .contacts {
+    &__container {
+    }
+
+    &__wrapp {
+    }
+
+    &__background {
+    }
+
+    &__content {
+    }
+
+    &__contact {
+    }
+  }
+  .container {
+  }
+  .contact {
+    &__name {
+    }
+
+    &__button {
+    }
+
+    &__button-inner {
+    }
+
+    &__phone {
+    }
+
+    &__icons {
+    }
+
+    &__icon {
+    }
+  }
+</style>

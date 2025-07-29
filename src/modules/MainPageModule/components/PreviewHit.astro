@@ -1,0 +1,89 @@
+---
+import { Picture } from 'astro:assets';
+
+export interface PreviewHitProps {
+  backgroundImage: Promise<{ default: ImageMetadata }>;
+  description: string;
+  tags: string[];
+}
+
+type Props = PreviewHitProps;
+
+const { backgroundImage, description, tags } = Astro.props;
+---
+
+<div class='preview-hit'>
+  <div class='preview-hit__background'>
+    <Picture inferSize layout='constrained' formats={['avif', 'webp']} src={backgroundImage} alt='image' />
+  </div>
+  <div class='preview-hit__content'>
+    <p class='preview-hit__description'>{description}</p>
+    <div class='preview-hit__tags'>
+      {tags.map((tag) => <div class='preview-hit__tag'>{tag}</div>)}
+    </div>
+  </div>
+</div>
+
+<style lang='scss'>
+  .preview-hit {
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    width: 100%;
+    aspect-ratio: 359 / 524;
+    border-radius: 12px;
+    overflow: hidden;
+
+    &__background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+
+      img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    &__content {
+      position: relative;
+      z-index: 10;
+      padding: 16px 8px;
+    }
+
+    &__description {
+      font-weight: 500;
+      font-style: italic;
+      font-size: 14px;
+      line-height: 14px;
+      text-align: center;
+      margin-bottom: 12px;
+    }
+
+    &__tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      justify-content: center;
+    }
+
+    &__tag {
+      padding: 4px 8px;
+      border-radius: 6px;
+      border: 1px solid rgba($color: var(--white), $alpha: 0.32);
+      background-color: transparent;
+
+      font-family: var(--font-secondary);
+      font-weight: 500;
+      font-size: 14px;
+      color: var(--white);
+    }
+  }
+</style>

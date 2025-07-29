@@ -1,0 +1,67 @@
+---
+import type { ImageMetadata } from 'astro';
+import type { SlideHit } from '../components/Hits.astro';
+import Hits from '../components/Hits.astro';
+
+const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/img/home/hits/*.{jpeg,jpg,png,gif}');
+
+const imageSrcList: string[] = [
+  '/src/assets/img/home/hits/hits-slide-image.png',
+  '/src/assets/img/home/hits/hits-slide-image.png',
+  '/src/assets/img/home/hits/hits-slide-image.png',
+  '/src/assets/img/home/hits/hits-slide-image.png',
+  '/src/assets/img/home/hits/hits-slide-image.png',
+];
+
+const slides: SlideHit[] = [
+  {
+    image: images[imageSrcList[0]](),
+    country: 'Финляндия',
+    title: 'Костюм Горка Зима Финл. ПК #309',
+    description: 'Морозоустойчивая, Непромокаемая, Дышащая, Морозоустойчивая, Непромокаемая, Дышащая,',
+    price: '7 712',
+  },
+  {
+    image: images[imageSrcList[1]](),
+    country: 'Финляндия',
+    title: 'Костюм Горка Зима Финл. ПК #309',
+    description: 'Морозоустойчивая, Непромокаемая, Дышащая, Морозоустойчивая, Непромокаемая, Дышащая,',
+    price: '7 712',
+  },
+  {
+    image: images[imageSrcList[2]](),
+    country: 'Финляндия',
+    title: 'Костюм Горка Зима Финл. ПК #309',
+    description: 'Морозоустойчивая, Непромокаемая, Дышащая, Морозоустойчивая, Непромокаемая, Дышащая,',
+    price: '7 712',
+  },
+  {
+    image: images[imageSrcList[3]](),
+    country: 'Финляндия',
+    title: 'Костюм Горка Зима Финл. ПК #309',
+    description: 'Морозоустойчивая, Непромокаемая, Дышащая, Морозоустойчивая, Непромокаемая, Дышащая,',
+    price: '7 712',
+  },
+  {
+    image: images[imageSrcList[4]](),
+    country: 'Финляндия',
+    title: 'Костюм Горка Зима Финл. ПК #309',
+    description: 'Морозоустойчивая, Непромокаемая, Дышащая, Морозоустойчивая, Непромокаемая, Дышащая,',
+    price: '7 712',
+  },
+];
+---
+
+<section class='hits-section'>
+  <Hits
+    title='Летние Хиты для рыбалки и охоты'
+    description='Текст комментария от нейросети для расшифровки'
+    slides={slides}
+  />
+</section>
+
+<style lang='scss'>
+  .hits-section {
+    margin-bottom: 40px;
+  }
+</style>

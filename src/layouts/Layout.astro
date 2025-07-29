@@ -21,7 +21,7 @@ import '../styles/reset.scss';
   <body>
     <div class='layout'>
       <Header />
-      <main>
+      <main class='layout__main'>
         <slot />
       </main>
       <Footer />
@@ -37,6 +37,10 @@ import '../styles/reset.scss';
     gap: 12px;
     overflow-y: hidden;
     max-width: 100vw;
+
+    &__main {
+      overflow: hidden;
+    }
   }
 
   .header-container {

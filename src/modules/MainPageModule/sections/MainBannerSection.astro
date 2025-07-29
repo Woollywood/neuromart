@@ -31,47 +31,41 @@ const slides: MainBannerSlide[] = [
 const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/img/home/banner/*.{jpeg,jpg,png,gif}');
 ---
 
-<script>
-  import Swiper from 'swiper';
-  import { Pagination } from 'swiper/modules';
-
-  new Swiper('.swiper', {
-    loop: true,
-    spaceBetween: 8,
-    pagination: { el: '.swiper-pagination' },
-    modules: [Pagination],
-  });
-</script>
-
-<section class='banner'>
-  <div class='swiper swiper-fix'>
-    <div class='swiper-wrapper'>
-      {
-        slides.map(({ title, image, subtitle }) => (
-          <div class='swiper-slide banner-slide'>
-            <div class='banner-slide__image'>
-              <Picture inferSize layout='constrained' formats={['avif', 'webp']} src={images[image]()} alt='image' />
-              <div class='banner-slide__description'>
-                <h2 class='banner-slide__title'>{title}</h2>
-                <p class='banner-slide__subtitle'>{subtitle}</p>
-                <a href='#' class='banner-slide__button'>
-                  Перейти в каталог
-                </a>
+<section class='banner' data-component='main-banner'>
+  <div class='banner__container container'>
+    <div class='swiper swiper-fix'>
+      <div class='swiper-wrapper'>
+        {
+          slides.map(({ title, image, subtitle }) => (
+            <div class='swiper-slide banner-slide'>
+              <div class='banner-slide__image'>
+                <Picture inferSize layout='constrained' formats={['avif', 'webp']} src={images[image]()} alt='image' />
+                <div class='banner-slide__description'>
+                  <h2 class='banner-slide__title'>{title}</h2>
+                  <p class='banner-slide__subtitle'>{subtitle}</p>
+                  <a href='#' class='banner-slide__button'>
+                    Перейти в каталог
+                  </a>
+                </div>
               </div>
             </div>
-          </div>
-        ))
-      }
+          ))
+        }
+      </div>
+      <div class='swiper-pagination'></div>
     </div>
-    <div class='swiper-pagination'></div>
   </div>
 </section>
 
 <style lang='scss'>
   .banner {
     margin-bottom: 8px;
+
+    &__container {
+    }
   }
   .swiper {
+    overflow: visible;
   }
   .swiper-fix {
   }
@@ -146,3 +140,20 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/img/hom
     }
   }
 </style>
+
+<script>
+  import Swiper from 'swiper';
+  import { Pagination } from 'swiper/modules';
+
+  const slider = document
+    .querySelector<HTMLDivElement>("[data-component='main-banner']")
+    ?.querySelector<HTMLDivElement>('.swiper');
+  if (slider) {
+    new Swiper(slider, {
+      loop: true,
+      spaceBetween: 8,
+      pagination: { el: slider.querySelector<HTMLDivElement>('.swiper-pagination') },
+      modules: [Pagination],
+    });
+  }
+</script>
