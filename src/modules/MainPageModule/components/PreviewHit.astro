@@ -34,8 +34,19 @@ const { backgroundImage, description } = Astro.props;
     border-radius: 12px;
     overflow: hidden;
 
+    @include media('md') {
+      border-radius: 0;
+      aspect-ratio: 768 / 1024;
+    }
+
+    @include media('lg') {
+      border-radius: 12px;
+      aspect-ratio: 621 / 768;
+    }
+
     @include media('xl') {
       border-radius: 16px;
+      aspect-ratio: 940 / 896;
     }
 
     &__background {

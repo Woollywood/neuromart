@@ -36,6 +36,10 @@ const tags: string[] = [
   .question {
     margin-bottom: 38px;
 
+    @include media('md') {
+      margin-bottom: 48px;
+    }
+
     @include media('lg') {
       display: none;
     }

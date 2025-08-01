@@ -53,8 +53,13 @@ const links: Link[] = [
       margin-bottom: 8px;
 
       @include media('md') {
+        line-height: 100%;
         font-size: 24px;
         margin-bottom: 16px;
+      }
+
+      @include media('xl') {
+        font-size: 40px;
       }
     }
 
@@ -63,6 +68,10 @@ const links: Link[] = [
 
       @include media('md') {
         margin-bottom: 20px;
+      }
+
+      @include media('xl') {
+        margin-bottom: 28px;
       }
 
       p {
@@ -74,6 +83,11 @@ const links: Link[] = [
 
         &:not(:last-child) {
           margin-bottom: 16px;
+        }
+
+        @include media('xl') {
+          font-size: 16px;
+          line-height: 20px;
         }
       }
     }
@@ -97,6 +111,18 @@ const links: Link[] = [
       font-size: 12px;
       text-transform: uppercase;
       color: var(--secondary);
+
+      @include media('md') {
+        font-size: 14px;
+      }
+
+      @include media('lg') {
+        font-size: 12px;
+      }
+
+      @include media('xl') {
+        font-size: 16px;
+      }
     }
   }
 </style>

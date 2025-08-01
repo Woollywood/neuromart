@@ -1,8 +1,13 @@
 ---
 import { Icon } from 'astro-icon/components';
+import type { HTMLAttributes } from 'astro/types';
+
+type Props = Pick<HTMLAttributes<'div'>, 'class'>;
+
+const { class: className, ...rest } = Astro.props;
 ---
 
-<div class='catalog-button'>
+<div class:list={['catalog-button', className]} {...rest}>
   <a href='#' class='catalog-button__button'>
     <span>Смотреть каталог</span>
     <div class='catalog-button__icon-wrapper'>
@@ -33,11 +38,16 @@ import { Icon } from 'astro-icon/components';
       color: var(--white);
 
       @include media('md') {
+        padding: 12px;
         gap: 8px;
         display: inline-flex;
         margin: 0 auto;
         background-color: transparent;
         color: var(--secondary);
+      }
+
+      @include media('xl') {
+        font-size: 16px;
       }
     }
 

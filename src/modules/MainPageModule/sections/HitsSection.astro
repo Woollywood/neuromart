@@ -60,8 +60,8 @@ const slides: Slide[] = [
         <h2 class='hits-section__title title-block'>Летние Хиты для рыбалки и охоты</h2>
         <p class='hits-section__subtitle subtitle-block'>Текст комментария от нейросети для расшифровки</p>
       </div>
-      <Slider slides={slides} />
-      <div class='.hits-section__bottom'>
+      <Slider class='hits-section__slider' slides={slides} />
+      <div class='hits-section__bottom'>
         <ShowMoreCatalog />
       </div>
     </div>
@@ -94,6 +94,22 @@ const slides: Slide[] = [
 
     &__subtitle {
       text-align: left !important;
+    }
+
+    &__slider {
+      margin-bottom: 8px;
+
+      @include media('md') {
+        margin-bottom: 4px;
+      }
+
+      @include media('lg') {
+        margin-bottom: 8px;
+      }
+
+      @include media('xl') {
+        margin-bottom: 12px;
+      }
     }
 
     &__bottom {

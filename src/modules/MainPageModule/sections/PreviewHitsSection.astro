@@ -117,6 +117,10 @@ const tags: string[] = [
 
       @include media('lg') {
         margin: 0;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
       }
     }
 
@@ -158,10 +162,16 @@ const tags: string[] = [
 
     &__slider {
       overflow: hidden;
+      margin-bottom: 8px;
+
+      @include media('md') {
+        margin-bottom: 4px;
+      }
 
       @include media('lg') {
         margin: 0 auto;
         @include adaptiveValue('width', calc(201 * 2), calc(187 * 2), $adaptive-sm, $adaptive-md);
+        margin-bottom: 8px;
       }
 
       @include media('xl') {

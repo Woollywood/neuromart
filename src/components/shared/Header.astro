@@ -15,35 +15,39 @@ const inputTags: string[] = ['Доставка и оплата', 'Нужна п�
 ---
 
 <header class:list={['header', className]} data-component='header' {...rest}>
-  <div class='header__container'>
-    <a href='/' class='header__logo'>
-      <Picture inferSize layout='constrained' formats={['avif', 'webp']} src={logoImg} alt='logo' />
-    </a>
-    <div class='header__blocks'>
-      <div class='header__top-block'>
-        <div class='header__input input-header'>
-          <div class='input-header__field'>
-            <Icon class='input-header__icon' name='stars' />
-            <input class='input-header__input' type='text' placeholder='Найти  или задать вопрос...' />
+  <div class='header__container container'>
+    <div class='header__wrapper'>
+      <a href='/' class='header__logo'>
+        <Picture inferSize layout='constrained' formats={['avif', 'webp']} src={logoImg} alt='logo' />
+      </a>
+      <div class='header__separator header__separator_first'></div>
+      <div class='header__blocks'>
+        <div class='header__top-block'>
+          <div class='header__input input-header'>
+            <div class='input-header__field'>
+              <Icon class='input-header__icon' name='stars' />
+              <input class='input-header__input' type='text' placeholder='Найти  или задать вопрос...' />
+            </div>
+            <div class='input-header__tags'>
+              {inputTags.map((tag) => <button class='input-header__tag'>{tag}</button>)}
+            </div>
           </div>
-          <div class='input-header__tags'>
-            {inputTags.map((tag) => <button class='input-header__tag'>{tag}</button>)}
+          <div class='header__actions'>
+            <a href='#' class='header__action'>
+              <Icon name='account-icon' />
+            </a>
+            <a href='#' class='header__action'>
+              <Icon name='cart-icon' />
+            </a>
           </div>
         </div>
-        <div class='header__actions'>
-          <a href='#' class='header__action'>
-            <Icon name='account-icon' />
-          </a>
-          <a href='#' class='header__action'>
-            <Icon name='cart-icon' />
-          </a>
+        <div class='header__separator header__separator_second'></div>
+        <div class='header__bottom-block'>
+          <Hamburger />
         </div>
       </div>
-      <div class='header__bottom-block'>
-        <Hamburger />
-      </div>
+      <HeaderModal />
     </div>
-    <HeaderModal />
   </div>
 </header>
 
@@ -56,14 +60,18 @@ const inputTags: string[] = ['Доставка и оплата', 'Нужна п�
       overflow: visible;
     }
 
-    &__container {
+    &__wrapper {
       overflow: hidden;
-      padding: 6px 8px 0;
+      padding: 6px 0 0;
       padding-right: 0px;
 
       display: flex;
       align-items: center;
       gap: 4px;
+
+      @include media('xl') {
+        gap: 16px;
+      }
     }
 
     &__logo {
@@ -76,14 +84,41 @@ const inputTags: string[] = ['Доставка и оплата', 'Нужна п�
         height: 100%;
       }
 
-      @include media('md') {
+      @include media('lg') {
         width: 122px;
         height: 70px;
       }
 
-      @include media('lg') {
+      @include media('xl') {
         width: 166px;
         height: 88px;
+      }
+    }
+
+    &__separator {
+      display: none;
+
+      background-color: var(--light-2);
+      width: 1px;
+
+      @include media('lg') {
+        height: 68px;
+      }
+
+      @include media('xl') {
+        height: 88px;
+      }
+
+      &_first {
+        @include media('xl') {
+          display: block;
+        }
+      }
+
+      &_second {
+        @include media('lg') {
+          display: block;
+        }
       }
     }
 
@@ -95,8 +130,8 @@ const inputTags: string[] = ['Доставка и оплата', 'Нужна п�
       overflow: hidden;
 
       @include media('lg') {
-        display: grid;
-        grid-template-columns: auto 1fr;
+        flex-direction: row-reverse;
+        gap: 16px;
       }
     }
 
@@ -108,8 +143,8 @@ const inputTags: string[] = ['Доставка и оплата', 'Нужна п�
       padding-right: 8px;
 
       @include media('lg') {
-        grid-row: 1;
-        grid-column: 2;
+        flex-grow: 1;
+        gap: 16px;
       }
     }
 
@@ -129,9 +164,34 @@ const inputTags: string[] = ['Доставка и оплата', 'Нужна п�
     &__action {
       color: var(--primary);
 
+      @include media('lg') {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 32px;
+        width: 32px;
+        border-radius: 8px;
+        border: 1px solid var(--light-2);
+      }
+
+      @include media('xl') {
+        height: 40px;
+        width: 40px;
+      }
+
       svg {
         width: 20px;
         height: 20px;
+
+        @include media('lg') {
+          width: 16px;
+          height: 16px;
+        }
+
+        @include media('xl') {
+          width: 20px;
+          height: 20px;
+        }
       }
     }
 
@@ -139,10 +199,6 @@ const inputTags: string[] = ['Доставка и оплата', 'Нужна п�
       display: flex;
       align-items: center;
       gap: 4px;
-
-      @include media('lg') {
-        grid-column: 1;
-      }
     }
   }
 
@@ -159,7 +215,14 @@ const inputTags: string[] = ['Доставка и оплата', 'Нужна п�
     @include media('lg') {
       display: flex;
       flex-direction: column;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    @include media('xl') {
+      padding: 10px;
       gap: 26px;
+      height: 88px;
     }
 
     &__field {
@@ -185,6 +248,10 @@ const inputTags: string[] = ['Доставка и оплата', 'Нужна п�
 
       @include media('md') {
         font-size: 13px;
+      }
+
+      @include media('xl') {
+        font-size: 14px;
       }
 
       &::placeholder {
