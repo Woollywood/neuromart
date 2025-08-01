@@ -87,7 +87,7 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/img/hom
 
     @include media('lg') {
       aspect-ratio: auto;
-      height: 320px;
+      @include adaptiveValue('height', 480, 320, $adaptive-lg, $adaptive-xxl);
     }
 
     &__image {
@@ -170,6 +170,10 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/img/hom
         text-indent: 0;
         margin-right: 0;
       }
+
+      @include media('xl') {
+        font-size: 40px;
+      }
     }
 
     &__subtitle {
@@ -185,6 +189,11 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/img/hom
         max-width: 100%;
         text-indent: 0;
         margin-right: 0;
+        margin-bottom: 12px;
+      }
+
+      @include media('xl') {
+        margin-bottom: 20px;
       }
     }
 
@@ -208,6 +217,11 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/img/hom
       @include media('lg') {
         font-size: 14px;
         margin-right: 0;
+      }
+
+      @include media('xl') {
+        font-size: 20px;
+        padding: 12px 16px;
       }
     }
   }

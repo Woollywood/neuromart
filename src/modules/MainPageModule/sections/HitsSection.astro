@@ -57,8 +57,8 @@ const slides: Slide[] = [
   <div class='hits-section__container container'>
     <div class='hits-section__wrapper'>
       <div class='hits-section__top'>
-        <h2 class='title-block'>Летние Хиты для рыбалки и охоты</h2>
-        <p class='subtitle-blockiption'>Текст комментария от нейросети для расшифровки</p>
+        <h2 class='hits-section__title title-block'>Летние Хиты для рыбалки и охоты</h2>
+        <p class='hits-section__subtitle subtitle-block'>Текст комментария от нейросети для расшифровки</p>
       </div>
       <Slider slides={slides} />
       <div class='.hits-section__bottom'>
@@ -71,6 +71,31 @@ const slides: Slide[] = [
 <style lang='scss'>
   .hits-section {
     margin-bottom: 40px;
+
+    @include media('lg') {
+      margin-bottom: 64px;
+    }
+
+    @include media('xl') {
+      margin-bottom: 72px;
+    }
+
+    &__top {
+      margin-bottom: 8px;
+
+      @include media('lg') {
+        margin-bottom: 12px;
+      }
+    }
+
+    &__title {
+      text-align: left !important;
+    }
+
+    &__subtitle {
+      text-align: left !important;
+    }
+
     &__bottom {
     }
   }

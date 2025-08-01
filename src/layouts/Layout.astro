@@ -21,11 +21,11 @@ import '../styles/reset.scss';
   </head>
   <body>
     <div class='layout'>
-      <Header />
+      <Header class='layout__header' />
       <main class='layout__main'>
         <slot />
       </main>
-      <Footer />
+      <Footer class='layout__footer' />
     </div>
   </body>
 </html>
@@ -35,17 +35,28 @@ import '../styles/reset.scss';
     display: grid;
     grid-template-rows: auto 1fr auto;
     min-height: 100svh;
-    gap: 12px;
     overflow-y: hidden;
     max-width: 100vw;
 
+    &__header {
+      margin-bottom: 12px;
+    }
+
     &__main {
       overflow: hidden;
-    }
-  }
+      margin-bottom: 40px;
 
-  .header-container {
-    overflow: hidden;
+      @include media('md') {
+        margin-bottom: 32px;
+      }
+
+      @include media('lg') {
+        margin-bottom: 64px;
+      }
+    }
+
+    &__footer {
+    }
   }
 
   body {

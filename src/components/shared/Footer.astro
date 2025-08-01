@@ -1,9 +1,14 @@
 ---
 import Accordion from '../ui/Accordion.astro';
 import { accordions } from '../../constants/footer';
+import type { HTMLAttributes } from 'astro/types';
+
+type Props = Pick<HTMLAttributes<'footer'>, 'class'>;
+
+const { class: className, ...rest } = Astro.props;
 ---
 
-<footer class='footer'>
+<footer class:list={['footer', className]} {...rest}>
   <div class='footer__container container'>
     <div class='footer__inner'>
       <div class='footer__accordions'>{accordions.map((accordion) => <Accordion {...accordion} />)}</div>

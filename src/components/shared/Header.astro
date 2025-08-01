@@ -5,11 +5,16 @@ import HeaderModal from './HeaderModal.astro';
 import { Picture } from 'astro:assets';
 
 import logoImg from '@assets/img/logo.svg';
+import type { HTMLAttributes } from 'astro/types';
+
+type Props = Pick<HTMLAttributes<'header'>, 'class'>;
+
+const { class: className, ...rest } = Astro.props;
 
 const inputTags: string[] = ['Доставка и оплата', 'Нужна помощь с выбором', 'Индивидуальный заказ'];
 ---
 
-<header class='header' data-component='header'>
+<header class:list={['header', className]} data-component='header' {...rest}>
   <div class='header__container'>
     <a href='/' class='header__logo'>
       <Picture inferSize layout='constrained' formats={['avif', 'webp']} src={logoImg} alt='logo' />

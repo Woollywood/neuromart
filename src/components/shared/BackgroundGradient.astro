@@ -1,6 +1,16 @@
-<div class='gradient__color-filter'></div>
-<div class='gradient__text-dark'>
-  <div class='gradient__gradient'></div>
+---
+import type { HTMLAttributes } from 'astro/types'
+
+type Props = Pick<HTMLAttributes<'div'>, 'class'>
+
+const {class: className, ...rest} = Astro.props
+---
+
+<div class:list={["gradient", className]} {...rest}>
+  <div class='gradient__color-filter'></div>
+  <div class='gradient__text-dark'>
+    <div class='gradient__gradient'></div>
+  </div>
 </div>
 
 <style lang='scss'>

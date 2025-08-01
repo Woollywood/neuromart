@@ -1,0 +1,122 @@
+---
+import { Icon } from 'astro-icon/components';
+import type { HTMLAttributes } from 'astro/types';
+
+export interface Contact {
+  name: string;
+  phone: string;
+  email: string;
+}
+
+interface Props extends Pick<HTMLAttributes<'div'>, 'class'> {
+  contacts: Contact[];
+}
+
+const { contacts, class: className, ...rest } = Astro.props;
+---
+
+<div class:list={['contacts', className]} {...rest}>
+  {
+    contacts.map(({ name, phone, email }) => (
+      <div class='contacts__contact contact'>
+        <p class='contact__name'>{name}</p>
+        <div class='contact__button contact__button_top'>
+          <div class='contact__button-inner'>
+            <a href={`tel:${phone}`} class='contact__phone'>
+              {phone}
+            </a>
+            <div class='contact__icons'>
+              <a href='#' class='contact__icon'>
+                <Icon name='whatsapp' />
+              </a>
+              <a href='#' class='contact__icon'>
+                <Icon name='telegram' />
+              </a>
+            </div>
+          </div>
+        </div>
+        <a href={`mailto:${email}`} class='contact__button contact__button_bottom'>
+          {email}
+        </a>
+      </div>
+    ))
+  }
+</div>
+
+<style lang='scss'>
+  .contacts {
+    position: relative;
+    z-index: 10;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4px;
+  }
+
+  .contact {
+    &__name {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+
+      font-weight: 900;
+      font-style: italic;
+      font-size: 12px;
+      text-transform: uppercase;
+      color: var(--primary);
+
+      margin-bottom: 6px;
+
+      &::before,
+      &::after {
+        content: '';
+        width: 100%;
+        height: 1px;
+        background-color: var(--primary);
+      }
+    }
+
+    &__button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 12px;
+      background-color: transparent;
+      border: 1px solid var(--primary);
+      border-radius: 8px;
+
+      font-weight: 800;
+      font-size: 16px;
+      text-transform: uppercase;
+      color: var(--white);
+
+      &_top {
+        margin-bottom: 4px;
+      }
+
+      &_bottom {
+        font-size: 14px;
+      }
+    }
+
+    &__button-inner {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      align-items: center;
+    }
+
+    &__phone {
+    }
+
+    &__icons {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    &__icon {
+      color: var(--primary);
+    }
+  }
+</style>

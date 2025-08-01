@@ -1,0 +1,83 @@
+---
+import type { Slide } from '@/components/ui/Slider.astro';
+import type { PreviewHitProps } from '../components/PreviewHit.astro';
+import PreviewHit from '../components/PreviewHit.astro';
+import PreviewBlock from '../components/PreviewBlock.astro';
+import type { Contact } from '../components/Contacts.astro';
+import AboutBlock from '../components/AboutBlock.astro';
+import Contacts from '../components/Contacts.astro';
+
+interface Props {
+  direction?: 'left' | 'right';
+}
+
+const { direction = 'left' } = Astro.props;
+
+const previewHitsimages = import.meta.glob<{ default: ImageMetadata }>(
+  '/src/assets/img/home/preview-hits/*.{jpeg,jpg,png,gif}'
+);
+
+const previewProps: PreviewHitProps = {
+  backgroundImage: previewHitsimages['/src/assets/img/home/preview-hits/background.png'](),
+  description: 'Весной на рыбалке важно не промокнуть, не замёрзнуть и не вспотеть.',
+};
+
+const contacts: Contact[] = [
+  { name: 'Татьяна', phone: '+7-906-512-25-55', email: 'mta37@stayer-tex.ru' },
+  { name: 'Татьяна', phone: '+7-906-512-25-55', email: 'mta37@stayer-tex.ru' },
+];
+---
+
+<PreviewBlock class='preview-contact-section' direction={direction}>
+  <div slot='left' class='preview-contact-section__left'>
+    <PreviewHit {...previewProps}>
+      <Contacts class='preview-contact-section__contacts' contacts={contacts} />
+    </PreviewHit>
+  </div>
+  <div slot='right' class='preview-contact-section__right right-preview-contact-section'>
+    <AboutBlock />
+  </div>
+</PreviewBlock>
+
+<style lang='scss'>
+  .preview-contact-section {
+    &__left {
+      @include media('md') {
+        margin: 0 -8px;
+      }
+
+      @include media('lg') {
+        margin: 0;
+      }
+    }
+
+    &__contacts {
+      @include media('lg') {
+        display: none;
+      }
+    }
+
+    &__right {
+      @include media('lg') {
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+  }
+
+  .right-preview-contact-section {
+    @include media('lg') {
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0 112px;
+    }
+
+    @include media('xl') {
+      padding: 0 127px;
+    }
+  }
+</style>

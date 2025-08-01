@@ -1,0 +1,68 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+
+interface Props extends Pick<HTMLAttributes<'div'>, 'class'> {
+  tags: string[];
+  aboveImage?: boolean;
+}
+
+const { tags, aboveImage = true, class: className, ...rest } = Astro.props;
+---
+
+<div class:list={['tags', className, aboveImage ? 'aboveImage' : 'notAboveImage']} {...rest}>
+  {tags.map((tag) => <div class='tags__tag'>{tag}</div>)}
+</div>
+
+<style lang='scss'>
+  .tags {
+    flex-wrap: wrap;
+    gap: 4px;
+    justify-content: center;
+    padding: 0 24px;
+
+    @include media('md') {
+      padding: 0 64px;
+    }
+
+    @include media('lg') {
+      gap: 8px;
+    }
+
+    &.aboveImage {
+      display: flex;
+
+      @include media('lg') {
+        display: none;
+      }
+    }
+
+    &.notAboveImage {
+      display: none;
+
+      @include media('lg') {
+        display: flex;
+      }
+    }
+
+    &__tag {
+      padding: 4px 8px;
+      border-radius: 6px;
+      border: 1px solid rgba(255, 255, 255, 0.32);
+      background-color: transparent;
+
+      font-family: var(--font-secondary);
+      font-weight: 500;
+      font-size: 14px;
+      color: var(--white);
+
+      @include media('md') {
+        padding: 8px;
+      }
+
+      @include media('lg') {
+        border: 1px solid var(--light-2);
+        color: var(--secondary);
+      }
+    }
+  }
+</style>

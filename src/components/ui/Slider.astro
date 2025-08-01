@@ -19,7 +19,7 @@ const { slides, class: className, ...rest } = Astro.props;
 ---
 
 <div class:list={[className, 'splide']} data-component='slider' {...rest}>
-  <div class='splide__track'>
+  <div class='splide__track slider'>
     <ul class='splide__list'>
       {
         slides.map(({ image, title, price, description, country }) => (
@@ -47,6 +47,17 @@ const { slides, class: className, ...rest } = Astro.props;
 </div>
 
 <style lang='scss'>
+  .slider {
+    @include media('lg') {
+      border: 1px solid var(--light-2);
+      border-radius: 8px;
+    }
+
+    @include media('xl') {
+      border-radius: 12px;
+    }
+  }
+
   .slide {
     border-top: 1px solid var(--light-2);
     border-bottom: 1px solid var(--light-2);
@@ -56,6 +67,7 @@ const { slides, class: className, ...rest } = Astro.props;
 
     @include media('lg') {
       @include adaptiveValue('width', 201, 187, $adaptive-sm, $adaptive-md);
+      border: 0;
     }
 
     @include media('xl') {
@@ -66,8 +78,8 @@ const { slides, class: className, ...rest } = Astro.props;
       border-right: 1px solid var(--light-2);
       border-left: 1px solid var(--light-2);
 
-      @include media('md') {
-        padding: 12px 0;
+      @include media('lg') {
+        border-left: 0;
       }
     }
 
