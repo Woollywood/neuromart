@@ -14,11 +14,13 @@ const tags: ITag[] = [
   { label: 'Прайс', href: '#' },
   { label: 'Акции', href: '#' },
 ];
+
+const contacts: string[] = ['+7-906-512-25-55', '+7-906-512-25-55'];
 ---
 
 <div class='hamburger' data-component='hamburger'>
   <div class='hamburger__closed'>
-    <button class='hamburger__button'>
+    <button class='hamburger__button' data-hamburger-button>
       <Icon name='menu' />
     </button>
     <div class='hamburger__tags'>
@@ -32,10 +34,40 @@ const tags: ITag[] = [
     </div>
   </div>
   <div class='hamburger__opened'>
-    <button class='hamburger__button'>
+    <button class='hamburger__button' data-hamburger-button>
       <span>Закрыть</span>
       <Icon name='close' />
     </button>
+  </div>
+  <div class='hamburger__tablet tablet-hamburger'>
+    <div class='tablet-hamburger__contacts'>
+      {
+        contacts.map((contact) => (
+          <div class='tablet-hamburger__contact'>
+            <div class='tablet-hamburger__contact-icons'>
+              <a href='#' class='tablet-hamburger__contact-icon'>
+                <Icon name='whatsapp' />
+              </a>
+              <a href='#' class='tablet-hamburger__contact-icon'>
+                <Icon name='telegram' />
+              </a>
+            </div>
+            <a href={`tel:${contact}`} class='tablet-hamburger__contact-phone'>
+              {contact}
+            </a>
+          </div>
+        ))
+      }
+    </div>
+    <div class='tablet-hamburger__tags'>
+      {
+        tags.map(({ label, href }) => (
+          <a class='tablet-hamburger__tag' href={href}>
+            {label}
+          </a>
+        ))
+      }
+    </div>
   </div>
 </div>
 
@@ -56,6 +88,10 @@ const tags: ITag[] = [
         width: 16px;
         height: 6px;
       }
+      
+      @include media('lg') {
+        display: none !important;
+      }
     }
 
     &__button {
@@ -73,6 +109,10 @@ const tags: ITag[] = [
       font-size: 12px;
       text-transform: uppercase;
       height: 28px;
+
+      @include media('md') {
+        height: 32px;
+      }
     }
 
     &__tags {
@@ -93,9 +133,18 @@ const tags: ITag[] = [
       font-weight: 800;
       font-size: 12px;
       text-transform: uppercase;
+
+      @include media('md') {
+        font-size: 13px;
+        padding: 9px 10px;
+      }
     }
 
     &__opened {
+      @include media('lg') {
+        display: none !important;
+      }
+
       .open & {
         display: flex;
         align-items: center;
@@ -109,15 +158,93 @@ const tags: ITag[] = [
         height: 10px;
       }
     }
+
+    &__tablet {
+    }
+  }
+
+  .tablet-hamburger {
+    display: none;
+
+    @include media('lg') {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    &__contacts {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    &__contact {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border-radius: 8px;
+      overflow: hidden;
+      background-color: var(--light);
+      padding: 0 10px;
+      height: 40px;
+    }
+
+    &__contact-icons {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    &__contact-icon {
+      color: var(--primary);
+
+      svg {
+        width: 20px;
+        height: 20px;
+      }
+    }
+
+    &__contact-phone {
+      font-weight: 900;
+      font-style: italic;
+      font-size: 18px;
+      text-transform: uppercase;
+      color: var(--secondary);
+    }
+
+    &__tags {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    &__tag {
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      padding: 12px;
+      border-radius: 8px;
+      background-color: transparent;
+      border: 1px solid var(--primary);
+
+      font-weight: 800;
+      font-size: 16px;
+      text-transform: uppercase;
+      color: var(--primary);
+    }
   }
 </style>
 
 <script>
   document.querySelectorAll<HTMLDivElement>("[data-component='hamburger']").forEach((item) => {
-    item.addEventListener('click', () => {
-      item.classList.toggle('open');
-      document.querySelector("[data-component='header-modal']")?.classList.toggle('open');
-      document.querySelector("[data-component='header']")?.classList.toggle('open');
+    item.querySelectorAll<HTMLButtonElement>('[data-hamburger-button]').forEach((button) => {
+      button.addEventListener('click', () => {
+        item.classList.toggle('open');
+        document.querySelector("[data-component='header-modal']")?.classList.toggle('open');
+        document.querySelector("[data-component='header']")?.classList.toggle('open');
+      });
     });
   });
 </script>

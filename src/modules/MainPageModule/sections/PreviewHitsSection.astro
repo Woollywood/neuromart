@@ -1,7 +1,9 @@
 ---
-import Hits, { type SlideHit } from '../components/Hits.astro';
+import type { Slide } from '@/components/ui/Slider.astro';
 import type { PreviewHitProps } from '../components/PreviewHit.astro';
 import PreviewHit from '../components/PreviewHit.astro';
+import Slider from '@/components/ui/Slider.astro';
+import ShowMoreCatalog from '@/components/ui/ShowMoreCatalog.astro';
 
 const hitsImages = import.meta.glob<{ default: ImageMetadata }>('/src/assets/img/home/hits/*.{jpeg,jpg,png,gif}');
 const previewHitsimages = import.meta.glob<{ default: ImageMetadata }>(
@@ -16,7 +18,7 @@ const imageSrcList: string[] = [
   '/src/assets/img/home/hits/hits-slide-image.png',
 ];
 
-const slides: SlideHit[] = [
+const slides: Slide[] = [
   {
     image: hitsImages[imageSrcList[0]](),
     country: 'Финляндия',
@@ -68,11 +70,22 @@ const previewProps: PreviewHitProps = {
 };
 ---
 
-<section class='preview-hits'>
-  <div class='preview-hits__container container'>
+<section class='preview-hits' data-component='preview-hits'>
+  <div class='preview-hits__container'>
     <div class='preview-hits__blocks'>
-      <PreviewHit {...previewProps} />
-      <Hits title='Одежда Для Рыбалки' description='Текст комментария от нейросети для расшифровки' slides={slides} />
+      <div class='preview-hits__blocks_big'>
+        <PreviewHit {...previewProps} />
+      </div>
+      <div class='preview-hits__slider slider-preview'>
+        <div class='slider-preview__wrapper'>
+          <div class='hits-section__top'>
+            <h2 class='title-block'>Одежда Для Рыбалки</h2>
+            <p class='subtitle-blockiption'>Текст комментария от нейросети для расшифровки</p>
+          </div>
+          <Slider class='slider-preview__slider' slides={slides} />
+          <ShowMoreCatalog />
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -88,8 +101,54 @@ const previewProps: PreviewHitProps = {
       display: flex;
       flex-direction: column;
       gap: 38px;
+      overflow: hidden;
+
+      @include media('lg') {
+        display: grid;
+        gap: 8px;
+        grid-template-columns: 50vw 1fr;
+      }
+
+      &_big {
+        @include media('md') {
+          margin: 0 -8px;
+        }
+      }
+
+      &__slider {
+        @include media('lg') {
+          height: 400px;
+        }
+      }
     }
   }
-  .container {
+
+  .preview-hits {
+  }
+
+  .slider-preview {
+    @include media('lg') {
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    &__wrapper {
+    }
+
+    &__slider {
+      overflow: hidden;
+
+      @include media('lg') {
+        aspect-ratio: 201 / 288;
+        @include adaptiveValue('width', calc(201 * 2), calc(187 * 2), $adaptive-sm, $adaptive-md);
+      }
+
+      @include media('xl') {
+        aspect-ratio: 229 / 472;
+        @include adaptiveValue('width', calc(229 * 3), calc(201 * 3), $adaptive-xl, $adaptive-xxl);
+      }
+    }
   }
 </style>

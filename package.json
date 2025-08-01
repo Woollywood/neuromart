@@ -12,9 +12,9 @@
     "@astrojs/ts-plugin": "^1.10.4",
     "@fontsource-variable/sofia-sans-condensed": "^5.2.6",
     "@fontsource-variable/source-sans-3": "^5.2.8",
+    "@splidejs/splide": "^4.1.4",
     "astro": "^5.12.3",
     "astro-icon": "^1.1.5",
-    "sass": "^1.89.2",
-    "swiper": "^11.2.10"
+    "sass": "^1.89.2"
   }
 }

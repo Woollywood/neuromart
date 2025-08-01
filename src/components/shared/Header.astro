@@ -5,6 +5,8 @@ import HeaderModal from './HeaderModal.astro';
 import { Picture } from 'astro:assets';
 
 import logoImg from '@assets/img/logo.svg';
+
+const inputTags: string[] = ['Доставка и оплата', 'Нужна помощь с выбором', 'Индивидуальный заказ'];
 ---
 
 <header class='header' data-component='header'>
@@ -15,8 +17,13 @@ import logoImg from '@assets/img/logo.svg';
     <div class='header__blocks'>
       <div class='header__top-block'>
         <div class='header__input input-header'>
-          <Icon class='input-header__icon' name='stars' />
-          <input class='input-header__input' type='text' placeholder='Найти  или задать вопрос...' />
+          <div class='input-header__field'>
+            <Icon class='input-header__icon' name='stars' />
+            <input class='input-header__input' type='text' placeholder='Найти  или задать вопрос...' />
+          </div>
+          <div class='input-header__tags'>
+            {inputTags.map((tag) => <button class='input-header__tag'>{tag}</button>)}
+          </div>
         </div>
         <div class='header__actions'>
           <a href='#' class='header__action'>
@@ -55,6 +62,24 @@ import logoImg from '@assets/img/logo.svg';
     }
 
     &__logo {
+      width: 104px;
+      height: 62px;
+      flex-shrink: 0;
+
+      img {
+        width: 100%;
+        height: 100%;
+      }
+
+      @include media('md') {
+        width: 122px;
+        height: 70px;
+      }
+
+      @include media('lg') {
+        width: 166px;
+        height: 88px;
+      }
     }
 
     &__blocks {
@@ -63,6 +88,11 @@ import logoImg from '@assets/img/logo.svg';
       flex-direction: column;
       gap: 4px;
       overflow: hidden;
+
+      @include media('lg') {
+        display: grid;
+        grid-template-columns: auto 1fr;
+      }
     }
 
     &__top-block {
@@ -71,6 +101,11 @@ import logoImg from '@assets/img/logo.svg';
       align-items: center;
       gap: 8px;
       padding-right: 8px;
+
+      @include media('lg') {
+        grid-row: 1;
+        grid-column: 2;
+      }
     }
 
     &__input {
@@ -80,6 +115,10 @@ import logoImg from '@assets/img/logo.svg';
       display: flex;
       align-items: center;
       gap: 8px;
+
+      @include media('lg') {
+        align-self: flex-start;
+      }
     }
 
     &__action {
@@ -95,19 +134,34 @@ import logoImg from '@assets/img/logo.svg';
       display: flex;
       align-items: center;
       gap: 4px;
+
+      @include media('lg') {
+        grid-column: 1;
+      }
     }
   }
 
   .input-header {
-    cursor: pointer;
     padding: 6px;
     border-radius: 8px;
     background-color: var(--light);
-
-    display: flex;
-    align-items: center;
-    gap: 6px;
     flex-grow: 1;
+
+    @include media('md') {
+      padding: 8px;
+    }
+
+    @include media('lg') {
+      display: flex;
+      flex-direction: column;
+      gap: 26px;
+    }
+
+    &__field {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
 
     &__icon {
       color: var(--primary);
@@ -124,9 +178,35 @@ import logoImg from '@assets/img/logo.svg';
       line-height: 16px;
       background-color: transparent;
 
+      @include media('md') {
+        font-size: 13px;
+      }
+
       &::placeholder {
         color: var(--light-3);
       }
+    }
+
+    &__tags {
+      display: none;
+
+      @include media('lg') {
+        display: flex;
+        gap: 6px;
+      }
+    }
+
+    &__tag {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 6px;
+      background-color: var(--white);
+      padding: 5px 8px;
+
+      font-family: var(--font-secondary);
+      font-size: 14px;
+      color: var(--secondary);
     }
   }
 </style>
@@ -138,4 +218,10 @@ import logoImg from '@assets/img/logo.svg';
   inputWrapper?.addEventListener('click', () => {
     input?.focus();
   });
+
+  document.querySelectorAll<HTMLButtonElement>('.input-header__tag').forEach((tag) =>
+    tag.addEventListener('click', (e) => {
+      e.stopPropagation();
+    })
+  );
 </script>

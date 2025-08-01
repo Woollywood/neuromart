@@ -19,7 +19,7 @@ const { label, links } = Astro.props;
 <div class='accordion' data-component='accordion'>
   <button class='accordion__trigger' data-component='accordion-trigger'>
     <span>{label}</span>
-    <div class="accordion__trigger-icon">
+    <div class='accordion__trigger-icon'>
       <Icon name='arrow-down' />
     </div>
   </button>
@@ -34,66 +34,73 @@ const { label, links } = Astro.props;
   </div>
 </div>
 
-<style>
+<style lang='scss'>
   .accordion {
-  }
+    &__trigger {
+      cursor: pointer;
+      padding: 10px 12px;
+      border-radius: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: var(--light);
+      width: 100%;
 
-  .accordion__trigger {
-    cursor: pointer;
-    padding: 10px 12px;
-    border-radius: 8px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: var(--light);
-    width: 100%;
+      font-family: var(--font-primary);
+      color: var(--secondary);
+      font-weight: 800;
+      font-size: 12px;
+      text-transform: uppercase;
 
-    font-family: var(--font-primary);
-    color: var(--secondary);
-    font-weight: 800;
-    font-size: 12px;
-    text-transform: uppercase;
-  }
+      @include media('md') {
+        font-size: 13px;
+      }
 
-  .open .accordion__trigger {
-    margin-bottom: 4px;
-  }
+      .open & {
+        margin-bottom: 4px;
+      }
+    }
 
-  .accordion__trigger-icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 8px;
-    height: 4px;
-  }
+    &__trigger-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 8px;
+      height: 4px;
 
-  .open .accordion__trigger-icon {
-    transform: rotate(180deg);
-  }
+      .open & {
+        transform: rotate(180deg);
+      }
+    }
 
-  .accordion__body {
-    display: none;
-  }
+    &__body {
+      display: none;
 
-  .open .accordion__body {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-  }
+      .open & {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+    }
 
-  .accordion__link {
-    padding: 10px 12px;
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    background-color: transparent;
-    border: 1px solid var(--light-2);
+    &__link {
+      padding: 10px 12px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      background-color: transparent;
+      border: 1px solid var(--light-2);
 
-    font-weight: 800;
-    font-size: 12px;
-    text-transform: uppercase;
-    color: var(--dark);
+      font-weight: 800;
+      font-size: 12px;
+      text-transform: uppercase;
+      color: var(--dark);
+
+      @include media('md') {
+        font-size: 13px;
+      }
+    }
   }
 </style>
 

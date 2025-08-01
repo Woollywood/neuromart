@@ -1,0 +1,205 @@
+---
+import type { ImageMetadata } from 'astro';
+import type { HTMLAttributes } from 'astro/types';
+import { Picture } from 'astro:assets';
+
+export interface Slide {
+  image: Promise<{ default: ImageMetadata }>;
+  country: string;
+  title: string;
+  description: string;
+  price: string;
+}
+
+interface Props extends Pick<HTMLAttributes<'div'>, 'class'> {
+  slides: Slide[];
+}
+
+const { slides, class: className, ...rest } = Astro.props;
+---
+
+<div class:list={[className, 'splide']} data-component='slider' {...rest}>
+  <div class='splide__track'>
+    <ul class='splide__list'>
+      {
+        slides.map(({ image, title, price, description, country }) => (
+          <div class='splide__slide slider__slide slide'>
+            <div class='slide__inner'>
+              <div class='slide__image'>
+                <Picture inferSize layout='constrained' formats={['avif', 'webp']} src={image} alt='image' />
+              </div>
+              <div class='slide__content'>
+                <p class='slide__country'>{country}</p>
+                <h2 class='slide__title'>{title}</h2>
+                <p class='slide__description'>{description}</p>
+                <div class='slide__price-wrapper'>
+                  <div class='slide__price'>
+                    опт <span>{price}</span> руб
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))
+      }
+    </ul>
+  </div>
+</div>
+
+<style lang='scss'>
+  .slide {
+    border-top: 1px solid var(--light-2);
+    border-bottom: 1px solid var(--light-2);
+    padding: 8px 0;
+
+    @include adaptiveValue('width', 187, 117, $adaptive-sm, $adaptive-md);
+
+    @include media('lg') {
+      @include adaptiveValue('width', 201, 187, $adaptive-sm, $adaptive-md);
+    }
+
+    @include media('xl') {
+      @include adaptiveValue('width', 229, 201, $adaptive-xl, $adaptive-xxl);
+    }
+
+    &__inner {
+      border-right: 1px solid var(--light-2);
+      border-left: 1px solid var(--light-2);
+
+      @include media('md') {
+        padding: 12px 0;
+      }
+    }
+
+    &:first-child {
+      border-top-left-radius: 12px;
+      border-bottom-left-radius: 12px;
+    }
+
+    &:last-child {
+      border-top-right-radius: 12px;
+      border-bottom-right-radius: 12px;
+    }
+
+    &__image {
+      position: relative;
+      aspect-ratio: 117 / 144;
+      margin-bottom: 6px;
+
+      @include media('md') {
+        aspect-ratio: 187 / 288;
+      }
+
+      @include media('lg') {
+        aspect-ratio: 201 / 288;
+      }
+
+      @include media('xl') {
+        aspect-ratio: 229 / 472;
+      }
+
+      img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+    }
+
+    &__content {
+      padding: 0 8px;
+    }
+
+    &__country {
+      font-weight: 800;
+      font-style: italic;
+      font-size: 12px;
+      text-align: center;
+      text-transform: uppercase;
+      color: var(--primary);
+    }
+
+    &__title {
+      font-weight: 800;
+      font-style: italic;
+      font-size: 12px;
+      text-align: center;
+      text-transform: uppercase;
+      color: var(--secondary);
+
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+
+      margin-bottom: 2px;
+
+      @include media('md') {
+        font-size: 13px;
+      }
+    }
+
+    &__description {
+      font-weight: 600;
+      font-style: italic;
+      font-size: 10px;
+      text-transform: uppercase;
+      color: var(--primary);
+      text-align: center;
+
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+
+      margin-bottom: 6px;
+
+      @include media('md') {
+        font-size: 12px;
+      }
+    }
+
+    &__price-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    &__price {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+
+      padding: 8px 4px;
+      border-radius: 8px;
+      border: 1px solid var(--primary);
+      width: 100%;
+
+      font-weight: 900;
+      font-style: italic;
+      font-size: 11px;
+      text-transform: uppercase;
+      color: var(--primary);
+
+      @include media('md') {
+        display: inline-flex;
+        width: auto;
+      }
+
+      span {
+        @include adaptiveValue('font-size', 20, 12, $adaptive-sm, $adaptive-md);
+      }
+    }
+  }
+</style>
+
+<script>
+  import Splide from '@splidejs/splide';
+
+  document.querySelectorAll<HTMLDivElement>("[data-component='slider']").forEach((slider) => {
+    new Splide(slider, { type: 'loop', autoWidth: true, arrows: false, pagination: false }).mount();
+  });
+</script>

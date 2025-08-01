@@ -1,0 +1,64 @@
+---
+import { Icon } from 'astro-icon/components';
+---
+
+<div class='catalog-button'>
+  <a href='#' class='catalog-button__button'>
+    <span>Смотреть каталог</span>
+    <div class='catalog-button__icon-wrapper'>
+      <Icon name='arrow-down' />
+    </div>
+  </a>
+</div>
+
+<style lang='scss'>
+  .catalog-button {
+    @include media('md') {
+      display: flex;
+      justify-content: center;
+    }
+
+    &__button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 12px;
+      border-radius: 8px;
+      background-color: var(--primary);
+
+      font-weight: 800;
+      font-style: italic;
+      font-size: 14px;
+      text-transform: uppercase;
+      color: var(--white);
+
+      @include media('md') {
+        gap: 8px;
+        display: inline-flex;
+        margin: 0 auto;
+        background-color: transparent;
+        color: var(--secondary);
+      }
+    }
+
+    &__icon-wrapper {
+      display: none;
+
+      @include media('md') {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 20px;
+        height: 20px;
+        color: var(--secondary);
+        background-color: var(--light);
+        border-radius: 100%;
+
+        svg {
+          width: 10px;
+          height: 10px;
+        }
+      }
+    }
+  }
+</style>

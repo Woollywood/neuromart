@@ -45,6 +45,10 @@ const links: Link[] = [
   .about {
     margin-bottom: 40px;
 
+    @include media('md') {
+      margin-bottom: 32px;
+    }
+
     &__container {
     }
 
@@ -58,10 +62,19 @@ const links: Link[] = [
       text-transform: uppercase;
       color: var(--secondary);
       margin-bottom: 8px;
+
+      @include media('md') {
+        font-size: 24px;
+        margin-bottom: 16px;
+      }
     }
 
     &__description-wrapper {
       margin-bottom: 12px;
+
+      @include media('md') {
+        margin-bottom: 20px;
+      }
 
       p {
         font-family: var(--font-secondary);

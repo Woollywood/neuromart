@@ -1,7 +1,8 @@
 ---
+import ShowMoreCatalog from '@/components/ui/ShowMoreCatalog.astro';
+import type { Slide } from '@/components/ui/Slider.astro';
+import Slider from '@/components/ui/Slider.astro';
 import type { ImageMetadata } from 'astro';
-import type { SlideHit } from '../components/Hits.astro';
-import Hits from '../components/Hits.astro';
 
 const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/img/home/hits/*.{jpeg,jpg,png,gif}');
 
@@ -13,7 +14,7 @@ const imageSrcList: string[] = [
   '/src/assets/img/home/hits/hits-slide-image.png',
 ];
 
-const slides: SlideHit[] = [
+const slides: Slide[] = [
   {
     image: images[imageSrcList[0]](),
     country: 'Финляндия',
@@ -53,15 +54,24 @@ const slides: SlideHit[] = [
 ---
 
 <section class='hits-section'>
-  <Hits
-    title='Летние Хиты для рыбалки и охоты'
-    description='Текст комментария от нейросети для расшифровки'
-    slides={slides}
-  />
+  <div class='hits-section__container container'>
+    <div class='hits-section__wrapper'>
+      <div class='hits-section__top'>
+        <h2 class='title-block'>Летние Хиты для рыбалки и охоты</h2>
+        <p class='subtitle-blockiption'>Текст комментария от нейросети для расшифровки</p>
+      </div>
+      <Slider slides={slides} />
+      <div class='.hits-section__bottom'>
+        <ShowMoreCatalog />
+      </div>
+    </div>
+  </div>
 </section>
 
 <style lang='scss'>
   .hits-section {
     margin-bottom: 40px;
+    &__bottom {
+    }
   }
 </style>

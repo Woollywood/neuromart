@@ -1,8 +1,6 @@
 ---
 import type { ImageMetadata } from 'astro';
 import { Picture } from 'astro:assets';
-import 'swiper/css';
-import 'swiper/css/pagination';
 
 export interface MainBannerSlide {
   image: string;
@@ -33,31 +31,38 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/img/hom
 
 <section class='banner' data-component='main-banner'>
   <div class='banner__container container'>
-    <div class='swiper swiper-fix'>
-      <div class='swiper-wrapper'>
-        {
-          slides.map(({ title, image, subtitle }) => (
-            <div class='swiper-slide banner-slide'>
-              <div class='banner-slide__image'>
-                <Picture inferSize layout='constrained' formats={['avif', 'webp']} src={images[image]()} alt='image' />
-              </div>
-              <div class='banner-slide__description'>
-                <div class='banner-slide__description-inner'>
-                  <div class='banner-slide__description-gradient' />
-                  <div class='banner-slide__description-content'>
-                    <h2 class='banner-slide__title'>{title}</h2>
-                    <p class='banner-slide__subtitle'>{subtitle}</p>
-                    <a href='#' class='banner-slide__button'>
-                      Перейти в каталог
-                    </a>
+    <div class='splide'>
+      <div class='splide__track'>
+        <ul class='splide__list'>
+          {
+            slides.map(({ title, image, subtitle }) => (
+              <li class='splide__slide banner-slide'>
+                <div class='banner-slide__image'>
+                  <Picture
+                    inferSize
+                    layout='constrained'
+                    formats={['avif', 'webp']}
+                    src={images[image]()}
+                    alt='image'
+                  />
+                </div>
+                <div class='banner-slide__description'>
+                  <div class='banner-slide__description-inner'>
+                    <div class='banner-slide__description-gradient' />
+                    <div class='banner-slide__description-content'>
+                      <h2 class='banner-slide__title'>{title}</h2>
+                      <p class='banner-slide__subtitle'>{subtitle}</p>
+                      <a href='#' class='banner-slide__button'>
+                        Перейти в каталог
+                      </a>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </div>
-          ))
-        }
+              </li>
+            ))
+          }
+        </ul>
       </div>
-      <div class='swiper-pagination'></div>
     </div>
   </div>
 </section>
@@ -66,23 +71,24 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/img/hom
   .banner {
     margin-bottom: 8px;
 
+    @include media('lg') {
+      margin-bottom: 20px;
+    }
+
     &__container {
     }
   }
-  .swiper {
-    overflow: visible;
-  }
-  .swiper-fix {
-  }
-  .swiper-wrapper {
-  }
-  .swiper-slide {
-  }
+
   .banner-slide {
     width: 100%;
     aspect-ratio: 359 / 192;
     border-radius: 12px;
     overflow: hidden;
+
+    @include media('lg') {
+      aspect-ratio: auto;
+      height: 320px;
+    }
 
     &__image {
       position: relative;
@@ -112,8 +118,12 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/img/hom
 
     &__description-inner {
       position: relative;
-      padding-top: 36px;
       color: var(--white);
+      @include adaptiveValue('padding-top', 116, 36, $adaptive-sm, $adaptive-md);
+
+      @include media('lg') {
+        padding-top: 100px;
+      }
     }
 
     &__description-content {
@@ -122,6 +132,11 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/img/hom
       align-items: flex-end;
       position: relative;
       z-index: 30;
+
+      @include media('lg') {
+        align-items: center;
+        padding-right: 68px;
+      }
     }
 
     &__description-gradient {
@@ -133,27 +148,44 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/img/hom
       background: linear-gradient(transparent, #000);
       z-index: 20;
       pointer-events: none;
-      transform: rotate(-45deg) scale(2);
+      transform: rotate(-45deg) scale(6);
     }
 
     &__title {
       font-weight: 800;
       font-size: 16px;
       text-transform: uppercase;
-      max-width: 160px;
-
-      text-indent: -20px;
       margin-right: 16px;
+
+      @include adaptiveValue('font-size', 24, 16, $adaptive-sm, $adaptive-md);
+      @include adaptiveValue('max-width', 272, 160, $adaptive-sm, $adaptive-md);
+      @include adaptiveValue('text-indent', -60, -20, $adaptive-sm, $adaptive-md);
+
+      @include media('md') {
+        @include adaptiveValue('font-size', 26, 24, $adaptive-md, $adaptive-lg);
+      }
+
+      @include media('lg') {
+        max-width: 100%;
+        text-indent: 0;
+        margin-right: 0;
+      }
     }
 
     &__subtitle {
       font-weight: 500;
-      font-size: 10px;
-      max-width: 90px;
-
-      text-indent: -16px;
-      margin-right: 24px;
       margin-bottom: 8px;
+
+      @include adaptiveValue('font-size', 14, 10, $adaptive-sm, $adaptive-md);
+      @include adaptiveValue('max-width', 136, 90, $adaptive-sm, $adaptive-md);
+      @include adaptiveValue('text-indent', -8, -16, $adaptive-sm, $adaptive-md);
+      @include adaptiveValue('margin-right', 64, 24, $adaptive-sm, $adaptive-md);
+
+      @include media('lg') {
+        max-width: 100%;
+        text-indent: 0;
+        margin-right: 0;
+      }
     }
 
     &__button {
@@ -164,27 +196,36 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/img/hom
       border-radius: 4px;
       background-color: var(--primary);
       font-weight: 800;
-      font-size: 12px;
       text-transform: uppercase;
 
-      margin-right: 40px;
+      @include adaptiveValue('font-size', 16, 12, $adaptive-sm, $adaptive-md);
+      @include adaptiveValue('margin-right', 126, 40, $adaptive-sm, $adaptive-md);
+
+      @include media('md') {
+        padding: 8px 12px;
+      }
+
+      @include media('lg') {
+        font-size: 14px;
+        margin-right: 0;
+      }
     }
   }
 </style>
 
 <script>
-  import Swiper from 'swiper';
-  import { Pagination } from 'swiper/modules';
+  import Splide from '@splidejs/splide';
 
   const slider = document
     .querySelector<HTMLDivElement>("[data-component='main-banner']")
-    ?.querySelector<HTMLDivElement>('.swiper');
+    ?.querySelector<HTMLDivElement>('.splide');
   if (slider) {
-    new Swiper(slider, {
-      loop: true,
-      spaceBetween: 8,
-      pagination: { el: slider.querySelector<HTMLDivElement>('.swiper-pagination') },
-      modules: [Pagination],
-    });
+    new Splide(slider, {
+      type: 'loop',
+      perPage: 1,
+      arrows: false,
+      pagination: true,
+      gap: 8,
+    }).mount();
   }
 </script>
