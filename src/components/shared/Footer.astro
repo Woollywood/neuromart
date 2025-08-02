@@ -11,7 +11,9 @@ const { class: className, ...rest } = Astro.props;
 <footer class:list={['footer', className]} {...rest}>
   <div class='footer__container container'>
     <div class='footer__inner'>
-      <div class='footer__accordions'>{accordions.map((accordion) => <Accordion {...accordion} />)}</div>
+      <div class='footer__accordions'>
+        {accordions.map((accordion) => <Accordion {...accordion} data-footer-accordion />)}
+      </div>
       <div class='footer__copyright copyright'>
         <p class='copyright__text'>2025 stayer-tex.ru © Все права защищены biznetman ® - создание сайта</p>
         <a href='#' class='copyright__link'>Пользовательское соглашение</a>
@@ -92,3 +94,32 @@ const { class: className, ...rest } = Astro.props;
     }
   }
 </style>
+
+<script>
+  import { getMediaCssParsedVariable, MediaSizes } from '@/utils/styles';
+
+  const accordions = document.querySelectorAll('[data-footer-accordion]');
+  accordions.forEach((item) => {
+    item.addEventListener('click', () => {
+      item.classList.add('touched');
+    });
+  });
+
+  const accordionsCheck = () => {
+    const windowWidth = window.innerWidth;
+    accordions.forEach((accordion) => {
+      if (!accordion.classList.contains('touched')) {
+        if (!accordion.classList.contains('touched')) {
+          if (windowWidth > getMediaCssParsedVariable(MediaSizes.XL)) {
+            accordion.classList.add('open');
+          } else {
+            accordion.classList.remove('open');
+          }
+        }
+      }
+    });
+  };
+
+  accordionsCheck();
+  window.addEventListener('resize', accordionsCheck);
+</script>

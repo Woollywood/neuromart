@@ -13,10 +13,10 @@ export interface IAccordion {
 
 type Props = IAccordion;
 
-const { label, links } = Astro.props;
+const { label, links, ...rest } = Astro.props;
 ---
 
-<div class='accordion' data-component='accordion'>
+<div class='accordion' data-component='accordion' {...rest}>
   <button class='accordion__trigger' data-component='accordion-trigger'>
     <span>{label}</span>
     <div class='accordion__trigger-icon'>
@@ -90,7 +90,7 @@ const { label, links } = Astro.props;
       align-items: center;
       justify-content: flex-start;
       background-color: transparent;
-      border: 1px solid var(--light-2);
+      @include border(1px, var(--light-2));
       transition: color 0.3s ease-in-out;
 
       font-weight: 800;

@@ -49,7 +49,7 @@ const { slides, class: className, ...rest } = Astro.props;
 <style lang='scss'>
   .slider {
     @include media('lg') {
-      border: 1px solid var(--light-2);
+      @include border(1px, var(--light-2));
       border-radius: 8px;
     }
 
@@ -107,7 +107,7 @@ const { slides, class: className, ...rest } = Astro.props;
       }
 
       @include media('xl') {
-        aspect-ratio: 229 / 472;
+        aspect-ratio: 229 / 328;
       }
 
       img {
@@ -121,10 +121,18 @@ const { slides, class: className, ...rest } = Astro.props;
     }
 
     &__content {
-      padding: 0 8px;
+      padding: 6px 8px 0;
 
       @include media('md') {
-        padding: 0 12px;
+        padding: 10px 12px 12px;
+      }
+
+      @include media('lg') {
+        padding: 6px 12px 12px;
+      }
+
+      @include media('xl') {
+        padding: 12px 12px 24px;
       }
     }
 
@@ -156,11 +164,7 @@ const { slides, class: className, ...rest } = Astro.props;
       text-align: center;
       text-transform: uppercase;
       color: var(--secondary);
-
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
+      @include leading(2);
 
       margin-bottom: 2px;
 
@@ -169,6 +173,7 @@ const { slides, class: className, ...rest } = Astro.props;
       }
 
       @include media('lg') {
+        @include leading(1);
         font-size: 14px;
       }
 
@@ -184,11 +189,7 @@ const { slides, class: className, ...rest } = Astro.props;
       text-transform: uppercase;
       color: var(--primary);
       text-align: center;
-
-      display: -webkit-box;
-      -webkit-line-clamp: 3;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
+      @include leading(3);
 
       margin-bottom: 6px;
 
@@ -197,7 +198,12 @@ const { slides, class: className, ...rest } = Astro.props;
       }
 
       @include media('lg') {
+        @include leading(2);
         font-size: 11px;
+      }
+
+      @include media('xl') {
+        @include leading(1);
       }
     }
 
@@ -213,11 +219,12 @@ const { slides, class: className, ...rest } = Astro.props;
       justify-content: center;
       gap: 4px;
 
-      padding: 8px 4px;
+      padding: 10px 4px;
       border-radius: 8px;
-      border: 1px solid var(--primary);
+      @include border(1px, var(--primary));
       width: 100%;
 
+      font-size: 11px;
       font-weight: 900;
       font-style: italic;
       font-size: 11px;
@@ -227,7 +234,11 @@ const { slides, class: className, ...rest } = Astro.props;
       @include media('md') {
         display: inline-flex;
         width: auto;
-        padding: 8px 10px;
+        padding: 6px 10px;
+      }
+
+      @include media('xl') {
+        padding: 10px;
       }
 
       span {

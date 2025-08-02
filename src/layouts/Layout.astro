@@ -39,10 +39,10 @@ import '../styles/reset.scss';
     max-width: 100vw;
 
     &__header {
-      margin-bottom: 12px;
     }
 
     &__main {
+      margin-top: var(--header-height);
       overflow: hidden;
       margin-bottom: 40px;
 
@@ -62,5 +62,9 @@ import '../styles/reset.scss';
   body {
     overflow-x: hidden;
     font-family: var(--font-primary);
+
+    &.scroll-lock {
+      overflow: hidden;
+    }
   }
 </style>

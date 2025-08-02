@@ -44,8 +44,13 @@ const { class: className, ...rest } = Astro.props;
 
 <style lang='scss'>
   .header {
-    position: relative;
+    position: fixed;
     overflow: hidden;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: var(--white);
+    z-index: 60;
 
     &.open {
       overflow: visible;
@@ -53,12 +58,13 @@ const { class: className, ...rest } = Astro.props;
 
     &__wrapper {
       overflow: hidden;
-      padding: 6px 0 0;
+      padding: 6px 0 8px;
       padding-right: 0px;
 
       display: flex;
       align-items: center;
       gap: 4px;
+      height: var(--header-height);
 
       @include media('xl') {
         gap: 16px;
@@ -66,16 +72,13 @@ const { class: className, ...rest } = Astro.props;
     }
 
     &__logo {
-      width: 104px;
-      height: 62px;
+      position: relative;
       flex-shrink: 0;
 
-      img {
-        width: 100%;
-        height: 100%;
-      }
+      width: 104px;
+      height: 62px;
 
-      @include media('lg') {
+      @include media('md') {
         width: 122px;
         height: 70px;
       }
@@ -84,10 +87,19 @@ const { class: className, ...rest } = Astro.props;
         width: 166px;
         height: 88px;
       }
+      img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
     }
 
     &__separator {
       display: none;
+      flex-shrink: 0;
 
       background-color: var(--light-2);
       width: 1px;
@@ -159,7 +171,7 @@ const { class: className, ...rest } = Astro.props;
         height: 32px;
         width: 32px;
         border-radius: 8px;
-        border: 1px solid var(--light-2);
+        @include border(1px, var(--light-2));
       }
 
       @include media('xl') {

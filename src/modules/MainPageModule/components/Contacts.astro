@@ -82,7 +82,7 @@ const { contacts, class: className, ...rest } = Astro.props;
       justify-content: center;
       padding: 10px 12px;
       background-color: transparent;
-      border: 1px solid var(--primary);
+      @include border(1px, var(--primary));
       border-radius: 8px;
 
       font-weight: 800;

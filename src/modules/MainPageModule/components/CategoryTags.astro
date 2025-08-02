@@ -47,7 +47,7 @@ const { tags, aboveImage = true, class: className, ...rest } = Astro.props;
     &__tag {
       padding: 4px 8px;
       border-radius: 6px;
-      border: 1px solid rgba(255, 255, 255, 0.32);
+      @include border(1px, rgba(255, 255, 255, 0.32));
       background-color: transparent;
 
       font-family: var(--font-secondary);
@@ -60,7 +60,7 @@ const { tags, aboveImage = true, class: className, ...rest } = Astro.props;
       }
 
       @include media('lg') {
-        border: 1px solid var(--light-2);
+        @include border(1px, var(--light-2));
         color: var(--secondary);
       }
     }
