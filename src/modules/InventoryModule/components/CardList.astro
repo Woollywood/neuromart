@@ -2,11 +2,6 @@
 import type { ImageMetadata } from 'astro';
 import type { CardProp } from './Card.astro';
 import Card from './Card.astro';
-import type { HTMLAttributes } from 'astro/types';
-
-type Props = Pick<HTMLAttributes<'div'>, 'class'>;
-
-const { class: className, ...rest } = Astro.props;
 
 const hitsImgs = import.meta.glob<{ default: ImageMetadata }>('/src/assets/img/inventory/*.{jpeg,jpg,png,gif}');
 
@@ -22,15 +17,4 @@ const content: CardProp = {
 const cardList: CardProp[] = Array.from({ length: 12 }).map(() => content);
 ---
 
-<div class:list={['card-list', className]} {...rest}>
-  {cardList.map((card) => <Card {...card} />)}
-</div>
-
-<style lang='scss'>
-  .card-list {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    column-gap: 4px;
-    row-gap: 40px;
-  }
-</style>
+{cardList.map((card) => <Card {...card} />)}

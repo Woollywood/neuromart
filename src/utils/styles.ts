@@ -1,7 +1,7 @@
 export enum MediaSizes {
   SM = 'sm',
   MD = 'md',
-  L = 'lg',
+  LG = 'lg',
   XL = 'xl',
   XXL = 'xxl',
 }

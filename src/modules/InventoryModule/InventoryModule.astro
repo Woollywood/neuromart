@@ -3,8 +3,6 @@ import Breadcrumbs from '@/components/ui/Breadcrumbs.astro';
 import Layout from '@/layouts/Layout.astro';
 import Filters from './components/Filters.astro';
 import CardList from './components/CardList.astro';
-import type { Slide } from '@/components/ui/Slider.astro';
-import Slider from '@/components/ui/Slider.astro';
 import SliderSection from './sections/SliderSection.astro';
 import Pagination from '@/components/ui/Pagination.astro';
 
@@ -14,26 +12,30 @@ const path: string[] = ['Магазин мужской одежды', 'одеж�
 <Layout>
   <div class='inventory'>
     <div class='inventory__container container'>
-      <Breadcrumbs path={path} />
-      <h1 class='inventory__title'>Костюмы</h1>
-      <Filters class='inventory__filters' />
-      <div class='inventory__card-list-wrapper'>
-        <div class='inventory__card-list'>
-          <CardList class='inventory__card-list-section' />
-          <SliderSection
-            class='inventory__slider-section'
-            title='Также покупают'
-            description='Текст комментария от нейросети для расшифровки'
-          />
-          <CardList class='inventory__card-list-section' />
+      <div class='inventory__grid'>
+        <div class='inventory__header'>
+          <Breadcrumbs path={path} />
+          <h1 class='inventory__title'>Костюмы</h1>
+          <p class='inventory__description'>
+            C отрезной нагрудной частью,  центральной застёжкой на молнию. На передних половинках обработаны два
+            объёмных накладных боковых кармана, на нагрудной части  накладной карман с клапаном.
+          </p>
+          <Filters class='inventory__filters' />
         </div>
+        <CardList />
+        <SliderSection
+          class='inventory__slider-section'
+          title='Также покупают'
+          description='Текст комментария от нейросети для расшифровки'
+        />
+        <CardList />
         <Pagination />
+        <SliderSection
+          class='inventory__slider-section'
+          title='Просмотренные'
+          description='Текст комментария от нейросети для расшифровки'
+        />
       </div>
-      <SliderSection
-        class='inventory__slider-section'
-        title='Просмотренные'
-        description='Текст комментария от нейросети для расшифровки'
-      />
     </div>
   </div>
 </Layout>
@@ -43,36 +45,87 @@ const path: string[] = ['Магазин мужской одежды', 'одеж�
     &__container {
     }
 
+    &__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      column-gap: 4px;
+      row-gap: 40px;
+      overflow: hidden;
+
+      @include media('lg') {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 8px;
+      }
+    }
+
+    &__row {
+    }
+
+    &__header {
+      overflow: hidden;
+      grid-column: 1 / span 2;
+
+      @include media('lg') {
+        grid-column: 1 / span 1;
+      }
+    }
+
     &__title {
       font-weight: 900;
       font-size: 24px;
       text-transform: uppercase;
       color: var(--secondary);
       margin-bottom: 12px;
+
+      @include media('lg') {
+        margin-bottom: 8px;
+      }
+    }
+
+    &__description {
+      display: none;
+
+      font-family: var(--font-secondary);
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 16px;
+      color: var(--secondary);
+      margin-bottom: 28px;
+
+      @include media('lg') {
+        display: block;
+      }
     }
 
     &__filters {
     }
 
-    &__card-list-wrapper {
-
-    }
-
-    &__card-list {
-      border-bottom: 1px solid var(--light-2);
-      padding-bottom: 24px;
-      margin-bottom: 8px;
-    }
-
     &__card-list-section {
       margin-top: 36px;
+
+      @include media('md') {
+        margin-top: 0;
+
+        &:not(:first-child) {
+          margin-top: 64px;
+        }
+      }
     }
 
     &__cards-bottom {
     }
 
     &__slider-section {
+      grid-column: 1 / span 2;
       margin-top: 50px;
+
+      @include media('md') {
+        margin-top: 48px;
+      }
+
+      @include media('lg') {
+        grid-column: 1 / span 4;
+      }
     }
   }
 </style>

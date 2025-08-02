@@ -3,7 +3,8 @@ import Select from '@/components/ui/Select.astro';
 import { Icon } from 'astro-icon/components';
 import type { HTMLAttributes } from 'astro/types';
 
-const categories: string[] = ['Зима', 'Демисезон', 'Нешуршащая', 'Непромокаемая', 'Дышащая', 'Морозоустойчивая'];
+const topCategories: string[] = ['Зима', 'Демисезон'];
+const bottomCategories: string[] = ['Нешуршащая', 'Непромокаемая', 'Дышащая', 'Морозоустойчивая'];
 
 type Props = Pick<HTMLAttributes<'div'>, 'class'>;
 
@@ -11,13 +12,22 @@ const { class: className, ...rest } = Astro.props;
 ---
 
 <div class:list={['filters', className]} {...rest}>
-  <button class='filters__button filters__button_all'>
-    <Icon name='filters' />
-    <span>Все фильтры</span>
-  </button>
-  <Select />
-  {categories.map((category) => <button class='filters__button'>{category}</button>)}
-  <button class='filters__button filters__button_more'>Смотреть все</button>
+  <div class='filters__top'>
+    <div class='filters__actions'>
+      <button class='filters__button filters__button_all'>
+        <Icon name='filters' />
+        <span>Все фильтры</span>
+      </button>
+      <Select />
+    </div>
+    <div class='filters__block'>
+      {topCategories.map((category) => <button class='filters__button'>{category}</button>)}
+    </div>
+  </div>
+  <div class='filters__block'>
+    {bottomCategories.map((category) => <button class='filters__button'>{category}</button>)}
+    <button class='filters__button filters__button_more'>Смотреть все</button>
+  </div>
 </div>
 
 <style lang='scss'>
@@ -25,6 +35,37 @@ const { class: className, ...rest } = Astro.props;
     display: flex;
     flex-wrap: wrap;
     gap: 4px;
+
+    @include media('lg') {
+      gap: 8px;
+    }
+
+    &__top {
+      display: contents;
+
+      @include media('lg') {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        margin-bottom: 32px;
+      }
+    }
+
+    &__block {
+      display: contents;
+
+      @include media('lg') {
+        flex-wrap: wrap;
+        gap: 8px;
+        display: flex;
+      }
+    }
+
+    &__actions {
+      display: inline-flex;
+      flex-wrap: wrap;
+      gap: 4px;
+    }
 
     &__button {
       font-family: var(--font-primary);

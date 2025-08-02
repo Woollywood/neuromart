@@ -54,6 +54,10 @@ const { country, title, description, image, price, retail } = Astro.props;
       display: inline-flex;
       flex-direction: column;
       gap: 4px;
+
+      @include media('md') {
+        flex-direction: row-reverse;
+      }
     }
   }
 </style>

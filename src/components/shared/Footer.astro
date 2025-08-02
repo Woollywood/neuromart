@@ -110,7 +110,7 @@ const { class: className, ...rest } = Astro.props;
     accordions.forEach((accordion) => {
       if (!accordion.classList.contains('touched')) {
         if (!accordion.classList.contains('touched')) {
-          if (windowWidth > getMediaCssParsedVariable(MediaSizes.XL)) {
+          if (windowWidth > getMediaCssParsedVariable(MediaSizes.LG)) {
             accordion.classList.add('open');
           } else {
             accordion.classList.remove('open');
