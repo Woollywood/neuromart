@@ -1,11 +1,11 @@
 ---
 import type { Slide } from '@/components/ui/Slider.astro';
-import type { PreviewHitProps } from '../components/PreviewHit.astro';
-import PreviewHit from '../components/PreviewHit.astro';
 import Slider from '@/components/ui/Slider.astro';
 import ShowMoreCatalog from '@/components/ui/ShowMoreCatalog.astro';
-import PreviewBlock from '../components/PreviewBlock.astro';
-import PreviewTags from '../components/PreviewTags.astro';
+import CategoryBlock from '../components/CategoryBlock.astro';
+import type { CategoryImageProps } from '../components/CategoryImage.astro';
+import CategoryTags from '../components/CategoryTags.astro';
+import CategoryImage from '../components/CategoryImage.astro';
 
 interface Props {
   direction?: 'left' | 'right';
@@ -64,7 +64,7 @@ const slides: Slide[] = [
   },
 ];
 
-const previewProps: PreviewHitProps = {
+const previewProps: CategoryImageProps = {
   backgroundImage: previewHitsimages['/src/assets/img/home/preview-hits/background.png'](),
   description: 'Весной на рыбалке важно не промокнуть, не замёрзнуть и не вспотеть.',
 };
@@ -79,27 +79,27 @@ const tags: string[] = [
 ];
 ---
 
-<PreviewBlock class='preview-section' direction={direction}>
-  <div slot='left' class='preview-section__left'>
-    <PreviewHit {...previewProps}>
-      <PreviewTags tags={tags} />
-    </PreviewHit>
+<CategoryBlock class='category-section' direction={direction}>
+  <div slot='left' class='category-section__left'>
+    <CategoryImage {...previewProps}>
+      <CategoryTags tags={tags} />
+    </CategoryImage>
   </div>
-  <div slot='right' class='preview-section__right right-preview-section'>
-    <div class='right-preview-section__wrapper'>
-      <div class='right-preview-section__top'>
+  <div slot='right' class='category-section__right right-category-section'>
+    <div class='right-category-section__wrapper'>
+      <div class='right-category-section__top'>
         <h2 class='title-block'>Одежда Для Рыбалки</h2>
         <p class='subtitle-block'>Текст комментария от нейросети для расшифровки</p>
       </div>
-      <PreviewTags aboveImage={false} class='preview-section__tags' tags={tags} />
-      <Slider class='right-preview-section__slider' slides={slides} />
+      <CategoryTags aboveImage={false} class='category-section__tags' tags={tags} />
+      <Slider class='right-category-section__slider' slides={slides} />
       <ShowMoreCatalog />
     </div>
   </div>
-</PreviewBlock>
+</CategoryBlock>
 
 <style lang='scss'>
-  .preview-section {
+  .category-section {
     margin-bottom: 40px;
 
     @include media('md') {
@@ -142,7 +142,7 @@ const tags: string[] = [
       }
     }
   }
-  .right-preview-section {
+  .right-category-section {
     @include media('lg') {
       overflow: hidden;
       display: flex;

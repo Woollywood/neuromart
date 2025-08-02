@@ -1,11 +1,10 @@
 ---
-import type { Slide } from '@/components/ui/Slider.astro';
-import type { PreviewHitProps } from '../components/PreviewHit.astro';
-import PreviewHit from '../components/PreviewHit.astro';
-import PreviewBlock from '../components/PreviewBlock.astro';
 import type { Contact } from '../components/Contacts.astro';
 import AboutBlock from '../components/AboutBlock.astro';
 import Contacts from '../components/Contacts.astro';
+import CategoryBlock from '../components/CategoryBlock.astro';
+import type { CategoryImageProps } from '../components/CategoryImage.astro';
+import CategoryImage from '../components/CategoryImage.astro';
 
 interface Props {
   direction?: 'left' | 'right';
@@ -17,7 +16,7 @@ const previewHitsimages = import.meta.glob<{ default: ImageMetadata }>(
   '/src/assets/img/home/preview-hits/*.{jpeg,jpg,png,gif}'
 );
 
-const previewProps: PreviewHitProps = {
+const previewProps: CategoryImageProps = {
   backgroundImage: previewHitsimages['/src/assets/img/home/preview-hits/background.png'](),
   description: 'Весной на рыбалке важно не промокнуть, не замёрзнуть и не вспотеть.',
 };
@@ -28,19 +27,19 @@ const contacts: Contact[] = [
 ];
 ---
 
-<PreviewBlock class='preview-contact-section' direction={direction}>
-  <div slot='left' class='preview-contact-section__left'>
-    <PreviewHit {...previewProps}>
-      <Contacts class='preview-contact-section__contacts' contacts={contacts} />
-    </PreviewHit>
+<CategoryBlock class='category-about-section' direction={direction}>
+  <div slot='left' class='category-about-section__left'>
+    <CategoryImage {...previewProps}>
+      <Contacts class='category-about-section__contacts' contacts={contacts} />
+    </CategoryImage>
   </div>
-  <div slot='right' class='preview-contact-section__right right-preview-contact-section'>
+  <div slot='right' class='category-about-section__right right-category-about-section'>
     <AboutBlock />
   </div>
-</PreviewBlock>
+</CategoryBlock>
 
 <style lang='scss'>
-  .preview-contact-section {
+  .category-about-section {
     &__left {
       @include media('md') {
         margin: 0 -8px;
@@ -71,7 +70,7 @@ const contacts: Contact[] = [
     }
   }
 
-  .right-preview-contact-section {
+  .right-category-about-section {
     @include media('lg') {
       overflow: hidden;
       display: flex;

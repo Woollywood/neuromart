@@ -8,13 +8,13 @@ interface Props extends Pick<HTMLAttributes<'section'>, 'class'> {
 const { direction = 'left', class: className, ...rest } = Astro.props;
 ---
 
-<section class:list={['preview-hits', direction, className]} {...rest}>
-  <div class='preview-hits__container container'>
-    <div class='preview-hits__blocks'>
-      <div class='preview-hits__block-left'>
+<section class:list={['category-block', direction, className]} {...rest}>
+  <div class='category-block__container container'>
+    <div class='category-block__blocks'>
+      <div class='category-block__block-left'>
         <slot name='left' />
       </div>
-      <div class='preview-hits__block-right'>
+      <div class='category-block__block-right'>
         <slot name='right' />
       </div>
     </div>
@@ -22,7 +22,7 @@ const { direction = 'left', class: className, ...rest } = Astro.props;
 </section>
 
 <style lang='scss'>
-  .preview-hits {
+  .category-block {
     &__container {
     }
 

@@ -2,29 +2,29 @@
 import BackgroundGradient from '@/components/shared/BackgroundGradient.astro';
 import { Picture } from 'astro:assets';
 
-export interface PreviewHitProps {
+export interface CategoryImageProps {
   backgroundImage: Promise<{ default: ImageMetadata }>;
   description?: string;
 }
 
-type Props = PreviewHitProps;
+type Props = CategoryImageProps;
 
 const { backgroundImage, description } = Astro.props;
 ---
 
-<div class='preview-hit'>
-  <div class='preview-hit__background'>
+<div class='category-image'>
+  <div class='category-image__background'>
     <Picture inferSize layout='constrained' formats={['avif', 'webp']} src={backgroundImage} alt='image' />
-    <BackgroundGradient class='preview-hit__gradient' />
+    <BackgroundGradient class='category-image__gradient' />
   </div>
-  <div class='preview-hit__content'>
-    {description && <p class='preview-hit__description'>{description}</p>}
+  <div class='category-image__content'>
+    {description && <p class='category-image__description'>{description}</p>}
     <slot />
   </div>
 </div>
 
 <style lang='scss'>
-  .preview-hit {
+  .category-image {
     position: relative;
     display: flex;
     align-items: flex-end;

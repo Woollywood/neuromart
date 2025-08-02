@@ -9,12 +9,12 @@ interface Props extends Pick<HTMLAttributes<'div'>, 'class'> {
 const { tags, aboveImage = true, class: className, ...rest } = Astro.props;
 ---
 
-<div class:list={['tags', className, aboveImage ? 'aboveImage' : 'notAboveImage']} {...rest}>
-  {tags.map((tag) => <div class='tags__tag'>{tag}</div>)}
+<div class:list={['category-tags', className, aboveImage ? 'aboveImage' : 'notAboveImage']} {...rest}>
+  {tags.map((tag) => <div class='category-tags__tag'>{tag}</div>)}
 </div>
 
 <style lang='scss'>
-  .tags {
+  .category-tags {
     flex-wrap: wrap;
     gap: 4px;
     justify-content: center;
