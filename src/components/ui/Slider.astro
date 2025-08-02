@@ -122,6 +122,10 @@ const { slides, class: className, ...rest } = Astro.props;
 
     &__content {
       padding: 0 8px;
+
+      @include media('md') {
+        padding: 0 12px;
+      }
     }
 
     &__country {
@@ -131,6 +135,18 @@ const { slides, class: className, ...rest } = Astro.props;
       text-align: center;
       text-transform: uppercase;
       color: var(--primary);
+
+      @include media('md') {
+        font-size: 13px;
+      }
+
+      @include media('lg') {
+        font-size: 14px;
+      }
+
+      @include media('xl') {
+        font-size: 16px;
+      }
     }
 
     &__title {
@@ -151,6 +167,14 @@ const { slides, class: className, ...rest } = Astro.props;
       @include media('md') {
         font-size: 13px;
       }
+
+      @include media('lg') {
+        font-size: 14px;
+      }
+
+      @include media('xl') {
+        font-size: 16px;
+      }
     }
 
     &__description {
@@ -170,6 +194,10 @@ const { slides, class: className, ...rest } = Astro.props;
 
       @include media('md') {
         font-size: 12px;
+      }
+
+      @include media('lg') {
+        font-size: 11px;
       }
     }
 
@@ -199,10 +227,19 @@ const { slides, class: className, ...rest } = Astro.props;
       @include media('md') {
         display: inline-flex;
         width: auto;
+        padding: 8px 10px;
       }
 
       span {
-        @include adaptiveValue('font-size', 20, 12, $adaptive-sm, $adaptive-md);
+        font-size: 12px;
+
+        @include media('md') {
+          font-size: 20px;
+        }
+
+        @include media('xl') {
+          font-size: 12px;
+        }
       }
     }
   }
@@ -212,6 +249,12 @@ const { slides, class: className, ...rest } = Astro.props;
   import Splide from '@splidejs/splide';
 
   document.querySelectorAll<HTMLDivElement>("[data-component='slider']").forEach((slider) => {
-    new Splide(slider, { type: 'loop', autoWidth: true, arrows: false, pagination: false }).mount();
+    new Splide(slider, {
+      type: 'loop',
+      autoWidth: true,
+      arrows: false,
+      pagination: false,
+      clones: 10,
+    }).mount();
   });
 </script>

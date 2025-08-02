@@ -1,9 +1,12 @@
 ---
+import CustomImage from '@/components/shared/CustomImage.astro';
 import type { ImageMetadata } from 'astro';
-import { Picture } from 'astro:assets';
 
-export interface MainBannerSlide {
-  image: string;
+interface MainBannerSlide {
+  image: {
+    mobile: string;
+    desktop: string;
+  };
   title: string;
   subtitle: string;
 }
@@ -12,17 +15,26 @@ const slides: MainBannerSlide[] = [
   {
     title: 'Производим в России Проверено природой',
     subtitle: 'Сделано для охоты, рыбалки и настоящей погоды',
-    image: '/src/assets/img/home/banner/banner-slide-img.jpg',
+    image: {
+      mobile: '/src/assets/img/home/banner/banner-slide-desktop.jpg',
+      desktop: '/src/assets/img/home/banner/banner-slide-desktop.jpg',
+    },
   },
   {
     title: 'Производим в России Проверено природой',
     subtitle: 'Сделано для охоты, рыбалки и настоящей погоды',
-    image: '/src/assets/img/home/banner/banner-slide-img.jpg',
+    image: {
+      mobile: '/src/assets/img/home/banner/banner-slide-desktop.jpg',
+      desktop: '/src/assets/img/home/banner/banner-slide-desktop.jpg',
+    },
   },
   {
     title: 'Производим в России Проверено природой',
     subtitle: 'Сделано для охоты, рыбалки и настоящей погоды',
-    image: '/src/assets/img/home/banner/banner-slide-img.jpg',
+    image: {
+      mobile: '/src/assets/img/home/banner/banner-slide-desktop.jpg',
+      desktop: '/src/assets/img/home/banner/banner-slide-desktop.jpg',
+    },
   },
 ];
 
@@ -38,13 +50,8 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/img/hom
             slides.map(({ title, image, subtitle }) => (
               <li class='splide__slide banner-slide'>
                 <div class='banner-slide__image'>
-                  <Picture
-                    inferSize
-                    layout='constrained'
-                    formats={['avif', 'webp']}
-                    src={images[image]()}
-                    alt='image'
-                  />
+                  <CustomImage class='banner-slide__image_mobile' src={images[image.mobile]()} alt='image' />
+                  <CustomImage class='banner-slide__image_desktop' src={images[image.desktop]()} alt='image' />
                 </div>
                 <div class='banner-slide__description'>
                   <div class='banner-slide__description-inner'>
@@ -102,6 +109,20 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/img/hom
         width: 100%;
         height: 100%;
         object-fit: cover;
+      }
+
+      &_mobile {
+        @include media('md') {
+          display: none;
+        }
+      }
+
+      &_desktop {
+        display: none;
+
+        @include media('md') {
+          display: block;
+        }
       }
     }
 
