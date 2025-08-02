@@ -3,17 +3,146 @@ import Layout from '../../layouts/Layout.astro';
 import MainBannerSection from './sections/MainBannerSection.astro';
 import QuestionSection from './sections/QuestionSection.astro';
 import HitsSection from './sections/HitsSection.astro';
-import CategorySection from './sections/CategorySection.astro';
-import CategoryAboutSection from './sections/CategoryAboutSection.astro';
+import CategorySection, { type CategorySectionProps } from './sections/CategorySection.astro';
+import CategoryAboutSection, { type CategoryAboutProps } from './sections/CategoryAboutSection.astro';
+import type { ImageMetadata } from 'astro';
+import type { Slide } from '@/components/ui/Slider.astro';
+
+const categoryImgs = import.meta.glob<{ default: ImageMetadata }>(
+  '/src/assets/img/home/categories/*.{jpeg,jpg,png,gif}'
+);
+const hitsImgs = import.meta.glob<{ default: ImageMetadata }>('/src/assets/img/home/hits/*.{jpeg,jpg,png,gif}');
+
+const hitsSlides: Slide[] = [
+  {
+    image: hitsImgs['/src/assets/img/home/hits/hits-slide-image.png'](),
+    country: 'Финляндия',
+    title: 'Костюм Горка Зима Финл. ПК #309',
+    description: 'Морозоустойчивая, Непромокаемая, Дышащая, Морозоустойчивая, Непромокаемая, Дышащая,',
+    price: '7 712',
+  },
+  {
+    image: hitsImgs['/src/assets/img/home/hits/hits-slide-image.png'](),
+    country: 'Финляндия',
+    title: 'Костюм Горка Зима Финл. ПК #309',
+    description: 'Морозоустойчивая, Непромокаемая, Дышащая, Морозоустойчивая, Непромокаемая, Дышащая,',
+    price: '7 712',
+  },
+  {
+    image: hitsImgs['/src/assets/img/home/hits/hits-slide-image.png'](),
+    country: 'Финляндия',
+    title: 'Костюм Горка Зима Финл. ПК #309',
+    description: 'Морозоустойчивая, Непромокаемая, Дышащая, Морозоустойчивая, Непромокаемая, Дышащая,',
+    price: '7 712',
+  },
+  {
+    image: hitsImgs['/src/assets/img/home/hits/hits-slide-image.png'](),
+    country: 'Финляндия',
+    title: 'Костюм Горка Зима Финл. ПК #309',
+    description: 'Морозоустойчивая, Непромокаемая, Дышащая, Морозоустойчивая, Непромокаемая, Дышащая,',
+    price: '7 712',
+  },
+  {
+    image: hitsImgs['/src/assets/img/home/hits/hits-slide-image.png'](),
+    country: 'Финляндия',
+    title: 'Костюм Горка Зима Финл. ПК #309',
+    description: 'Морозоустойчивая, Непромокаемая, Дышащая, Морозоустойчивая, Непромокаемая, Дышащая,',
+    price: '7 712',
+  },
+  {
+    image: hitsImgs['/src/assets/img/home/hits/hits-slide-image.png'](),
+    country: 'Финляндия',
+    title: 'Костюм Горка Зима Финл. ПК #309',
+    description: 'Морозоустойчивая, Непромокаемая, Дышащая, Морозоустойчивая, Непромокаемая, Дышащая,',
+    price: '7 712',
+  },
+  {
+    image: hitsImgs['/src/assets/img/home/hits/hits-slide-image.png'](),
+    country: 'Финляндия',
+    title: 'Костюм Горка Зима Финл. ПК #309',
+    description: 'Морозоустойчивая, Непромокаемая, Дышащая, Морозоустойчивая, Непромокаемая, Дышащая,',
+    price: '7 712',
+  },
+  {
+    image: hitsImgs['/src/assets/img/home/hits/hits-slide-image.png'](),
+    country: 'Финляндия',
+    title: 'Костюм Горка Зима Финл. ПК #309',
+    description: 'Морозоустойчивая, Непромокаемая, Дышащая, Морозоустойчивая, Непромокаемая, Дышащая,',
+    price: '7 712',
+  },
+];
+
+const fishermenCategoryProps: CategorySectionProps = {
+  backgroundImage: categoryImgs['/src/assets/img/home/categories/category-fishermen.jpg'](),
+  slides: hitsSlides,
+  tags: [
+    'одежда для охоты',
+    'для рыбалки с берега, на месте',
+    'много хожу',
+    'рыбалка с лодки или катера',
+    'подобрать костюмы',
+    'выгодные предложения',
+  ],
+  description: 'Весной на рыбалке важно не промокнуть, не замёрзнуть и не вспотеть.',
+};
+
+const knitwearCategoryProps: CategorySectionProps = {
+  backgroundImage: categoryImgs['/src/assets/img/home/categories/category-knitwear.jpg'](),
+  slides: hitsSlides,
+  tags: [
+    'одежда для охоты',
+    'для рыбалки с берега, на месте',
+    'много хожу',
+    'рыбалка с лодки или катера',
+    'подобрать костюмы',
+    'выгодные предложения',
+  ],
+  description: 'Весной на рыбалке важно не промокнуть, не замёрзнуть и не вспотеть.',
+  direction: 'right',
+};
+
+const workClothesCategoryProps: CategorySectionProps = {
+  backgroundImage: categoryImgs['/src/assets/img/home/categories/category-work-clothes.jpg'](),
+  slides: hitsSlides,
+  tags: [
+    'одежда для охоты',
+    'для рыбалки с берега, на месте',
+    'много хожу',
+    'рыбалка с лодки или катера',
+    'подобрать костюмы',
+    'выгодные предложения',
+  ],
+  description: 'Весной на рыбалке важно не промокнуть, не замёрзнуть и не вспотеть.',
+};
+
+const childrenCategoryProps: CategorySectionProps = {
+  backgroundImage: categoryImgs['/src/assets/img/home/categories/category-children.jpg'](),
+  slides: hitsSlides,
+  tags: [
+    'одежда для охоты',
+    'для рыбалки с берега, на месте',
+    'много хожу',
+    'рыбалка с лодки или катера',
+    'подобрать костюмы',
+    'выгодные предложения',
+  ],
+  description: 'Весной на рыбалке важно не промокнуть, не замёрзнуть и не вспотеть.',
+  direction: 'right',
+};
+
+const aboutCategoryProps: CategoryAboutProps = {
+  backgroundImage: categoryImgs['/src/assets/img/home/categories/category-about.jpg'](),
+  description: 'Весной на рыбалке важно не промокнуть, не замёрзнуть и не вспотеть.',
+};
 ---
 
 <Layout>
   <MainBannerSection />
   <QuestionSection />
-  <HitsSection />
-  <CategorySection />
-  <CategorySection direction='right' />
-  <CategorySection />
-  <CategorySection direction='right' />
-  <CategoryAboutSection />
+  <HitsSection slides={hitsSlides} />
+  <CategorySection {...fishermenCategoryProps} />
+  <CategorySection {...knitwearCategoryProps} />
+  <CategorySection {...workClothesCategoryProps} />
+  <CategorySection {...childrenCategoryProps} />
+  <CategoryAboutSection {...aboutCategoryProps} />
 </Layout>

@@ -7,81 +7,20 @@ import type { CategoryImageProps } from '../components/CategoryImage.astro';
 import CategoryTags from '../components/CategoryTags.astro';
 import CategoryImage from '../components/CategoryImage.astro';
 
-interface Props {
+export interface CategorySectionProps extends CategoryImageProps {
   direction?: 'left' | 'right';
+  slides: Slide[];
+  tags: string[];
 }
 
-const { direction = 'left' } = Astro.props;
+type Props = CategorySectionProps;
 
-const hitsImages = import.meta.glob<{ default: ImageMetadata }>('/src/assets/img/home/hits/*.{jpeg,jpg,png,gif}');
-const previewHitsimages = import.meta.glob<{ default: ImageMetadata }>(
-  '/src/assets/img/home/preview-hits/*.{jpeg,jpg,png,gif}'
-);
-
-const imageSrcList: string[] = [
-  '/src/assets/img/home/hits/hits-slide-image.png',
-  '/src/assets/img/home/hits/hits-slide-image.png',
-  '/src/assets/img/home/hits/hits-slide-image.png',
-  '/src/assets/img/home/hits/hits-slide-image.png',
-  '/src/assets/img/home/hits/hits-slide-image.png',
-];
-
-const slides: Slide[] = [
-  {
-    image: hitsImages[imageSrcList[0]](),
-    country: 'Финляндия',
-    title: 'Костюм Горка Зима Финл. ПК #309',
-    description: 'Морозоустойчивая, Непромокаемая, Дышащая, Морозоустойчивая, Непромокаемая, Дышащая,',
-    price: '7 712',
-  },
-  {
-    image: hitsImages[imageSrcList[1]](),
-    country: 'Финляндия',
-    title: 'Костюм Горка Зима Финл. ПК #309',
-    description: 'Морозоустойчивая, Непромокаемая, Дышащая, Морозоустойчивая, Непромокаемая, Дышащая,',
-    price: '7 712',
-  },
-  {
-    image: hitsImages[imageSrcList[2]](),
-    country: 'Финляндия',
-    title: 'Костюм Горка Зима Финл. ПК #309',
-    description: 'Морозоустойчивая, Непромокаемая, Дышащая, Морозоустойчивая, Непромокаемая, Дышащая,',
-    price: '7 712',
-  },
-  {
-    image: hitsImages[imageSrcList[3]](),
-    country: 'Финляндия',
-    title: 'Костюм Горка Зима Финл. ПК #309',
-    description: 'Морозоустойчивая, Непромокаемая, Дышащая, Морозоустойчивая, Непромокаемая, Дышащая,',
-    price: '7 712',
-  },
-  {
-    image: hitsImages[imageSrcList[4]](),
-    country: 'Финляндия',
-    title: 'Костюм Горка Зима Финл. ПК #309',
-    description: 'Морозоустойчивая, Непромокаемая, Дышащая, Морозоустойчивая, Непромокаемая, Дышащая,',
-    price: '7 712',
-  },
-];
-
-const previewProps: CategoryImageProps = {
-  backgroundImage: previewHitsimages['/src/assets/img/home/preview-hits/background.png'](),
-  description: 'Весной на рыбалке важно не промокнуть, не замёрзнуть и не вспотеть.',
-};
-
-const tags: string[] = [
-  'одежда для охоты',
-  'одежда для охоты',
-  'одежда для охоты',
-  'одежда для охоты',
-  'одежда для охоты',
-  'одежда для охоты',
-];
+const { direction = 'left', tags, slides, ...props } = Astro.props;
 ---
 
 <CategoryBlock class='category-section' direction={direction}>
   <div slot='left' class='category-section__left'>
-    <CategoryImage {...previewProps}>
+    <CategoryImage {...props}>
       <CategoryTags tags={tags} />
     </CategoryImage>
   </div>

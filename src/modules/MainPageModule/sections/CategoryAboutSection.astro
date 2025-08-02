@@ -5,21 +5,15 @@ import Contacts from '../components/Contacts.astro';
 import CategoryBlock from '../components/CategoryBlock.astro';
 import type { CategoryImageProps } from '../components/CategoryImage.astro';
 import CategoryImage from '../components/CategoryImage.astro';
+import type { CategorySectionProps } from './CategorySection.astro';
 
-interface Props {
+export interface CategoryAboutProps extends Omit<CategoryImageProps, 'slides' | 'tags'> {
   direction?: 'left' | 'right';
 }
 
-const { direction = 'left' } = Astro.props;
+type Props = CategoryAboutProps;
 
-const previewHitsimages = import.meta.glob<{ default: ImageMetadata }>(
-  '/src/assets/img/home/preview-hits/*.{jpeg,jpg,png,gif}'
-);
-
-const previewProps: CategoryImageProps = {
-  backgroundImage: previewHitsimages['/src/assets/img/home/preview-hits/background.png'](),
-  description: 'Весной на рыбалке важно не промокнуть, не замёрзнуть и не вспотеть.',
-};
+const { direction = 'left', ...props } = Astro.props;
 
 const contacts: Contact[] = [
   { name: 'Татьяна', phone: '+7-906-512-25-55', email: 'mta37@stayer-tex.ru' },
@@ -29,7 +23,7 @@ const contacts: Contact[] = [
 
 <CategoryBlock class='category-about-section' direction={direction}>
   <div slot='left' class='category-about-section__left'>
-    <CategoryImage {...previewProps}>
+    <CategoryImage {...props}>
       <Contacts class='category-about-section__contacts' contacts={contacts} />
     </CategoryImage>
   </div>
