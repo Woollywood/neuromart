@@ -1,0 +1,41 @@
+---
+const pages: number[] = [1, 2, 3, 4, 5];
+const currentPage = 1;
+---
+
+<div class='pagination'>
+  {pages.map((page) => <button class:list={['pagination__button number', page === currentPage && 'current']}>{page}</button>)}
+  <button class='pagination__button'>Следующая</button>
+</div>
+
+<style lang='scss'>
+  .pagination {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+
+    &__button {
+      font-family: var(--font-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8px;
+      background-color: var(--light-2);
+      border-radius: 8px;
+
+      font-weight: 700;
+      font-size: 16px;
+      text-transform: uppercase;
+      color: var(--secondary);
+
+      &.number {
+        width: 32px;
+        height: 32px;
+      }
+
+      &.current {
+        color: var(--primary);
+      }
+    }
+  }
+</style>

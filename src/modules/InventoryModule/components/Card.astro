@@ -1,0 +1,59 @@
+---
+import CustomImage from '@/components/shared/CustomImage.astro';
+import CardButton from '@/components/ui/CardButton.astro';
+import CardContent from '@/components/ui/CardContent.astro';
+import type { Slide } from '@/components/ui/Slider.astro';
+
+export interface CardProp extends Slide {
+  retail: string;
+}
+
+type Props = CardProp;
+
+const { country, title, description, image, price, retail } = Astro.props;
+---
+
+<div class='card'>
+  <div class='card__image'>
+    <CustomImage src={image} alt='image' />
+  </div>
+  <CardContent title={country} subtitle={title} description={description}>
+    <div class='card__footer'>
+      <div class='card__actions'>
+        <CardButton text='розница' price={retail} type='secondary' />
+        <CardButton text='опт' price={price} />
+      </div>
+    </div>
+  </CardContent>
+</div>
+
+<style lang='scss'>
+  .card {
+    &__image {
+      position: relative;
+      aspect-ratio: 178 / 224;
+      width: 100%;
+
+      img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    &__footer {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+
+    &__actions {
+      display: inline-flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+  }
+</style>

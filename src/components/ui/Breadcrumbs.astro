@@ -1,0 +1,46 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+
+interface Props extends Pick<HTMLAttributes<'ul'>, 'class'> {
+  path: string[];
+}
+
+const { path, class: className, ...rest } = Astro.props;
+---
+
+<ul class:list={['breadcrumbs', className]} {...rest}>
+  {
+    path.map((page, idx) => (
+      <li class='breadcrumbs__item'>{idx === path.length - 1 ? <span>{page}</span> : <a href='#'>{page} /</a>}</li>
+    ))
+  }
+</ul>
+
+<style lang='scss'>
+  .breadcrumbs {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    white-space: nowrap;
+    overflow: auto;
+    margin-right: -8px;
+    margin-bottom: 4px;
+
+    @include hideScrollbar();
+
+    font-family: var(--font-secondary);
+    font-weight: 500;
+    font-size: 12px;
+    color: var(--primary);
+
+    @include media('lg') {
+      margin-right: -16px;
+    }
+
+    &__item {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+  }
+</style>

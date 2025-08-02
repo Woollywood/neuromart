@@ -2,6 +2,8 @@
 import type { ImageMetadata } from 'astro';
 import type { HTMLAttributes } from 'astro/types';
 import { Picture } from 'astro:assets';
+import CardButton from './CardButton.astro';
+import CardContent from './CardContent.astro';
 
 export interface Slide {
   image: Promise<{ default: ImageMetadata }>;
@@ -28,16 +30,9 @@ const { slides, class: className, ...rest } = Astro.props;
               <div class='slide__image'>
                 <Picture inferSize layout='constrained' formats={['avif', 'webp']} src={image} alt='image' />
               </div>
-              <div class='slide__content'>
-                <p class='slide__country'>{country}</p>
-                <h2 class='slide__title'>{title}</h2>
-                <p class='slide__description'>{description}</p>
-                <div class='slide__price-wrapper'>
-                  <div class='slide__price'>
-                    опт <span>{price}</span> руб
-                  </div>
-                </div>
-              </div>
+              <CardContent title={country} subtitle={title} description={description}>
+                <CardButton text='опт' price={price} />
+              </CardContent>
             </div>
           </div>
         ))
@@ -117,140 +112,6 @@ const { slides, class: className, ...rest } = Astro.props;
         width: 100%;
         height: 100%;
         object-fit: contain;
-      }
-    }
-
-    &__content {
-      padding: 6px 8px 0;
-
-      @include media('md') {
-        padding: 10px 12px 12px;
-      }
-
-      @include media('lg') {
-        padding: 6px 12px 12px;
-      }
-
-      @include media('xl') {
-        padding: 12px 12px 24px;
-      }
-    }
-
-    &__country {
-      font-weight: 800;
-      font-style: italic;
-      font-size: 12px;
-      text-align: center;
-      text-transform: uppercase;
-      color: var(--primary);
-
-      @include media('md') {
-        font-size: 13px;
-      }
-
-      @include media('lg') {
-        font-size: 14px;
-      }
-
-      @include media('xl') {
-        font-size: 16px;
-      }
-    }
-
-    &__title {
-      font-weight: 800;
-      font-style: italic;
-      font-size: 12px;
-      text-align: center;
-      text-transform: uppercase;
-      color: var(--secondary);
-      @include leading(2);
-
-      margin-bottom: 2px;
-
-      @include media('md') {
-        font-size: 13px;
-      }
-
-      @include media('lg') {
-        @include leading(1);
-        font-size: 14px;
-      }
-
-      @include media('xl') {
-        font-size: 16px;
-      }
-    }
-
-    &__description {
-      font-weight: 600;
-      font-style: italic;
-      font-size: 10px;
-      text-transform: uppercase;
-      color: var(--primary);
-      text-align: center;
-      @include leading(3);
-
-      margin-bottom: 6px;
-
-      @include media('md') {
-        font-size: 12px;
-      }
-
-      @include media('lg') {
-        @include leading(2);
-        font-size: 11px;
-      }
-
-      @include media('xl') {
-        @include leading(1);
-      }
-    }
-
-    &__price-wrapper {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    &__price {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 4px;
-
-      padding: 10px 4px;
-      border-radius: 8px;
-      @include border(1px, var(--primary));
-      width: 100%;
-
-      font-size: 11px;
-      font-weight: 900;
-      font-style: italic;
-      font-size: 11px;
-      text-transform: uppercase;
-      color: var(--primary);
-
-      @include media('md') {
-        display: inline-flex;
-        width: auto;
-        padding: 6px 10px;
-      }
-
-      @include media('xl') {
-        padding: 10px;
-      }
-
-      span {
-        font-size: 12px;
-
-        @include media('md') {
-          font-size: 20px;
-        }
-
-        @include media('xl') {
-          font-size: 12px;
-        }
       }
     }
   }

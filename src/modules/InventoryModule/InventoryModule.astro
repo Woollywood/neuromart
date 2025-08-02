@@ -1,0 +1,78 @@
+---
+import Breadcrumbs from '@/components/ui/Breadcrumbs.astro';
+import Layout from '@/layouts/Layout.astro';
+import Filters from './components/Filters.astro';
+import CardList from './components/CardList.astro';
+import type { Slide } from '@/components/ui/Slider.astro';
+import Slider from '@/components/ui/Slider.astro';
+import SliderSection from './sections/SliderSection.astro';
+import Pagination from '@/components/ui/Pagination.astro';
+
+const path: string[] = ['Магазин мужской одежды', 'одежда', 'для охоты и рыбалки', 'костюмы', 'костюмы'];
+---
+
+<Layout>
+  <div class='inventory'>
+    <div class='inventory__container container'>
+      <Breadcrumbs path={path} />
+      <h1 class='inventory__title'>Костюмы</h1>
+      <Filters class='inventory__filters' />
+      <div class='inventory__card-list-wrapper'>
+        <div class='inventory__card-list'>
+          <CardList class='inventory__card-list-section' />
+          <SliderSection
+            class='inventory__slider-section'
+            title='Также покупают'
+            description='Текст комментария от нейросети для расшифровки'
+          />
+          <CardList class='inventory__card-list-section' />
+        </div>
+        <Pagination />
+      </div>
+      <SliderSection
+        class='inventory__slider-section'
+        title='Просмотренные'
+        description='Текст комментария от нейросети для расшифровки'
+      />
+    </div>
+  </div>
+</Layout>
+
+<style lang='scss'>
+  .inventory {
+    &__container {
+    }
+
+    &__title {
+      font-weight: 900;
+      font-size: 24px;
+      text-transform: uppercase;
+      color: var(--secondary);
+      margin-bottom: 12px;
+    }
+
+    &__filters {
+    }
+
+    &__card-list-wrapper {
+
+    }
+
+    &__card-list {
+      border-bottom: 1px solid var(--light-2);
+      padding-bottom: 24px;
+      margin-bottom: 8px;
+    }
+
+    &__card-list-section {
+      margin-top: 36px;
+    }
+
+    &__cards-bottom {
+    }
+
+    &__slider-section {
+      margin-top: 50px;
+    }
+  }
+</style>

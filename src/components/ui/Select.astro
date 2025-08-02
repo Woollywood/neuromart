@@ -1,0 +1,44 @@
+---
+import { Icon } from 'astro-icon/components';
+---
+
+<div class='select'>
+  <div class='select__trigger'>
+    <div class='select__trigger-text'>
+      <span>Сортировать:</span> По популярности
+    </div>
+    <Icon name='arrow-down' />
+  </div>
+</div>
+
+<style lang='scss'>
+  .select {
+    &__trigger {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 10px 12px;
+      background-color: transparent;
+      border-radius: 8px;
+      @include border(1px, var(--light-2));
+
+      svg {
+        color: var(--secondary);
+        width: 6px;
+        height: 4px;
+      }
+    }
+
+    &__trigger-text {
+      color: var(--secondary);
+      font-weight: 800;
+      font-size: 12px;
+      text-transform: uppercase;
+
+      span {
+        color: var(--primary);
+      }
+    }
+  }
+</style>

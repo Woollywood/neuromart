@@ -1,0 +1,74 @@
+---
+interface Props {
+  price: string | number;
+  text: string;
+  type?: 'primary' | 'secondary';
+}
+
+const { text, price, type = 'primary' } = Astro.props;
+---
+
+<div class='card-button'>
+  <div class:list={['card-button__inner', type]}>
+    {text}
+    <span>{price}</span> руб
+  </div>
+</div>
+
+<style lang='scss'>
+  .card-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &__inner {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+
+      padding: 10px 4px;
+      border-radius: 8px;
+      @include border(1px, var(--primary));
+      width: 100%;
+
+      font-size: 11px;
+      font-weight: 900;
+      font-style: italic;
+      font-size: 11px;
+      text-transform: uppercase;
+      color: var(--primary);
+
+      &.primary {
+        background-color: transparent;
+      }
+
+      &.secondary {
+        background-color: var(--light-2);
+        @include border(1px, var(--light-2));
+      }
+
+      @include media('md') {
+        display: inline-flex;
+        width: auto;
+        padding: 6px 10px;
+      }
+
+      @include media('xl') {
+        padding: 10px;
+      }
+
+      span {
+        font-size: 12px;
+
+        @include media('md') {
+          font-size: 20px;
+        }
+
+        @include media('xl') {
+          font-size: 12px;
+        }
+      }
+    }
+  }
+</style>

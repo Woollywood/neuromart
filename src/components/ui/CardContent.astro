@@ -1,0 +1,106 @@
+---
+interface Props {
+  title: string;
+  subtitle: string;
+  description: string;
+}
+
+const { title, subtitle, description } = Astro.props;
+---
+
+<div class='card-content'>
+  <p class='card-content__title'>{title}</p>
+  <h2 class='card-content__subtitle'>{subtitle}</h2>
+  <p class='card-content__description'>{description}</p>
+  <slot />
+</div>
+
+<style lang='scss'>
+  .card-content {
+    padding: 6px 8px 0;
+
+    @include media('md') {
+      padding: 10px 12px 12px;
+    }
+
+    @include media('lg') {
+      padding: 6px 12px 12px;
+    }
+
+    @include media('xl') {
+      padding: 12px 12px 24px;
+    }
+
+    &__title {
+      font-weight: 800;
+      font-style: italic;
+      font-size: 12px;
+      text-align: center;
+      text-transform: uppercase;
+      color: var(--primary);
+
+      @include media('md') {
+        font-size: 13px;
+      }
+
+      @include media('lg') {
+        font-size: 14px;
+      }
+
+      @include media('xl') {
+        font-size: 16px;
+      }
+    }
+
+    &__subtitle {
+      font-weight: 800;
+      font-style: italic;
+      font-size: 12px;
+      text-align: center;
+      text-transform: uppercase;
+      color: var(--secondary);
+      @include leading(2);
+
+      margin-bottom: 2px;
+
+      @include media('md') {
+        font-size: 13px;
+      }
+
+      @include media('lg') {
+        @include leading(1);
+        font-size: 14px;
+      }
+
+      @include media('xl') {
+        font-size: 16px;
+      }
+    }
+
+    &__description {
+      font-weight: 600;
+      font-style: italic;
+      font-size: 10px;
+      text-transform: uppercase;
+      color: var(--primary);
+      text-align: center;
+      @include leading(3);
+
+      margin-bottom: 6px;
+
+      @include media('md') {
+        font-size: 12px;
+        margin-bottom: 10px;
+      }
+
+      @include media('lg') {
+        @include leading(2);
+        font-size: 11px;
+      }
+
+      @include media('xl') {
+        @include leading(1);
+      }
+    }
+  }
+</style>

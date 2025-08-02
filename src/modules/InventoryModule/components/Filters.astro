@@ -1,0 +1,60 @@
+---
+import Select from '@/components/ui/Select.astro';
+import { Icon } from 'astro-icon/components';
+import type { HTMLAttributes } from 'astro/types';
+
+const categories: string[] = ['Зима', 'Демисезон', 'Нешуршащая', 'Непромокаемая', 'Дышащая', 'Морозоустойчивая'];
+
+type Props = Pick<HTMLAttributes<'div'>, 'class'>;
+
+const { class: className, ...rest } = Astro.props;
+---
+
+<div class:list={['filters', className]} {...rest}>
+  <button class='filters__button filters__button_all'>
+    <Icon name='filters' />
+    <span>Все фильтры</span>
+  </button>
+  <Select />
+  {categories.map((category) => <button class='filters__button'>{category}</button>)}
+  <button class='filters__button filters__button_more'>Смотреть все</button>
+</div>
+
+<style lang='scss'>
+  .filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+
+    &__button {
+      font-family: var(--font-primary);
+      padding: 10px 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      justify-content: center;
+      background-color: transparent;
+      border-radius: 8px;
+      @include border(1px, var(--light-2));
+
+      font-weight: 800;
+      font-size: 12px;
+      text-transform: uppercase;
+      color: var(--secondary);
+
+      svg {
+        color: var(--primary);
+        width: 12px;
+        height: 12px;
+      }
+
+      &_all {
+        background-color: var(--light-2);
+      }
+
+      &_more {
+        color: var(--primary);
+      }
+    }
+  }
+</style>
