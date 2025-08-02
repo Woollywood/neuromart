@@ -6,12 +6,11 @@ import { Picture } from 'astro:assets';
 
 import logoImg from '@assets/img/logo.svg';
 import type { HTMLAttributes } from 'astro/types';
+import HeaderInput from './HeaderInput.astro';
 
 type Props = Pick<HTMLAttributes<'header'>, 'class'>;
 
 const { class: className, ...rest } = Astro.props;
-
-const inputTags: string[] = ['Доставка и оплата', 'Нужна помощь с выбором', 'Индивидуальный заказ'];
 ---
 
 <header class:list={['header', className]} data-component='header' {...rest}>
@@ -23,15 +22,7 @@ const inputTags: string[] = ['Доставка и оплата', 'Нужна п�
       <div class='header__separator header__separator_first'></div>
       <div class='header__blocks'>
         <div class='header__top-block'>
-          <div class='header__input input-header'>
-            <div class='input-header__field'>
-              <Icon class='input-header__icon' name='stars' />
-              <input class='input-header__input' type='text' placeholder='Найти  или задать вопрос...' />
-            </div>
-            <div class='input-header__tags'>
-              {inputTags.map((tag) => <button class='input-header__tag'>{tag}</button>)}
-            </div>
-          </div>
+          <HeaderInput />
           <div class='header__actions'>
             <a href='#' class='header__action'>
               <Icon name='account-icon' />
@@ -148,9 +139,6 @@ const inputTags: string[] = ['Доставка и оплата', 'Нужна п�
       }
     }
 
-    &__input {
-    }
-
     &__actions {
       display: flex;
       align-items: center;
@@ -201,104 +189,4 @@ const inputTags: string[] = ['Доставка и оплата', 'Нужна п�
       gap: 4px;
     }
   }
-
-  .input-header {
-    padding: 6px;
-    border-radius: 8px;
-    background-color: var(--light);
-    flex-grow: 1;
-
-    @include media('md') {
-      padding: 8px;
-    }
-
-    @include media('lg') {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      gap: 12px;
-    }
-
-    @include media('xl') {
-      padding: 10px;
-      gap: 26px;
-      height: 88px;
-    }
-
-    &__field {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    &__icon {
-      color: var(--primary);
-      width: 24px;
-      height: 16px;
-    }
-
-    &__input {
-      width: 100%;
-
-      font-family: var(--font-secondary);
-      font-weight: 500;
-      font-size: 12px;
-      line-height: 16px;
-      background-color: transparent;
-
-      @include media('md') {
-        font-size: 13px;
-      }
-
-      @include media('xl') {
-        font-size: 14px;
-      }
-
-      &::placeholder {
-        color: var(--light-3);
-      }
-    }
-
-    &__tags {
-      display: none;
-
-      @include media('lg') {
-        display: flex;
-        gap: 6px;
-      }
-    }
-
-    &__tag {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 6px;
-      background-color: var(--white);
-      padding: 5px 8px;
-
-      font-family: var(--font-secondary);
-      font-size: 14px;
-      color: var(--secondary);
-      transition: color 0.3s ease-in-out;
-
-      &:hover {
-        color: var(--primary);
-      }
-    }
-  }
 </style>
-
-<script>
-  const inputWrapper = document.querySelector<HTMLDivElement>('.header__input');
-  const input = inputWrapper?.querySelector<HTMLInputElement>('input');
-
-  inputWrapper?.addEventListener('click', () => {
-    input?.focus();
-  });
-
-  document.querySelectorAll<HTMLButtonElement>('.input-header__tag').forEach((tag) =>
-    tag.addEventListener('click', (e) => {
-      e.stopPropagation();
-    })
-  );
-</script>
