@@ -111,6 +111,11 @@ const links: Link[] = [
       font-size: 12px;
       text-transform: uppercase;
       color: var(--secondary);
+      transition: color 0.3s ease-in-out;
+
+      &:hover {
+        color: var(--primary);
+      }
 
       @include media('md') {
         font-size: 14px;

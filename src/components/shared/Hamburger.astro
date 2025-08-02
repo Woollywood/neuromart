@@ -227,6 +227,10 @@ const contacts: string[] = ['+7-906-512-25-55', '+7-906-512-25-55'];
       @include media('xl') {
         font-size: 18px;
       }
+
+      &:hover {
+        text-decoration: underline;
+      }
     }
 
     &__tags {
@@ -250,6 +254,17 @@ const contacts: string[] = ['+7-906-512-25-55', '+7-906-512-25-55'];
       font-size: 13px;
       text-transform: uppercase;
       color: var(--secondary);
+      transition: color 0.3s ease-in-out;
+
+      &:hover {
+        color: var(--primary);
+      }
+
+      &.active {
+        border: 1px solid var(--primary);
+        background-color: var(--primary);
+        color: var(--white);
+      }
 
       @include media('xl') {
         padding: 12px;

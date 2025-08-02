@@ -91,11 +91,16 @@ const { label, links } = Astro.props;
       justify-content: flex-start;
       background-color: transparent;
       border: 1px solid var(--light-2);
+      transition: color 0.3s ease-in-out;
 
       font-weight: 800;
       font-size: 12px;
       text-transform: uppercase;
       color: var(--dark);
+
+      &:hover {
+        color: var(--primary);
+      }
 
       @include media('md') {
         font-size: 13px;
