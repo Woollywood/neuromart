@@ -79,6 +79,11 @@ const { direction = 'left', tags, slides, ...props } = Astro.props;
         display: flex;
         margin-bottom: 24px;
       }
+
+      @include media('xl') {
+        @include adaptiveValue('max-width', calc(229 * 3), calc(201 * 3), $adaptive-xl, $adaptive-xxl);
+        margin: 0 auto 24px;
+      }
     }
   }
   .right-category-section {
