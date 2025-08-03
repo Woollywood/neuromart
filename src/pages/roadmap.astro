@@ -1,0 +1,79 @@
+---
+interface Page {
+  label: string;
+  href?: string;
+  done?: boolean;
+}
+
+const pages: Page[] = [
+  { href: '/', label: 'home' },
+  { href: '/inventory', label: 'inventory' },
+  { href: '/detail', label: 'detail' },
+  { label: 'cart' },
+  { label: 'order' },
+  { label: 'SRP' },
+  { label: 'contact' },
+  { label: 'blog-archive' },
+  { label: 'blog-single' },
+  { label: 'agreement' },
+  { label: 'services' },
+  { label: 'history' },
+  { label: 'account' },
+];
+---
+
+<div class='roadmap'>
+  <div class='roadmap__container container'>
+    <div class='roadmap__wrapper'>
+      <ul class='roadmap__pages'>
+        {
+          pages.map(({ label, href, done }) => (
+            <li>
+              {href ? (
+                <a
+                  href={href}
+                  class:list={['roadmap__page', done ? 'roadmap__page_done' : 'roadmap__page_in-progress']}>
+                  {label}
+                </a>
+              ) : (
+                <div class='roadmap__page roadmap__page'>{label}</div>
+              )}
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+</div>
+
+<style lang='scss'>
+  .roadmap {
+    &__container {
+    }
+
+    &__wrapper {
+    }
+
+    &__pages {
+      padding: 0;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    &__page {
+      font-weight: 500;
+      font-size: 24px;
+
+      &_in-progress {
+      }
+
+      &_done {
+        text-decoration: line-through;
+      }
+    }
+  }
+  .container {
+  }
+</style>

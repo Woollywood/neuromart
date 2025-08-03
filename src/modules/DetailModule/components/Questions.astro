@@ -1,0 +1,113 @@
+---
+import { Icon } from 'astro-icon/components';
+import type { HTMLAttributes } from 'astro/types';
+
+type Props = Pick<HTMLAttributes<'div'>, 'class'>;
+
+const { class: className, ...rest } = Astro.props;
+
+interface Question {
+  question: string;
+  answer: string;
+}
+
+const questions: Question[] = [
+  {
+    question: ' Смогу ли я поехать в этом  костюме в тайгу в январе?',
+    answer:
+      'Да, костюм рассчитан на суровые зимние условия. Благодаря плотному утеплителю  и ветрозащитной ткани он подойдёт для экспедиций, охоты и работы в тайге даже при температуре до -30 °C. Главное — правильно подобрать термобельё.',
+  },
+  {
+    question: ' Смогу ли я поехать в этом  костюме в тайгу в январе?',
+    answer:
+      'Да, костюм рассчитан на суровые зимние условия. Благодаря плотному утеплителю  и ветрозащитной ткани он подойдёт для экспедиций, охоты и работы в тайге даже при температуре до -30 °C. Главное — правильно подобрать термобельё.',
+  },
+  {
+    question: ' Смогу ли я поехать в этом  костюме в тайгу в январе?',
+    answer:
+      'Да, костюм рассчитан на суровые зимние условия. Благодаря плотному утеплителю  и ветрозащитной ткани он подойдёт для экспедиций, охоты и работы в тайге даже при температуре до -30 °C. Главное — правильно подобрать термобельё.',
+  },
+  {
+    question: ' Смогу ли я поехать в этом  костюме в тайгу в январе?',
+    answer:
+      'Да, костюм рассчитан на суровые зимние условия. Благодаря плотному утеплителю  и ветрозащитной ткани он подойдёт для экспедиций, охоты и работы в тайге даже при температуре до -30 °C. Главное — правильно подобрать термобельё.',
+  },
+];
+---
+
+<div class:list={['questions', className]} {...rest}>
+  <h2 class='questions__title title-block'>Вопросы о товаре</h2>
+  <p class='questions__subtitle subtitle-block'>Текст комментария от нейросети для расшифровки</p>
+  <div class='questions__select select-questions'>
+    <div class='select-questions__trigger'>
+      <span>Задайте свой интересующий вопрос</span>
+      <Icon name='arrow-down' />
+    </div>
+    <div class='questions__questions'>
+      {
+        questions.map(({ question, answer }) => (
+          <div class='question__question question'>
+            <div class='question__question'>
+              <span>Вопрос:</span>
+              {question}
+            </div>
+            <div class='question__answer'>{answer}</div>
+            <div class='question__actions'>
+              <button class='question__action'>
+                <Icon name='like' />
+              </button>
+              <button class='question__action'>
+                <Icon name='dislike' />
+              </button>
+              <div class='question__actions-sep' />
+              <button class='question__action'>
+                <Icon name='comment' />
+                <span>уточнить</span>
+              </button>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</div>
+
+<style lang='scss'>
+  .questions {
+    &__title {
+    }
+
+    &__subtitle {
+    }
+
+    &__select {
+    }
+
+    &__questions {
+    }
+  }
+  .title-block {
+  }
+  .subtitle-block {
+  }
+  .select-questions {
+    &__trigger {
+    }
+  }
+  .question {
+    &__question {
+    }
+
+    &__answer {
+    }
+
+    &__actions {
+    }
+
+    &__action {
+    }
+
+    &__actions-sep {
+    }
+  }
+</style>

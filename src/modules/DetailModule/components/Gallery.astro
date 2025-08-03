@@ -115,6 +115,6 @@ const items: string[] = [
 
   const gallerySlider = document.querySelector<HTMLDivElement>('[data-gallery-slider]');
   if (gallerySlider) {
-    new Splide(gallerySlider, { arrows: false, pagination: false, perPage: 1 }).mount();
+    new Splide(gallerySlider, { type: 'loop', arrows: false, pagination: false, perPage: 1 }).mount();
   }
 </script>

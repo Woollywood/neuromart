@@ -3,6 +3,7 @@ import Layout from '@/layouts/Layout.astro';
 import Gallery from './components/Gallery.astro';
 import Details from './components/Details.astro';
 import SliderSection from './sections/SliderSection.astro';
+import Questions from './components/Questions.astro';
 ---
 
 <Layout>
@@ -12,8 +13,9 @@ import SliderSection from './sections/SliderSection.astro';
         <Gallery />
         <Details />
       </div>
-      <div class='detail__sliders'>
+      <div class='detail__bottom'>
         <SliderSection title='Похожие' description='Текст комментария от нейросети для расшифровки' />
+        <Questions />
         <SliderSection title='Похожие' description='Текст комментария от нейросети для расшифровки' />
         <SliderSection title='Похожие' description='Текст комментария от нейросети для расшифровки' />
       </div>
@@ -33,7 +35,7 @@ import SliderSection from './sections/SliderSection.astro';
       }
     }
 
-    &__sliders {
+    &__bottom {
       display: flex;
       flex-direction: column;
       gap: 36px;

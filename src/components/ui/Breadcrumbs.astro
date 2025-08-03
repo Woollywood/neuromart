@@ -24,6 +24,7 @@ const { path, class: className, ...rest } = Astro.props;
     white-space: nowrap;
     overflow: auto;
     margin-right: -8px;
+    padding-right: 8px;
     margin-bottom: 4px;
 
     @include hideScrollbar();
@@ -35,6 +36,7 @@ const { path, class: className, ...rest } = Astro.props;
 
     @include media('lg') {
       margin-right: 0;
+      padding-right: 0;
       margin-bottom: 6px;
     }
 
