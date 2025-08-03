@@ -32,42 +32,58 @@ const questions: Question[] = [
     answer:
       'Да, костюм рассчитан на суровые зимние условия. Благодаря плотному утеплителю  и ветрозащитной ткани он подойдёт для экспедиций, охоты и работы в тайге даже при температуре до -30 °C. Главное — правильно подобрать термобельё.',
   },
+  {
+    question: ' Смогу ли я поехать в этом  костюме в тайгу в январе?',
+    answer:
+      'Да, костюм рассчитан на суровые зимние условия. Благодаря плотному утеплителю  и ветрозащитной ткани он подойдёт для экспедиций, охоты и работы в тайге даже при температуре до -30 °C. Главное — правильно подобрать термобельё.',
+  },
+  {
+    question: ' Смогу ли я поехать в этом  костюме в тайгу в январе?',
+    answer:
+      'Да, костюм рассчитан на суровые зимние условия. Благодаря плотному утеплителю  и ветрозащитной ткани он подойдёт для экспедиций, охоты и работы в тайге даже при температуре до -30 °C. Главное — правильно подобрать термобельё.',
+  },
 ];
 ---
 
 <div class:list={['questions', className]} {...rest}>
   <h2 class='questions__title title-block'>Вопросы о товаре</h2>
   <p class='questions__subtitle subtitle-block'>Текст комментария от нейросети для расшифровки</p>
-  <div class='questions__select select-questions'>
-    <div class='select-questions__trigger'>
-      <span>Задайте свой интересующий вопрос</span>
-      <Icon name='arrow-down' />
+  <div class='questions__select-wrapper'>
+    <div class='questions__select select-questions'>
+      <div class='select-questions__trigger'>
+        <span>Задайте свой интересующий вопрос</span>
+        <Icon name='arrow-down' />
+      </div>
     </div>
-    <div class='questions__questions'>
-      {
-        questions.map(({ question, answer }) => (
-          <div class='question__question question'>
-            <div class='question__question'>
-              <span>Вопрос:</span>
-              {question}
+  </div>
+  <div class='questions__questions splide' data-component='question-slider'>
+    <div class='splide__track'>
+      <div class='splide__list'>
+        {
+          questions.map(({ question, answer }) => (
+            <div class='question__question splide__slide question'>
+              <div class='question__question'>
+                <span>Вопрос:</span>
+                {question}
+              </div>
+              <div class='question__answer'>{answer}</div>
+              <div class='question__actions'>
+                <button class='question__action'>
+                  <Icon name='like' />
+                </button>
+                <button class='question__action'>
+                  <Icon name='dislike' />
+                </button>
+                <div class='question__actions-sep' />
+                <button class='question__action'>
+                  <Icon name='comment' />
+                  <span>уточнить</span>
+                </button>
+              </div>
             </div>
-            <div class='question__answer'>{answer}</div>
-            <div class='question__actions'>
-              <button class='question__action'>
-                <Icon name='like' />
-              </button>
-              <button class='question__action'>
-                <Icon name='dislike' />
-              </button>
-              <div class='question__actions-sep' />
-              <button class='question__action'>
-                <Icon name='comment' />
-                <span>уточнить</span>
-              </button>
-            </div>
-          </div>
-        ))
-      }
+          ))
+        }
+      </div>
     </div>
   </div>
 </div>
@@ -75,9 +91,38 @@ const questions: Question[] = [
 <style lang='scss'>
   .questions {
     &__title {
+      text-align: left;
     }
 
     &__subtitle {
+      text-align: left;
+      margin-bottom: 8px;
+
+      @include media('md') {
+        margin-bottom: 12px;
+      }
+
+      @include media('lg') {
+        margin-bottom: 16px;
+      }
+
+      @include media('xl') {
+        margin-bottom: 20px;
+      }
+    }
+
+    &__select-wrapper {
+      margin-bottom: 4px;
+
+      @include media('md') {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4px;
+      }
+
+      @include media('lg') {
+        margin-bottom: 8px;
+      }
     }
 
     &__select {
@@ -86,28 +131,127 @@ const questions: Question[] = [
     &__questions {
     }
   }
-  .title-block {
-  }
-  .subtitle-block {
-  }
+
   .select-questions {
     &__trigger {
+      padding: 4px 12px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-radius: 8px;
+      background-color: var(--light);
+
+      font-weight: 800;
+      font-size: 12px;
+      text-transform: uppercase;
+      color: var(--secondary);
+
+      @include media('md') {
+        font-size: 13px;
+      }
+
+      svg {
+        width: 8px;
+        height: 4px;
+
+        @include media('md') {
+          width: 12px;
+          height: 6px;
+        }
+      }
     }
   }
   .question {
+    width: 294px;
+    min-width: 294px;
+    padding: 12px;
+    background-color: var(--light);
+    border-radius: 12px;
+
+    @include media('md') {
+      width: 100%;
+      min-width: auto;
+    }
+
     &__question {
+      font-family: var(--font-secondary);
+      font-weight: 700;
+      font-size: 14px;
+      line-height: 16px;
+      color: var(--secondary);
+      margin-bottom: 4px;
+
+      > span {
+        font-style: italic;
+        color: var(--primary);
+      }
     }
 
     &__answer {
+      font-family: var(--font-secondary);
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 16px;
+      color: var(--secondary);
+      margin-bottom: 16px;
+
+      @include media('md') {
+        margin-bottom: 24px;
+      }
     }
 
     &__actions {
+      display: flex;
+      align-items: center;
+      gap: 4px;
     }
 
     &__action {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 24px;
+      gap: 6px;
+
+      font-family: var(--font-secondary);
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 16px;
+      color: var(--primary);
+
+      svg {
+        width: 24px;
+        height: 24px;
+      }
     }
 
     &__actions-sep {
+      margin: 0 4px;
+      height: 24px;
+      width: 1px;
+      background-color: var(--primary);
+      opacity: 40%;
     }
   }
 </style>
+
+<script>
+  import { getMediaCssParsedVariable, MediaSizes } from '@/utils/styles';
+  import Splide from '@splidejs/splide';
+
+  const slider = document.querySelector<HTMLDivElement>("[data-component='question-slider']");
+  if (slider) {
+    new Splide(slider, {
+      pagination: false,
+      arrows: false,
+      mediaQuery: 'min',
+      autoWidth: true,
+      gap: 4,
+      breakpoints: {
+        [getMediaCssParsedVariable(MediaSizes.LG)]: { perPage: 4, gap: 8 },
+        [getMediaCssParsedVariable(MediaSizes.MD)]: { perPage: 2, autoWidth: false },
+      },
+    }).mount();
+  }
+</script>

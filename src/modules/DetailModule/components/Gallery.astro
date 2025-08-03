@@ -1,5 +1,10 @@
 ---
 import CustomImage from '@/components/shared/CustomImage.astro';
+import type { HTMLAttributes } from 'astro/types';
+
+type Props = Pick<HTMLAttributes<'div'>, 'class'>;
+
+const { class: className, ...rest } = Astro.props;
 
 const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/img/detail/*.{jpeg,jpg,png,gif}');
 
@@ -11,7 +16,7 @@ const items: string[] = [
 ];
 ---
 
-<div>
+<div class:list={[className]} {...rest}>
   <div class='gallery'>
     {
       items.map((img) => (

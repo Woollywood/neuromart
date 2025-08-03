@@ -75,8 +75,8 @@ const hitsSlides: Slide[] = [
 
 <div class:list={['slider-section', className]} {...rest}>
   <div class='slider-section__content'>
-    <h2 class='title-block'>{title}</h2>
-    <p class='subtitle-block'>{description}</p>
+    <h2 class='slider-section__title title-block'>{title}</h2>
+    <p class='slider-section__subtitle subtitle-block'>{description}</p>
   </div>
   <Slider slides={hitsSlides} />
 </div>
@@ -84,6 +84,14 @@ const hitsSlides: Slide[] = [
 <style lang='scss'>
   .slider-section {
     &__content {
+    }
+
+    &__title {
+      text-align: left;
+    }
+
+    &__subtitle {
+      text-align: left;
     }
   }
 </style>

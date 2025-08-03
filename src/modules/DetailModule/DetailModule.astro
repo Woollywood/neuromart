@@ -10,7 +10,7 @@ import Questions from './components/Questions.astro';
   <div class='detail'>
     <div class='detail__container container'>
       <div class='detail__main'>
-        <Gallery />
+        <Gallery class='detail__gallery' />
         <Details />
       </div>
       <div class='detail__bottom'>
@@ -25,14 +25,34 @@ import Questions from './components/Questions.astro';
 
 <style lang='scss'>
   .detail {
+    padding-top: 8px;
+    margin-bottom: 40px;
+
+    @include media('md') {
+      margin-bottom: 96px;
+    }
+
+    @include media('xl') {
+      margin-bottom: 128px;
+    }
+
     &__container {
     }
 
     &__main {
       @include media('lg') {
         display: grid;
+        gap: 8px;
         grid-template-columns: 1fr 306px;
       }
+
+      @include media('xl') {
+        grid-template-columns: 1fr 466px;
+      }
+    }
+
+    &__gallery {
+      margin-bottom: 8px;
     }
 
     &__bottom {

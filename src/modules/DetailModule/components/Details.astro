@@ -150,6 +150,10 @@ const tags: string[] = [
       font-size: 20px;
       text-transform: uppercase;
       color: var(--white);
+
+      @include media('md') {
+        height: 48px;
+      }
     }
 
     &__separator {
