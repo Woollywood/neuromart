@@ -17,6 +17,12 @@
   }
 }
 
+@mixin customMedia($size) {
+  @media only screen and (min-width: $size) {
+    @content;
+  }
+}
+
 //rem
 @function rem($px) {
   $result: math.div($px, 16) + rem;

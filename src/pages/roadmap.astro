@@ -9,7 +9,7 @@ const pages: Page[] = [
   { href: '/', label: 'home' },
   { href: '/inventory', label: 'inventory' },
   { href: '/detail', label: 'detail' },
-  { label: 'cart' },
+  { href: '/cart', label: 'cart' },
   { label: 'order' },
   { label: 'SRP' },
   { label: 'contact' },
@@ -19,6 +19,7 @@ const pages: Page[] = [
   { label: 'services' },
   { label: 'history' },
   { label: 'account' },
+  { label: 'question-answer' },
 ];
 
 const doneCount = pages.filter(({ done }) => Boolean(done)).length;

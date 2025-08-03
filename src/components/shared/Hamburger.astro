@@ -285,8 +285,6 @@ const contacts: string[] = ['+7-906-512-25-55', '+7-906-512-25-55'];
 </style>
 
 <script>
-  import { overflowItems } from '@/utils/styles';
-
   document.querySelectorAll<HTMLDivElement>("[data-component='hamburger']").forEach((item) => {
     item.querySelectorAll<HTMLButtonElement>('[data-hamburger-button]').forEach((button) => {
       button.addEventListener('click', () => {
@@ -297,10 +295,4 @@ const contacts: string[] = ['+7-906-512-25-55', '+7-906-512-25-55'];
       });
     });
   });
-
-  const tagsDesktopContainer = document.querySelector<HTMLDivElement>('.tablet-hamburger__tags');
-  if (tagsDesktopContainer) {
-    overflowItems(tagsDesktopContainer);
-    window.addEventListener('resize', () => overflowItems(tagsDesktopContainer));
-  }
 </script>

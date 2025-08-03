@@ -4,6 +4,7 @@ import type { HTMLAttributes } from 'astro/types';
 import { Picture } from 'astro:assets';
 import CardButton from './CardButton.astro';
 import CardContent from './CardContent.astro';
+import type { Breakpoints } from '@/utils/types';
 
 export interface Slide {
   image: Promise<{ default: ImageMetadata }>;
@@ -15,14 +16,15 @@ export interface Slide {
 
 interface Props extends Pick<HTMLAttributes<'div'>, 'class'> {
   slides: Slide[];
+  breakpoints?: string;
 }
 
-const { slides, class: className, ...rest } = Astro.props;
+const { slides, breakpoints, class: className, ...rest } = Astro.props;
 ---
 
-<div class:list={[className, 'splide']} data-component='slider' {...rest}>
-  <div class='splide__track slider'>
-    <ul class='splide__list'>
+<div class:list={[className, 'splide slider']} data-component='slider' data-slider-breakpoints={breakpoints} {...rest}>
+  <div class='splide__track slider__track'>
+    <ul class='splide__list slider__list'>
       {
         slides.map(({ image, title, price, description, country }) => (
           <div class='splide__slide slider__slide slide'>
@@ -43,49 +45,32 @@ const { slides, class: className, ...rest } = Astro.props;
 
 <style lang='scss'>
   .slider {
+    @include border(1px, var(--light-2));
+    margin-right: -8px;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+
     @include media('lg') {
-      @include border(1px, var(--light-2));
+      margin-right: 0;
       border-radius: 8px;
     }
 
     @include media('xl') {
       border-radius: 12px;
     }
+
+    &__track {
+    }
+
+    &__list {
+    }
   }
 
   .slide {
-    border-top: 1px solid var(--light-2);
-    border-bottom: 1px solid var(--light-2);
     padding: 8px 0;
-
-    @include adaptiveValue('width', 187, 117, $adaptive-sm, $adaptive-md);
-
-    @include media('lg') {
-      @include adaptiveValue('width', 201, 187, $adaptive-sm, $adaptive-md);
-      border: 0;
-    }
-
-    @include media('xl') {
-      @include adaptiveValue('width', 229, 201, $adaptive-xl, $adaptive-xxl);
-    }
 
     &__inner {
       border-right: 1px solid var(--light-2);
-      border-left: 1px solid var(--light-2);
-
-      @include media('lg') {
-        border-left: 0;
-      }
-    }
-
-    &:first-child {
-      border-top-left-radius: 12px;
-      border-bottom-left-radius: 12px;
-    }
-
-    &:last-child {
-      border-top-right-radius: 12px;
-      border-bottom-right-radius: 12px;
     }
 
     &__image {
@@ -118,15 +103,28 @@ const { slides, class: className, ...rest } = Astro.props;
 </style>
 
 <script>
+  import { getMediaCssParsedVariable, MediaSizes } from '@/utils/styles';
+  import type { Breakpoints } from '@/utils/types';
   import Splide from '@splidejs/splide';
 
   document.querySelectorAll<HTMLDivElement>("[data-component='slider']").forEach((slider) => {
+    const dataBreakpoints = slider.dataset.sliderBreakpoints;
+    const breakpoints = dataBreakpoints ? JSON.parse(dataBreakpoints) : {};
+    const hasBreakpoints = Object.keys(breakpoints).length > 0;
+
+    const originalBreakpoints: Breakpoints = {
+      [getMediaCssParsedVariable(MediaSizes.MD)]: { perPage: 4 },
+      [getMediaCssParsedVariable(MediaSizes.LG)]: { perPage: 6 },
+      [getMediaCssParsedVariable(MediaSizes.XL)]: { perPage: 8 },
+    };
+
     new Splide(slider, {
       type: 'loop',
-      autoWidth: true,
       arrows: false,
       pagination: false,
-      clones: 10,
+      mediaQuery: 'min',
+      perPage: 3,
+      breakpoints: hasBreakpoints ? breakpoints : originalBreakpoints,
     }).mount();
   });
 </script>

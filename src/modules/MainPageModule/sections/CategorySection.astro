@@ -6,6 +6,8 @@ import CategoryBlock from '../components/CategoryBlock.astro';
 import type { CategoryImageProps } from '../components/CategoryImage.astro';
 import CategoryTags from '../components/CategoryTags.astro';
 import CategoryImage from '../components/CategoryImage.astro';
+import type { Breakpoints } from '@/utils/types';
+import { MediaSizesValue } from '@/utils/styles';
 
 export interface CategorySectionProps extends CategoryImageProps {
   direction?: 'left' | 'right';
@@ -16,6 +18,13 @@ export interface CategorySectionProps extends CategoryImageProps {
 type Props = CategorySectionProps;
 
 const { direction = 'left', tags, slides, ...props } = Astro.props;
+
+const breakpoints: Breakpoints = {
+  [MediaSizesValue.MD]: { perPage: 4 },
+  [MediaSizesValue.LG]: { perPage: 2 },
+  1600: { perPage: 3 },
+};
+const dataBreakpoints = JSON.stringify(breakpoints);
 ---
 
 <CategoryBlock class='category-section' direction={direction}>
@@ -31,7 +40,7 @@ const { direction = 'left', tags, slides, ...props } = Astro.props;
         <p class='subtitle-block'>Текст комментария от нейросети для расшифровки</p>
       </div>
       <CategoryTags aboveImage={false} class='category-section__tags' tags={tags} />
-      <Slider class='right-category-section__slider' slides={slides} />
+      <Slider breakpoints={dataBreakpoints} class='right-category-section__slider' slides={slides} />
       <ShowMoreCatalog />
     </div>
   </div>
@@ -114,12 +123,12 @@ const { direction = 'left', tags, slides, ...props } = Astro.props;
 
       @include media('lg') {
         margin: 0 auto;
-        @include adaptiveValue('width', calc(201 * 2), calc(187 * 2), $adaptive-sm, $adaptive-md);
+        width: calc((100vw - 16px * 2) / 6 * 2);
         margin-bottom: 8px;
       }
 
       @include media('xl') {
-        @include adaptiveValue('width', calc(229 * 3), calc(201 * 3), $adaptive-xl, $adaptive-xxl);
+        width: calc((100vw - 16px * 2) / 8 * 3);
       }
     }
   }

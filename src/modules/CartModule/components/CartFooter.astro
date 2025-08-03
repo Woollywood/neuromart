@@ -1,0 +1,42 @@
+---
+interface CartFooter {
+  count: string;
+  totalPrice: string;
+  discount: string;
+  totalPriceWithDiscount: string;
+}
+
+const data: CartFooter = {
+  count: '8',
+  totalPrice: '1 444 128',
+  discount: '288 128',
+  totalPriceWithDiscount: '1 156 000',
+};
+
+const { count, totalPrice, discount, totalPriceWithDiscount } = data;
+---
+
+<div class='cart-footer'>
+  <div class='cart-footer__items'>
+    <div class='cart-footer__item'>
+      <div class='cart-footer__item_left'>Ваш заказ:</div>
+      <div class='cart-footer__item_right'>{count} ТОВАРОВ</div>
+    </div>
+    <div class='cart-footer__item'>
+      <div class='cart-footer__item_left'>Товары на сумму:</div>
+      <div class='cart-footer__item_right'>{totalPrice} РУБ</div>
+    </div>
+    <div class='cart-footer__item'>
+      <div class='cart-footer__item_left'>Скидка:</div>
+      <div class='cart-footer__item_right'>{discount} РУБ</div>
+    </div>
+    <div class='cart-footer__separator'></div>
+    <div class='cart-footer__item'>
+      <div class='cart-footer__item_left'>Итого:</div>
+      <div class='cart-footer__item_right'>{totalPriceWithDiscount} РУБ</div>
+    </div>
+  </div>
+  <button class='cart-footer__order-button'>Перейти к Оформлению</button>
+</div>
+
+<style lang='scss'></style>

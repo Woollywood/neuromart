@@ -27,7 +27,7 @@ const { class: className, ...rest } = Astro.props;
             <a href='#' class='header__action'>
               <Icon name='account-icon' />
             </a>
-            <a href='#' class='header__action'>
+            <a href='/cart' class='header__action'>
               <Icon name='cart-icon' />
             </a>
           </div>
@@ -64,7 +64,10 @@ const { class: className, ...rest } = Astro.props;
       display: flex;
       align-items: center;
       gap: 4px;
-      height: var(--header-height);
+
+      @include media('lg') {
+        align-items: flex-start;
+      }
 
       @include media('xl') {
         gap: 16px;
@@ -133,6 +136,7 @@ const { class: className, ...rest } = Astro.props;
       overflow: hidden;
 
       @include media('lg') {
+        align-items: flex-start;
         flex-direction: row-reverse;
         gap: 16px;
       }
@@ -196,9 +200,32 @@ const { class: className, ...rest } = Astro.props;
     }
 
     &__bottom-block {
+      flex-shrink: 0;
       display: flex;
       align-items: center;
       gap: 4px;
     }
   }
 </style>
+
+<script>
+  import { setCssVariable } from '@/utils/styles';
+
+  const header = document.querySelector<HTMLHeadElement>("[data-component='header']");
+  if (header) {
+    const setCssHeaderHeight = () => {
+      const headerHeight = header.clientHeight;
+      setCssVariable('--header-height', `${headerHeight}px`);
+    };
+
+    setCssHeaderHeight();
+    const resizeObserver = new ResizeObserver((entries) => {
+      for (const entry of entries) {
+        if (entry.target === header) {
+          setCssHeaderHeight()
+        }
+      }
+    });
+    resizeObserver.observe(header);
+  }
+</script>

@@ -30,7 +30,6 @@ const { direction = 'left', class: className, ...rest } = Astro.props;
       display: flex;
       flex-direction: column;
       gap: 38px;
-      overflow: hidden;
 
       @include media('md') {
         overflow: visible;
@@ -39,8 +38,8 @@ const { direction = 'left', class: className, ...rest } = Astro.props;
       @include media('lg') {
         overflow: hidden;
         display: grid;
-        gap: 0;
-        grid-template-columns: 50vw 1fr;
+        gap: 8px;
+        grid-template-columns: calc(50vw - 16px - 4px) 1fr;
       }
     }
 

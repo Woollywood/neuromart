@@ -1,3 +1,11 @@
+export enum MediaSizesValue {
+  SM = 375,
+  MD = 768,
+  LG = 1180,
+  XL = 1440,
+  XXL = 1920,
+}
+
 export enum MediaSizes {
   SM = 'sm',
   MD = 'md',
@@ -6,6 +14,7 @@ export enum MediaSizes {
   XXL = 'xxl',
 }
 
+export const setCssVariable = (name: string, value: string) => document.documentElement.style.setProperty(name, value);
 export const getCssVariable = (name: string) => getComputedStyle(document.body).getPropertyValue(name);
 
 export const getMediaCssVariable = (size: MediaSizes) => getCssVariable(`--media-${size}`);

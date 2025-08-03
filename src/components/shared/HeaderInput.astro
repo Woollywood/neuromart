@@ -61,7 +61,6 @@ const inputTags: string[] = ['Доставка и оплата', 'Нужна п�
     @include media('xl') {
       padding: 10px;
       gap: 26px;
-      height: 88px;
     }
 
     &__field {
@@ -143,6 +142,7 @@ const inputTags: string[] = ['Доставка и оплата', 'Нужна п�
 
       @include media('lg') {
         display: flex;
+        flex-wrap: wrap;
         gap: 6px;
       }
     }
@@ -171,8 +171,6 @@ const inputTags: string[] = ['Доставка и оплата', 'Нужна п�
 </style>
 
 <script>
-  import { overflowItems } from '@/utils/styles';
-
   const inputWrapper = document.querySelector<HTMLDivElement>("[data-component='header-input']");
   const input = inputWrapper?.querySelector<HTMLInputElement>('input');
 
@@ -192,10 +190,4 @@ const inputTags: string[] = ['Доставка и оплата', 'Нужна п�
       e.stopPropagation();
     })
   );
-
-  const tagsContainer = inputWrapper?.querySelector<HTMLElement>('.input-header__tags');
-  if (tagsContainer) {
-    overflowItems(tagsContainer);
-    window.addEventListener('resize', () => overflowItems(tagsContainer));
-  }
 </script>
