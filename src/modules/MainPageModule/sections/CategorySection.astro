@@ -40,7 +40,9 @@ const dataBreakpoints = JSON.stringify(breakpoints);
         <p class='subtitle-block'>Текст комментария от нейросети для расшифровки</p>
       </div>
       <CategoryTags aboveImage={false} class='category-section__tags' tags={tags} />
-      <Slider breakpoints={dataBreakpoints} class='right-category-section__slider' slides={slides} />
+      <div class='right-category-section__slider-wrapper'>
+        <Slider breakpoints={dataBreakpoints} class='right-category-section__slider' slides={slides} />
+      </div>
       <ShowMoreCatalog />
     </div>
   </div>
@@ -113,8 +115,7 @@ const dataBreakpoints = JSON.stringify(breakpoints);
       }
     }
 
-    &__slider {
-      overflow: hidden;
+    &__slider-wrapper {
       margin-bottom: 8px;
 
       @include media('md') {
@@ -122,9 +123,16 @@ const dataBreakpoints = JSON.stringify(breakpoints);
       }
 
       @include media('lg') {
+        margin-bottom: 8px;
+      }
+    }
+
+    &__slider {
+      overflow: hidden;
+
+      @include media('lg') {
         margin: 0 auto;
         width: calc((100vw - 16px * 2) / 6 * 2);
-        margin-bottom: 8px;
       }
 
       @include media('xl') {
