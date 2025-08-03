@@ -123,6 +123,9 @@ const dataBreakpoints = JSON.stringify(breakpoints);
       }
 
       @include media('lg') {
+        display: flex;
+        justify-content: center;
+        align-items: center;
         margin-bottom: 8px;
       }
     }
@@ -131,7 +134,6 @@ const dataBreakpoints = JSON.stringify(breakpoints);
       overflow: hidden;
 
       @include media('lg') {
-        margin: 0 auto;
         width: calc((100vw - 16px * 2) / 6 * 2);
       }
 
