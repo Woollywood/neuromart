@@ -97,6 +97,24 @@
   }
 }
 
+.page-title {
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 28px;
+  text-transform: uppercase;
+  color: var(--secondary);
+  margin-bottom: 12px;
+
+  @include media('lg') {
+    font-size: 32px;
+  }
+
+  @include media('xl') {
+    font-size: 48px;
+    line-height: 40px;
+  }
+}
+
 .show-more-button {
   display: flex;
   align-items: center;

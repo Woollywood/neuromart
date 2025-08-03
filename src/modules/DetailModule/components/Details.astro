@@ -50,7 +50,7 @@ const tags: string[] = [
 <div class='details'>
   <div class='details__wrapper'>
     <Breadcrumbs path={path} />
-    <h1 class='details__title'>Костюм Горка Зима Финл. ПК олива</h1>
+    <h1 class='details__title page-title'>Костюм Горка Зима Финл. ПК олива</h1>
     <div class='details__price-items'>
       {
         priceList.map(({ price, label }) => (
@@ -99,11 +99,6 @@ const tags: string[] = [
     }
 
     &__title {
-      font-weight: 900;
-      font-style: italic;
-      font-size: 24px;
-      text-transform: uppercase;
-      color: var(--secondary);
       margin-bottom: 8px;
     }
 

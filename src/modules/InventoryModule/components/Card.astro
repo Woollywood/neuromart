@@ -17,7 +17,7 @@ const { country, title, description, image, price, retail } = Astro.props;
   <div class='card__image'>
     <CustomImage src={image} alt='image' />
   </div>
-  <CardContent title={country} subtitle={title} description={description}>
+  <CardContent class='card__content' title={country} subtitle={title} description={description}>
     <div class='card__footer'>
       <div class='card__actions'>
         <CardButton text='розница' price={retail} type='secondary' />
@@ -29,6 +29,16 @@ const { country, title, description, image, price, retail } = Astro.props;
 
 <style lang='scss'>
   .card {
+    padding: 12px 0 24px;
+
+    @include media('md') {
+      padding: 0 0 4px;
+    }
+
+    @include media('lg') {
+      padding: 0;
+    }
+
     &__image {
       position: relative;
       aspect-ratio: 178 / 224;
@@ -41,6 +51,16 @@ const { country, title, description, image, price, retail } = Astro.props;
         width: 100%;
         height: 100%;
         object-fit: cover;
+      }
+    }
+
+    &__content {
+      @include media('md') {
+        padding: 6px 16px 16px;
+      }
+
+      @include media('xl') {
+        padding: 12px 32px 24px;
       }
     }
 

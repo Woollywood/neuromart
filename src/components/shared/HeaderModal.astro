@@ -169,7 +169,7 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/img/pro
       flex-direction: column;
       padding: 0 8px 12px;
       border-radius: 8px;
-      @include border(1px, var(--light-2));
+      border: 1px solid var(--light-2);
     }
 
     &__product-image-wrapper {

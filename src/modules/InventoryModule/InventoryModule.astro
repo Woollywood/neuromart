@@ -15,23 +15,23 @@ const path: string[] = ['Магазин мужской одежды', 'одеж�
       <div class='inventory__grid'>
         <div class='inventory__header'>
           <Breadcrumbs path={path} />
-          <h1 class='inventory__title'>Костюмы</h1>
+          <h1 class='inventory__title page-title'>Костюмы</h1>
           <p class='inventory__description'>
             C отрезной нагрудной частью,  центральной застёжкой на молнию. На передних половинках обработаны два
             объёмных накладных боковых кармана, на нагрудной части  накладной карман с клапаном.
           </p>
           <Filters class='inventory__filters' />
         </div>
-        <CardList />
+        <CardList class='inventory__card-list' />
         <SliderSection
           class='inventory__slider-section'
           title='Также покупают'
           description='Текст комментария от нейросети для расшифровки'
         />
-        <CardList />
-        <Pagination />
+        <CardList class='inventory__card-list' />
+        <Pagination class='inventory__pagination' />
         <SliderSection
-          class='inventory__slider-section'
+          class='inventory__slider-section inventory__slider-section_bottom'
           title='Просмотренные'
           description='Текст комментария от нейросети для расшифровки'
         />
@@ -42,6 +42,16 @@ const path: string[] = ['Магазин мужской одежды', 'одеж�
 
 <style lang='scss'>
   .inventory {
+    padding-top: 12px;
+
+    @include media('md') {
+      padding-top: 14px;
+    }
+
+    @include media('lg') {
+      padding-top: 16px;
+    }
+
     &__container {
     }
 
@@ -49,7 +59,6 @@ const path: string[] = ['Магазин мужской одежды', 'одеж�
       display: grid;
       grid-template-columns: 1fr 1fr;
       column-gap: 4px;
-      row-gap: 40px;
       overflow: hidden;
 
       @include media('lg') {
@@ -71,12 +80,6 @@ const path: string[] = ['Магазин мужской одежды', 'одеж�
     }
 
     &__title {
-      font-weight: 900;
-      font-size: 24px;
-      text-transform: uppercase;
-      color: var(--secondary);
-      margin-bottom: 12px;
-
       @include media('lg') {
         margin-bottom: 8px;
       }
@@ -98,33 +101,68 @@ const path: string[] = ['Магазин мужской одежды', 'одеж�
     }
 
     &__filters {
-    }
-
-    &__card-list-section {
-      margin-top: 36px;
+      margin-bottom: 24px;
 
       @include media('md') {
-        margin-top: 0;
-
-        &:not(:first-child) {
-          margin-top: 64px;
-        }
+        margin-bottom: 4px;
       }
     }
 
     &__cards-bottom {
     }
 
+    &__card-list {
+    }
+
     &__slider-section {
       grid-column: 1 / span 2;
-      margin-top: 50px;
 
-      @include media('md') {
-        margin-top: 48px;
+      &:not(:last-child) {
+        margin-top: 26px;
+        margin-bottom: 32px;
+
+        @include media('md') {
+          margin-bottom: 64px;
+        }
+
+        @include media('md') {
+          margin-top: 48px;
+        }
       }
 
       @include media('lg') {
         grid-column: 1 / span 4;
+      }
+
+      &_bottom {
+        margin-bottom: 40px;
+
+        @include media('md') {
+          margin-bottom: 96px;
+        }
+
+        @include media('lg') {
+          margin-bottom: 128px;
+        }
+      }
+    }
+
+    &__pagination {
+      border-top: 1px solid var(--light-2);
+      grid-column: 1 / span 2;
+      padding: 8px 0;
+      margin-bottom: 42px;
+
+      @include media('md') {
+        margin-bottom: 48px;
+      }
+
+      @include media('lg') {
+        grid-column: 1 / span 4;
+      }
+
+      @include media('xl') {
+        margin-bottom: 52px;
       }
     }
   }

@@ -1,14 +1,16 @@
 ---
-interface Props {
+import type { HTMLAttributes } from 'astro/types';
+
+interface Props extends Pick<HTMLAttributes<'div'>, 'class'> {
   title: string;
   subtitle: string;
   description: string;
 }
 
-const { title, subtitle, description } = Astro.props;
+const { title, subtitle, description, class: className, ...rest } = Astro.props;
 ---
 
-<div class='card-content'>
+<div class:list={['card-content', className]} {...rest}>
   <p class='card-content__title'>{title}</p>
   <h2 class='card-content__subtitle'>{subtitle}</h2>
   <p class='card-content__description'>{description}</p>

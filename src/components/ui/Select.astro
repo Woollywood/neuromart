@@ -18,15 +18,20 @@ import { Icon } from 'astro-icon/components';
       align-items: center;
       justify-content: space-between;
       gap: 10px;
-      padding: 10px 12px;
+      padding: 4px 12px;
       background-color: transparent;
       border-radius: 8px;
       @include border(1px, var(--light-2));
+      height: 32px;
 
       svg {
         color: var(--secondary);
         width: 6px;
         height: 4px;
+      }
+
+      @include media('xl') {
+        height: 40px;
       }
     }
 
@@ -38,6 +43,14 @@ import { Icon } from 'astro-icon/components';
 
       span {
         color: var(--primary);
+      }
+
+      @include media('lg') {
+        font-size: 14px;
+      }
+
+      @include media('xl') {
+        font-size: 16px;
       }
     }
   }

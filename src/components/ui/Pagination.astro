@@ -1,10 +1,20 @@
 ---
+import type { HTMLAttributes } from 'astro/types';
+
 const pages: number[] = [1, 2, 3, 4, 5];
 const currentPage = 1;
+
+type Props = Pick<HTMLAttributes<'div'>, 'class'>;
+
+const { class: className, ...rest } = Astro.props;
 ---
 
-<div class='pagination'>
-  {pages.map((page) => <button class:list={['pagination__button number', page === currentPage && 'current']}>{page}</button>)}
+<div class:list={['pagination', className]} {...rest}>
+  {
+    pages.map((page) => (
+      <button class:list={['pagination__button number', page === currentPage && 'current']}>{page}</button>
+    ))
+  }
   <button class='pagination__button'>Следующая</button>
 </div>
 
