@@ -2,14 +2,16 @@
 import { Icon } from 'astro-icon/components';
 import type { HTMLAttributes } from 'astro/types';
 
-type Props = Pick<HTMLAttributes<'div'>, 'class'>;
+interface Props extends Pick<HTMLAttributes<'div'>, 'class'> {
+  text?: string;
+}
 
-const { class: className, ...rest } = Astro.props;
+const { text = 'Смотреть каталог', class: className, ...rest } = Astro.props;
 ---
 
 <div class:list={['catalog-button', className]} {...rest}>
   <a href='#' class='catalog-button__button'>
-    <span>Смотреть каталог</span>
+    <span>{text}</span>
     <div class='catalog-button__icon-wrapper'>
       <Icon name='arrow-down' />
     </div>

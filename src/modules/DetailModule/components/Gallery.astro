@@ -1,0 +1,120 @@
+---
+import CustomImage from '@/components/shared/CustomImage.astro';
+
+const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/img/detail/*.{jpeg,jpg,png,gif}');
+
+const items: string[] = [
+  '/src/assets/img/detail/gallery-image-01.png',
+  '/src/assets/img/detail/gallery-image-02.png',
+  '/src/assets/img/detail/gallery-image-03.png',
+  '/src/assets/img/detail/gallery-image-04.png',
+];
+---
+
+<div>
+  <div class='gallery'>
+    {
+      items.map((img) => (
+        <div class='gallery__item'>
+          <div class='gallery__image'>
+            <CustomImage src={images[img]()} alt="'img" />
+          </div>
+        </div>
+      ))
+    }
+  </div>
+  <div class='splide gallery-slider' data-gallery-slider>
+    <div class='splide__track'>
+      <ul class='splide__list'>
+        {
+          items.map((img) => (
+            <li class='splide__slide gallery-slider__slide'>
+              <div class='gallery-slider__image'>
+                <CustomImage src={images[img]()} alt='image' />
+              </div>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+</div>
+
+<style lang='scss'>
+  .gallery {
+    display: none;
+
+    @include media('lg') {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    &__item {
+      width: 100%;
+      aspect-ratio: 463 / 688;
+    }
+
+    &__image {
+      position: relative;
+      width: 100%;
+      height: 100%;
+
+      img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+  }
+
+  .splide {
+    &__track {
+    }
+
+    &__list {
+    }
+
+    &__slide {
+    }
+  }
+
+  .gallery-slider {
+    @include media('lg') {
+      display: none;
+    }
+
+    &__slide {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 56px;
+    }
+
+    &__image {
+      position: relative;
+      aspect-ratio: 278 / 416;
+      width: 100%;
+
+      img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+  }
+</style>
+
+<script>
+  import Splide from '@splidejs/splide';
+
+  const gallerySlider = document.querySelector<HTMLDivElement>('[data-gallery-slider]');
+  if (gallerySlider) {
+    new Splide(gallerySlider, { arrows: false, pagination: false, perPage: 1 }).mount();
+  }
+</script>

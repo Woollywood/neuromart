@@ -1,0 +1,253 @@
+---
+import Breadcrumbs from '@/components/ui/Breadcrumbs.astro';
+import { Icon } from 'astro-icon/components';
+
+const path: string[] = ['Магазин мужской одежды', 'Каталог', 'Костюм Горка Зима Финл. ПК олива'];
+
+interface PriceItem {
+  price: string;
+  label: string;
+}
+
+interface Dimension {
+  value: string;
+  label: string;
+}
+
+const priceList: PriceItem[] = [
+  { price: '5 200', label: 'Крупный опт' },
+  { price: '5 200', label: 'Крупный опт' },
+  { price: '5 200', label: 'Крупный опт' },
+];
+
+const dimensions: Dimension[] = [
+  { value: '44–46', label: '170 / 176  (3/4)' },
+  { value: '44–46', label: '170 / 176  (3/4)' },
+  { value: '44–46', label: '170 / 176  (3/4)' },
+  { value: '44–46', label: '170 / 176  (3/4)' },
+  { value: '44–46', label: '170 / 176  (3/4)' },
+  { value: '44–46', label: '170 / 176  (3/4)' },
+  { value: '44–46', label: '170 / 176  (3/4)' },
+  { value: '44–46', label: '170 / 176  (3/4)' },
+  { value: '44–46', label: '170 / 176  (3/4)' },
+  { value: '44–46', label: '170 / 176  (3/4)' },
+  { value: '44–46', label: '170 / 176  (3/4)' },
+];
+
+const tags: string[] = [
+  'Детская',
+  'Нешуршащая',
+  'Капюшон',
+  'Детская',
+  'Нешуршащая',
+  'Капюшон',
+  'Детская',
+  'Нешуршащая',
+  'Капюшон',
+];
+---
+
+<div class='details'>
+  <div class='details__wrapper'>
+    <Breadcrumbs path={path} />
+    <h1 class='details__title'>Костюм Горка Зима Финл. ПК олива</h1>
+    <div class='details__price-items'>
+      {
+        priceList.map(({ price, label }) => (
+          <div class='details__price-item price-item'>
+            <div class='price-item__value'>
+              <span>{price}</span>&nbsp;руб
+            </div>
+            <div class='price-item__label'>{label}</div>
+          </div>
+        ))
+      }
+    </div>
+    <div class='details__dimensions'>
+      {
+        dimensions.map(({ value, label }) => (
+          <div class='dimension'>
+            <div class='dimension__value'>{value}</div>
+            <div class='dimension__label'>{label}</div>
+          </div>
+        ))
+      }
+    </div>
+    <button class='details__add-cart'>добавить в корзину</button>
+    <div class='details__separator'></div>
+    <p class='details__description'>
+      Куртка прямого силуэта, с центральной бортовой застёжкой на молнию, ветрозащитным клапаном,  застёгивающимся на
+      петлю и пуговицу,съёмным капюшоном - по лицевому вырезу стягивается шнуром.
+    </p>
+    <div class='details__tags'>
+      <div class='details__tag fill'>
+        <Icon name='document' />
+        <span>Полное описание</span>
+      </div>
+      {tags.map((tag) => <div class='details__tag'>{tag}</div>)}
+    </div>
+  </div>
+</div>
+
+<style lang='scss'>
+  .details {
+    &__wrapper {
+      @include media('lg') {
+        position: sticky;
+        top: var(--header-height);
+      }
+    }
+
+    &__title {
+      font-weight: 900;
+      font-style: italic;
+      font-size: 24px;
+      text-transform: uppercase;
+      color: var(--secondary);
+      margin-bottom: 8px;
+    }
+
+    &__price-items {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      align-items: center;
+      border-radius: 12px;
+      @include border(1px, var(--light-4));
+      padding: 8px 12px;
+
+      margin-bottom: 24px;
+    }
+
+    &__price-item {
+      padding: 4px 0 8px;
+
+      &:not(:last-child) {
+        border-right: 1px solid var(--light-4);
+      }
+
+      &:not(:first-child) {
+        padding-left: 12px;
+      }
+    }
+
+    &__dimensions {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 4px;
+
+      margin-bottom: 24px;
+    }
+
+    &__add-cart {
+      font-family: var(--font-primary);
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 12px;
+      background-color: var(--primary);
+      height: 64px;
+      padding: 4px 6px;
+      margin-bottom: 12px;
+
+      font-weight: 900;
+      font-style: italic;
+      font-size: 20px;
+      text-transform: uppercase;
+      color: var(--white);
+    }
+
+    &__separator {
+      width: 100%;
+      height: 1px;
+      background-color: var(--light-2);
+      margin-bottom: 12px;
+    }
+
+    &__description {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px;
+      border-radius: 12px;
+      @include border(1px, var(--light-2));
+      margin-bottom: 12px;
+
+      font-family: var(--font-secondary);
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 16px;
+      color: var(--secondary);
+    }
+
+    &__tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      margin-bottom: 36px;
+    }
+
+    &__tag {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      height: 32px;
+      padding: 4px 12px;
+      @include border(1px, var(--light-2));
+      border-radius: 12px;
+
+      font-weight: 800;
+      font-size: 12px;
+      text-transform: uppercase;
+      color: var(--secondary);
+
+      &.fill {
+        background-color: var(--light);
+        @include border(1px, var(--light));
+      }
+    }
+  }
+
+  .price-item {
+    &__value {
+      font-weight: 900;
+      text-transform: uppercase;
+      font-style: italic;
+
+      span {
+        font-size: 24px;
+      }
+    }
+
+    &__label {
+      font-weight: 700;
+      font-style: italic;
+      font-size: 12px;
+      color: var(--primary);
+    }
+  }
+
+  .dimension {
+    padding: 12px;
+    border-radius: 12px;
+    background-color: var(--light);
+
+    &__value {
+      font-weight: 800;
+      font-size: 16px;
+      line-height: 14px;
+      text-transform: uppercase;
+      color: var(--secondary);
+    }
+
+    &__label {
+      font-family: var(--font-secondary);
+      font-weight: 600;
+      font-size: 12px;
+      line-height: 14px;
+      text-transform: uppercase;
+      color: var(--primary);
+    }
+  }
+</style>

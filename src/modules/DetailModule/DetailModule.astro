@@ -1,0 +1,44 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import Gallery from './components/Gallery.astro';
+import Details from './components/Details.astro';
+import SliderSection from './sections/SliderSection.astro';
+---
+
+<Layout>
+  <div class='detail'>
+    <div class='detail__container container'>
+      <div class='detail__main'>
+        <Gallery />
+        <Details />
+      </div>
+      <div class='detail__sliders'>
+        <SliderSection title='Похожие' description='Текст комментария от нейросети для расшифровки' />
+        <SliderSection title='Похожие' description='Текст комментария от нейросети для расшифровки' />
+        <SliderSection title='Похожие' description='Текст комментария от нейросети для расшифровки' />
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<style lang='scss'>
+  .detail {
+    &__container {
+    }
+
+    &__main {
+      @include media('lg') {
+        display: grid;
+        grid-template-columns: 1fr 306px;
+      }
+    }
+
+    &__sliders {
+      display: flex;
+      flex-direction: column;
+      gap: 36px;
+    }
+  }
+  .container {
+  }
+</style>
