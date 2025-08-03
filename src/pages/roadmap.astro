@@ -20,11 +20,29 @@ const pages: Page[] = [
   { label: 'history' },
   { label: 'account' },
 ];
+
+const doneCount = pages.filter(({ done }) => Boolean(done)).length;
+const inProgressCount = pages.filter(({ href, done }) => Boolean(href) && !Boolean(done)).length;
+const allPagesCount = pages.length;
 ---
 
 <div class='roadmap'>
   <div class='roadmap__container container'>
     <div class='roadmap__wrapper'>
+      <div class='roadmap__info'>
+        <div class='roadmap__info-item'>
+          <span>done:</span>
+          {doneCount}
+        </div>
+        <div class='roadmap__info-item'>
+          <span>in progress:</span>
+          {inProgressCount}
+        </div>
+        <div class='roadmap__info-item'>
+          <span>all pages:</span>
+          {allPagesCount}
+        </div>
+      </div>
       <ul class='roadmap__pages'>
         {
           pages.map(({ label, href, done }) => (
@@ -52,6 +70,18 @@ const pages: Page[] = [
     }
 
     &__wrapper {
+    }
+
+    &__info {
+    }
+
+    &__info-item {
+      font-weight: 900;
+      font-size: 18px;
+
+      span {
+        font-weight: 500;
+      }
     }
 
     &__pages {
