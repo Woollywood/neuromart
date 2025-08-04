@@ -1,7 +1,6 @@
 ---
 import BackgroundGradient from '@/components/shared/BackgroundGradient.astro';
 import CustomImage from '@/components/shared/CustomImage.astro';
-import { Picture } from 'astro:assets';
 
 export interface CategoryImageProps {
   backgroundImage: Promise<{ default: ImageMetadata }>;
@@ -15,7 +14,7 @@ const { backgroundImage, description } = Astro.props;
 
 <div class='category-image'>
   <div class='category-image__background'>
-    <CustomImage src={backgroundImage} alt='image' />
+    <CustomImage src={backgroundImage} alt='image' data-parallax />
     <BackgroundGradient class='category-image__gradient' />
   </div>
   <div class='category-image__content'>
@@ -64,7 +63,6 @@ const { backgroundImage, description } = Astro.props;
         width: 100%;
         height: 100%;
         object-fit: cover;
-        transform: translateZ(-1px);
       }
     }
 
@@ -102,3 +100,11 @@ const { backgroundImage, description } = Astro.props;
     }
   }
 </style>
+
+<script>
+  // @ts-ignore
+  import SimpleParallax from 'simple-parallax-js/vanilla';
+
+  const items = document.querySelectorAll<HTMLDivElement>('[data-parallax]');
+  new SimpleParallax(items, { orientation: 'down', overflow: true, delay: 0, maxTransition: 160, scale: 2 });
+</script>

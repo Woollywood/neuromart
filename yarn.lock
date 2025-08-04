@@ -2975,6 +2975,11 @@ shiki@^3.2.1:
     "@shikijs/vscode-textmate" "^10.0.2"
     "@types/hast" "^3.0.4"
 
+simple-parallax-js@^6.2.1:
+  version "6.2.1"
+  resolved "https://registry.yarnpkg.com/simple-parallax-js/-/simple-parallax-js-6.2.1.tgz#417dd2c52ac1564e36dcfb80fb0665f7a6652829"
+  integrity sha512-d7D/r8bhxPcSPGgkMOfl3ByHqX/L4qtsvqnnyUMPRAIDWP75YYyeENq1Q8a2EFNAuTiD77oh4IgBHRt2hIqU/w==
+
 simple-swizzle@^0.2.2:
   version "0.2.2"
   resolved "https://registry.yarnpkg.com/simple-swizzle/-/simple-swizzle-0.2.2.tgz#a4da6b635ffcccca33f70d17cb92592de95e557a"
