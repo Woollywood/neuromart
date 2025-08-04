@@ -106,5 +106,5 @@ const { backgroundImage, description } = Astro.props;
   import SimpleParallax from 'simple-parallax-js/vanilla';
 
   const items = document.querySelectorAll<HTMLDivElement>('[data-parallax]');
-  new SimpleParallax(items, { orientation: 'down', overflow: true, delay: 0, maxTransition: 160, scale: 2 });
+  new SimpleParallax(items, { orientation: 'down', overflow: true, delay: 0, maxTransition: 160 });
 </script>
