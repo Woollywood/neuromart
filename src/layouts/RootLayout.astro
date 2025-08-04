@@ -1,0 +1,37 @@
+---
+import '@fontsource-variable/sofia-sans-condensed';
+import '@fontsource-variable/source-sans-3';
+
+import '@splidejs/splide/css/core';
+import '../styles/global.scss';
+import '../styles/reset.scss';
+---
+
+<!doctype html>
+<html lang='en'>
+  <head>
+    <meta charset='UTF-8' />
+    <meta name='viewport' content='width=device-width' />
+    <link rel='icon' type='image/svg+xml' href='/favicon.svg' />
+    <meta name='generator' content={Astro.generator} />
+    <title>Astro Basics</title>
+  </head>
+  <body>
+    <slot />
+  </body>
+
+  <style lang='scss'>
+    body {
+      overflow-x: hidden;
+      font-family: var(--font-primary);
+
+      &.scroll-lock {
+        overflow: hidden;
+      }
+
+      &::-webkit-scrollbar {
+        width: 8px;
+      }
+    }
+  </style>
+</html>

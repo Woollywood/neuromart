@@ -3,23 +3,94 @@ import Breadcrumbs from '@/components/ui/Breadcrumbs.astro';
 import Layout from '@/layouts/Layout.astro';
 import CartItem from './components/CartItem.astro';
 import CartFooter from './components/CartFooter.astro';
+import CartPrice from './components/CartPrice.astro';
 
 const path: string[] = ['Магазин мужской одежды', 'Каталог', 'корзина'];
 ---
 
-<Layout>
+<Layout footer={false}>
   <div class='cart'>
     <div class='cart__container container'>
       <div class='cart__wrapper'>
-        <Breadcrumbs class='cart__breadcrumbs' path={path} />
-        <h1 class='cart__title page-title'>Корзина</h1>
-        <div class='cart__items'>
-          {Array.from({ length: 3 }).map(() => <CartItem />)}
+        <div class='cart__top'>
+          <Breadcrumbs class='cart__breadcrumbs' path={path} />
+          <h1 class='cart__title page-title'>Корзина</h1>
         </div>
-        <CartFooter />
+        <div class='cart__body'>
+          <div class='cart__items'>
+            {Array.from({ length: 5 }).map(() => <CartItem />)}
+          </div>
+          <div class='cart__body-bottom'>
+            <div class='cart__sticky'>
+              <CartPrice />
+              <CartFooter />
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </Layout>
 
-<style lang='scss'></style>
+<style lang='scss'>
+  .cart {
+    padding-top: 14px;
+
+    @include media('xl') {
+      padding-top: 28px;
+    }
+
+    &__container {
+    }
+
+    &__top {
+    }
+
+    &__wrapper {
+      padding-bottom: var(--cart-footer);
+
+      @include media('lg') {
+        padding: 0;
+      }
+    }
+
+    &__body {
+      @include media('lg') {
+        display: grid;
+        gap: 16px;
+        grid-template-columns: 1fr 396px;
+      }
+
+      @include media('xl') {
+        gap: 32px;
+        grid-template-columns: 1fr 586px;
+      }
+    }
+
+    &__body-bottom {
+    }
+
+    &__sticky {
+      @include media('lg') {
+        position: sticky;
+        top: calc(var(--header-height));
+        border-top: 1px solid var(--light-2);
+      }
+    }
+
+    &__breadcrumbs {
+    }
+
+    &__title {
+      margin-bottom: 20px;
+    }
+
+    &__items {
+      border-top: 1px solid var(--light-2);
+      border-bottom: 1px solid var(--light-2);
+    }
+  }
+
+  .page-title {
+  }
+</style>

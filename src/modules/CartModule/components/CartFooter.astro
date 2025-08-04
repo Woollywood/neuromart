@@ -1,42 +1,211 @@
 ---
-interface CartFooter {
-  count: string;
-  totalPrice: string;
-  discount: string;
-  totalPriceWithDiscount: string;
-}
-
-const data: CartFooter = {
-  count: '8',
-  totalPrice: '1 444 128',
-  discount: '288 128',
-  totalPriceWithDiscount: '1 156 000',
-};
-
-const { count, totalPrice, discount, totalPriceWithDiscount } = data;
+const phone = '+7 (495) 782-28-93';
 ---
 
-<div class='cart-footer'>
-  <div class='cart-footer__items'>
-    <div class='cart-footer__item'>
-      <div class='cart-footer__item_left'>Ваш заказ:</div>
-      <div class='cart-footer__item_right'>{count} ТОВАРОВ</div>
-    </div>
-    <div class='cart-footer__item'>
-      <div class='cart-footer__item_left'>Товары на сумму:</div>
-      <div class='cart-footer__item_right'>{totalPrice} РУБ</div>
-    </div>
-    <div class='cart-footer__item'>
-      <div class='cart-footer__item_left'>Скидка:</div>
-      <div class='cart-footer__item_right'>{discount} РУБ</div>
-    </div>
-    <div class='cart-footer__separator'></div>
-    <div class='cart-footer__item'>
-      <div class='cart-footer__item_left'>Итого:</div>
-      <div class='cart-footer__item_right'>{totalPriceWithDiscount} РУБ</div>
+<footer class='cart-footer' data-component='cart-footer'>
+  <div class='cart-footer__container container'>
+    <div class='cart-footer__wrapper'>
+      <button class='cart-footer__order-button order-button'>
+        <div class='order-button__title'>Перейти к Оформлению</div>
+        <div class='order-button__subtitle'>
+          <span>18 товаров</span>
+          <span>1 444 128 руб</span>
+        </div>
+      </button>
+      <div class='cart-footer__bottom'>
+        <div class='cart-footer__contacts'>
+          <a href={`tel:${phone}`} class='cart-footer__link'>{phone}</a>
+          <a href={`tel:${phone}`} class='cart-footer__link cart-footer__link_desktop'>Обратный звонок</a>
+          <div class='cart-footer__sep'></div>
+          <a href={`tel:${phone}`} class='cart-footer__link cart-footer__link_mobile'>{phone}</a>
+        </div>
+        <a href='#' class='cart-footer__link'>О доставке и оплате</a>
+      </div>
     </div>
   </div>
-  <button class='cart-footer__order-button'>Перейти к Оформлению</button>
-</div>
+</footer>
 
-<style lang='scss'></style>
+<style lang='scss'>
+  .cart-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: var(--white);
+
+    @include media('lg') {
+      position: static;
+    }
+
+    &__container {
+      @include media('lg') {
+        padding: 0;
+      }
+    }
+
+    &__wrapper {
+      padding-top: 16px;
+
+      @include media('lg') {
+        padding: 0;
+      }
+    }
+
+    &__order-button {
+    }
+
+    &__bottom {
+      padding: 8px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 4px;
+
+      @include media('md') {
+        padding: 16px 0;
+      }
+
+      @include media('lg') {
+        padding: 24px 0 0;
+      }
+
+      @include media('xl') {
+        padding: 28px 0 0;
+      }
+    }
+
+    &__contacts {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    &__sep {
+      width: 1px;
+      height: 20px;
+      background-color: var(--light-2);
+
+      @include media('md') {
+        display: none;
+      }
+    }
+
+    &__link {
+      position: relative;
+      font-weight: 800;
+      font-size: 12px;
+      text-transform: uppercase;
+      color: var(--secondary);
+
+      @include media('md') {
+        font-size: 13px;
+      }
+
+      @include media('lg') {
+        font-size: 14px;
+
+        span {
+          padding-left: 4px;
+          display: inline-block;
+        }
+      }
+
+      @include media('xl') {
+        font-size: 16px;
+      }
+
+      &_mobile {
+        @include media('lg') {
+          display: none;
+        }
+      }
+
+      &_desktop {
+        display: none;
+
+        @include media('lg') {
+          display: inline-block;
+        }
+      }
+
+      &::after {
+        content: '';
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        height: 1px;
+        background-color: var(--primary);
+      }
+    }
+  }
+  .order-button {
+    width: 100%;
+    height: 56px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 12px;
+    border-radius: 12px;
+    background-color: var(--primary);
+    font-family: var(--font-primary);
+
+    @include media('md') {
+      height: 48px;
+    }
+
+    @include media('xl') {
+      height: 64px;
+    }
+
+    &__title {
+      font-weight: 900;
+      font-style: italic;
+      font-size: 20px;
+      text-transform: uppercase;
+      color: var(--white);
+
+      @include media('xl') {
+        font-size: 32px;
+      }
+    }
+
+    &__subtitle {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+
+      font-weight: 800;
+      font-size: 12px;
+      text-transform: uppercase;
+      color: var(--white);
+
+      @include media('md') {
+        display: none;
+      }
+    }
+  }
+</style>
+
+<script>
+  import { setCssVariable } from '@/utils/styles';
+
+  const cartFooter = document.querySelector<HTMLDivElement>("[data-component='cart-footer']");
+  if (cartFooter) {
+    const setCssHeaderHeight = () => {
+      const footerHeight = cartFooter.clientHeight;
+      setCssVariable('--cart-footer', `${footerHeight}px`);
+    };
+
+    setCssHeaderHeight();
+    const resizeObserver = new ResizeObserver((entries) => {
+      for (const entry of entries) {
+        if (entry.target === cartFooter) {
+          setCssHeaderHeight();
+        }
+      }
+    });
+    resizeObserver.observe(cartFooter);
+  }
+</script>

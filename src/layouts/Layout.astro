@@ -1,34 +1,25 @@
 ---
-import '@fontsource-variable/sofia-sans-condensed';
-import '@fontsource-variable/source-sans-3';
-
+import Footer from '@/components/shared/Footer.astro';
 import Header from '../components/shared/Header.astro';
-import Footer from '../components/shared/Footer.astro';
 
-import '@splidejs/splide/css/core';
-import '../styles/global.scss';
-import '../styles/reset.scss';
+import RootLayout from './RootLayout.astro';
+
+interface Props {
+  footer?: boolean;
+}
+
+const { footer = true } = Astro.props;
 ---
 
-<!doctype html>
-<html lang='en'>
-  <head>
-    <meta charset='UTF-8' />
-    <meta name='viewport' content='width=device-width' />
-    <link rel='icon' type='image/svg+xml' href='/favicon.svg' />
-    <meta name='generator' content={Astro.generator} />
-    <title>Astro Basics</title>
-  </head>
-  <body>
-    <div class='layout'>
-      <Header class='layout__header' />
-      <main class='layout__main'>
-        <slot />
-      </main>
-      <Footer class='layout__footer' />
-    </div>
-  </body>
-</html>
+<RootLayout>
+  <div class='layout'>
+    <Header class='layout__header' />
+    <main class='layout__main'>
+      <slot />
+    </main>
+    {footer && <Footer class='layout__footer' />}
+  </div>
+</RootLayout>
 
 <style lang='scss'>
   .layout {
@@ -46,19 +37,6 @@ import '../styles/reset.scss';
     }
 
     &__footer {
-    }
-  }
-
-  body {
-    overflow-x: hidden;
-    font-family: var(--font-primary);
-
-    &.scroll-lock {
-      overflow: hidden;
-    }
-
-    &::-webkit-scrollbar {
-      width: 8px;
     }
   }
 </style>

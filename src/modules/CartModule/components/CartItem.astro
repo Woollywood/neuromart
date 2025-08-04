@@ -36,16 +36,24 @@ const { image, name, oldPrice, price, count, totalPrice } = item;
     <CustomImage src={image} alt='image' />
   </div>
   <div class='cart-item__content'>
-    <h3 class='cart-item__name'>{name}</h3>
-    <div class='cart-item__price-info price-info'>
-      <span class='price-info__old-price'>{oldPrice} РУБ</span>
-      {price} РУБ X {count} = {totalPrice}
+    <div class='cart-item__content-top'>
+      <h3 class='cart-item__name'>{name}</h3>
+      <div class='cart-item__price-info price-info'>
+        <span class='price-info__old-price'>{oldPrice} РУБ</span>
+        {price}
+        <span>РУБ</span>
+        <span>X</span>
+        <span>{count}</span>
+        <span>=</span>
+        <span>{totalPrice}</span>
+      </div>
     </div>
     <div class='cart-item__dimensions'>
       {
-        Array.from({ length: 3 }).map(() => (
+        Array.from({ length: 3 }).map((_, idx) => (
           <div class='cart-item__dimension dimension-cart'>
             <div class='dimension-cart__row'>
+              <div class:list={['dimension-cart__label', idx !== 0 && 'invisible']}>Размер:</div>
               <div class='dimension-cart__select'>
                 <div class='dimension-cart__select-trigger dimension-cart__field'>
                   <span>36</span>
@@ -60,9 +68,346 @@ const { image, name, oldPrice, price, count, totalPrice } = item;
         ))
       }
     </div>
-    <button class='cart-item__add-dimension'>Добавить размер</button>
+    <div class='cart-item__actions'>
+      <button class='cart-item__add-dimension'>Добавить размер</button>
+      <button class='cart-item__delete cart-item__delete_mobile'>Убрать из Корзины</button>
+    </div>
   </div>
-  <button class='cart-item__delete'>Убрать из Корзины</button>
+  <button class='cart-item__delete cart-item__delete_desktop'>Убрать из Корзины</button>
 </div>
 
-<style lang='scss'></style>
+<style lang='scss'>
+  .cart-item {
+    padding: 12px 0 16px;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 4px;
+
+    @include media('lg') {
+      padding: 14px 16px 16px 0;
+      gap: 8px;
+    }
+
+    @include media('xl') {
+      gap: 16px;
+      padding: 20px 18px 20px 0;
+    }
+
+    &:not(:last-child) {
+      border-bottom: 1px solid var(--light-2);
+    }
+
+    &__image {
+      position: relative;
+      aspect-ratio: 104 / 160;
+      width: 104px;
+
+      @include media('md') {
+        aspect-ratio: 122 / 192;
+        width: 122px;
+      }
+
+      @include media('lg') {
+        aspect-ratio: 97 / 144;
+        width: 97px;
+      }
+
+      @include media('xl') {
+        aspect-ratio: 143 / 216;
+        width: 143px;
+      }
+
+      img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    &__content {
+    }
+
+    &__name {
+      font-weight: 800;
+      font-size: 12px;
+      text-transform: uppercase;
+      color: var(--secondary);
+      margin-bottom: 4px;
+
+      @include media('md') {
+        font-size: 13px;
+      }
+
+      @include media('lg') {
+        margin: 0;
+        font-size: 14px;
+      }
+
+      @include media('xl') {
+        font-size: 16px;
+      }
+    }
+
+    &__price-info {
+    }
+
+    &__content-top {
+      margin-bottom: 14px;
+
+      @include media('lg') {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        margin-bottom: 12px;
+      }
+    }
+
+    &__dimensions {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+
+      @include media('lg') {
+        gap: 8px;
+      }
+    }
+
+    &__dimension {
+    }
+
+    &__actions {
+      margin-top: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    &__add-dimension {
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8px;
+      border-radius: 8px;
+      background-color: var(--light);
+
+      font-family: var(--font-primary);
+      font-weight: 800;
+      font-size: 12px;
+      text-transform: uppercase;
+      color: var(--secondary);
+
+      @include media('md') {
+        font-size: 13px;
+      }
+
+      @include media('xl') {
+        height: 40px;
+        font-size: 16px;
+      }
+    }
+
+    &__delete {
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8px;
+      border-radius: 8px;
+      background-color: transparent;
+
+      font-family: var(--font-primary);
+      font-weight: 800;
+      font-size: 12px;
+      text-transform: uppercase;
+      color: var(--secondary);
+
+      @include media('md') {
+        padding: 8px 0;
+        font-size: 13px;
+      }
+
+      @include media('lg') {
+        padding: 0;
+        margin-bottom: 12px;
+        margin-left: 74px;
+        height: auto;
+        align-self: flex-start;
+        font-size: 14px;
+      }
+
+      @include media('xl') {
+        margin-left: 64px;
+        font-size: 16px;
+      }
+
+      &_mobile {
+        @include media('md') {
+          display: none;
+        }
+      }
+
+      &_desktop {
+        display: none;
+
+        @include media('md') {
+          grid-column: 3 / span 2;
+          display: flex;
+        }
+      }
+    }
+  }
+
+  .price-info {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+
+    font-weight: 800;
+    font-size: 14px;
+    text-transform: uppercase;
+    color: var(--secondary);
+
+    @include media('md') {
+      font-size: 13px;
+    }
+
+    @include media('lg') {
+      font-size: 14px;
+    }
+
+    @include media('lg') {
+      font-size: 16px;
+    }
+
+    &__old-price {
+      color: var(--primary);
+    }
+  }
+
+  .dimension-cart {
+    &__row {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+
+      @include media('lg') {
+        gap: 8px;
+      }
+    }
+
+    &__label {
+      display: none;
+
+      font-weight: 700;
+      font-size: 14px;
+      text-transform: uppercase;
+      color: var(--secondary);
+
+      @include media('lg') {
+        display: inline-block;
+        margin-right: 16px;
+      }
+
+      @include media('xl') {
+        font-size: 16px;
+      }
+
+      &.invisible {
+        opacity: 0;
+        visibility: hidden;
+      }
+    }
+
+    &__select {
+      @include media('lg') {
+        margin-right: 8px;
+      }
+    }
+
+    &__select-trigger {
+      height: 32px;
+      width: 68px !important;
+      padding: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between !important;
+      gap: 8px;
+      border-radius: 8px;
+      @include border(1px, var(--light-2));
+
+      font-weight: 700;
+      font-size: 12px;
+      text-transform: uppercase;
+      color: var(--secondary);
+
+      @include media('md') {
+        width: 120px !important;
+      }
+
+      svg {
+        width: 6px;
+        height: 4px;
+
+        @include media('lg') {
+          width: 12px;
+          height: 6px;
+        }
+      }
+    }
+
+    &__field {
+      height: 32px;
+      width: 80px;
+      padding: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 8px;
+      @include border(1px, var(--light-2));
+
+      font-weight: 700;
+      font-size: 12px;
+      text-transform: uppercase;
+      color: var(--secondary);
+
+      @include media('md') {
+        width: 120px;
+        font-size: 13px;
+      }
+
+      @include media('lg') {
+        font-size: 14px;
+        width: 64px !important;
+      }
+
+      @include media('xl') {
+        width: 86px !important;
+        font-size: 16px;
+      }
+    }
+
+    &__action {
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 8px;
+      background-color: var(--light-2);
+
+      font-family: var(--font-primary);
+      font-weight: 900;
+      font-size: 20px;
+      text-transform: uppercase;
+      color: var(--secondary);
+
+      @include media('xl') {
+        font-size: 24px;
+      }
+    }
+  }
+</style>
