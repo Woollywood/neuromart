@@ -1,5 +1,6 @@
 ---
 import BackgroundGradient from '@/components/shared/BackgroundGradient.astro';
+import CustomImage from '@/components/shared/CustomImage.astro';
 import { Picture } from 'astro:assets';
 
 export interface CategoryImageProps {
@@ -14,7 +15,7 @@ const { backgroundImage, description } = Astro.props;
 
 <div class='category-image'>
   <div class='category-image__background'>
-    <Picture inferSize layout='constrained' formats={['avif', 'webp']} src={backgroundImage} alt='image' />
+    <CustomImage src={backgroundImage} alt='image' />
     <BackgroundGradient class='category-image__gradient' />
   </div>
   <div class='category-image__content'>
@@ -63,19 +64,22 @@ const { backgroundImage, description } = Astro.props;
         width: 100%;
         height: 100%;
         object-fit: cover;
+        transform: translateZ(-1px);
       }
     }
 
     &__gradient {
-      @include media('lg') {
-        display: none;
-      }
     }
 
     &__content {
       position: relative;
       z-index: 10;
-      padding: 16px 8px;
+      padding: 16px 12px;
+      width: 100%;
+
+      @include media('md') {
+        padding: 16px 40px 40px;
+      }
     }
 
     &__description {

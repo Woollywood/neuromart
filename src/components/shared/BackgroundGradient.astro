@@ -1,12 +1,12 @@
 ---
-import type { HTMLAttributes } from 'astro/types'
+import type { HTMLAttributes } from 'astro/types';
 
-type Props = Pick<HTMLAttributes<'div'>, 'class'>
+type Props = Pick<HTMLAttributes<'div'>, 'class'>;
 
-const {class: className, ...rest} = Astro.props
+const { class: className, ...rest } = Astro.props;
 ---
 
-<div class:list={["gradient", className]} {...rest}>
+<div class:list={['gradient', className]} {...rest}>
   <div class='gradient__color-filter'></div>
   <div class='gradient__text-dark'>
     <div class='gradient__gradient'></div>
@@ -33,16 +33,24 @@ const {class: className, ...rest} = Astro.props
       width: 100%;
       aspect-ratio: 359 / 192;
       transform: translateY(-100%);
-      background: linear-gradient(transparent, #000);
+      background: linear-gradient(to top, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+
+      @include media('md') {
+        transform: translateY(0);
+      }
     }
 
     &__text-dark {
       position: absolute;
-      background-color: #000;
       bottom: 0;
       left: 0;
       width: 100%;
       aspect-ratio: 359 / 112;
+      background-color: black;
+
+      @include media('md') {
+        background: linear-gradient(to top, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+      }
     }
   }
 </style>

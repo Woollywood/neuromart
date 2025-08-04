@@ -6,7 +6,7 @@ import CategoryBlock from '../components/CategoryBlock.astro';
 import type { CategoryImageProps } from '../components/CategoryImage.astro';
 import CategoryImage from '../components/CategoryImage.astro';
 
-export interface CategoryAboutProps extends Omit<CategoryImageProps, 'slides' | 'tags'> {
+export interface CategoryAboutProps extends Omit<CategoryImageProps, 'slides' | 'tags' | 'description'> {
   direction?: 'left' | 'right';
 }
 
@@ -62,7 +62,13 @@ const contacts: Contact[] = [
     }
 
     &__contacts {
-      @include media('lg') {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 8px;
+
+      @include media('md') {
         display: none;
       }
     }

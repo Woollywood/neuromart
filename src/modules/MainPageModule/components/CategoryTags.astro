@@ -18,11 +18,6 @@ const { tags, aboveImage = true, class: className, ...rest } = Astro.props;
     flex-wrap: wrap;
     gap: 4px;
     justify-content: center;
-    padding: 0 24px;
-
-    @include media('md') {
-      padding: 0 64px;
-    }
 
     @include media('lg') {
       gap: 8px;
@@ -45,7 +40,7 @@ const { tags, aboveImage = true, class: className, ...rest } = Astro.props;
     }
 
     &__tag {
-      padding: 4px 8px;
+      padding: 5px 8px;
       border-radius: 6px;
       @include border(1px, rgba(255, 255, 255, 0.32));
       background-color: transparent;
@@ -56,12 +51,18 @@ const { tags, aboveImage = true, class: className, ...rest } = Astro.props;
       color: var(--white);
 
       @include media('md') {
-        padding: 8px;
+        padding: 9px 8px;
       }
 
       @include media('lg') {
         @include border(1px, var(--light-2));
+        border-radius: 8px;
         color: var(--secondary);
+      }
+
+      @include media('xl') {
+        padding: 12px;
+        font-size: 16px;
       }
     }
   }

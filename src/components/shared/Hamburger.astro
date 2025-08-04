@@ -185,7 +185,11 @@ const contacts: string[] = ['+7-906-512-25-55', '+7-906-512-25-55'];
     &__contacts {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 4px;
+
+      @include media('xl') {
+        gap: 8px;
+      }
     }
 
     &__contact {
@@ -243,7 +247,11 @@ const contacts: string[] = ['+7-906-512-25-55', '+7-906-512-25-55'];
     &__tags {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 4px;
+
+      @include media('xl') {
+        gap: 8px;
+      }
     }
 
     &__tag {

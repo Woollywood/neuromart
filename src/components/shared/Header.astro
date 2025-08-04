@@ -56,9 +56,12 @@ const { class: className, ...rest } = Astro.props;
       overflow: visible;
     }
 
+    &__container {
+    }
+
     &__wrapper {
       overflow: hidden;
-      padding: 6px 0 8px;
+      padding: 8px 0;
       padding-right: 0px;
 
       display: flex;
@@ -70,6 +73,7 @@ const { class: className, ...rest } = Astro.props;
       }
 
       @include media('xl') {
+        padding: 16px;
         gap: 16px;
       }
     }
@@ -222,7 +226,7 @@ const { class: className, ...rest } = Astro.props;
     const resizeObserver = new ResizeObserver((entries) => {
       for (const entry of entries) {
         if (entry.target === header) {
-          setCssHeaderHeight()
+          setCssHeaderHeight();
         }
       }
     });

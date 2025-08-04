@@ -96,6 +96,10 @@ const links: Link[] = [
       display: flex;
       align-items: center;
       gap: 4px;
+
+      @include media('lg') {
+        gap: 8px;
+      }
     }
 
     &__link {
