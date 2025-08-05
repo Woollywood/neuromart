@@ -189,23 +189,10 @@ const phone = '+7 (495) 782-28-93';
 </style>
 
 <script>
-  import { setCssVariable } from '@/utils/styles';
+  import { observeHeight } from '@/utils/styles';
 
   const cartFooter = document.querySelector<HTMLDivElement>("[data-component='cart-footer']");
   if (cartFooter) {
-    const setCssHeaderHeight = () => {
-      const footerHeight = cartFooter.clientHeight;
-      setCssVariable('--cart-footer', `${footerHeight}px`);
-    };
-
-    setCssHeaderHeight();
-    const resizeObserver = new ResizeObserver((entries) => {
-      for (const entry of entries) {
-        if (entry.target === cartFooter) {
-          setCssHeaderHeight();
-        }
-      }
-    });
-    resizeObserver.observe(cartFooter);
+    observeHeight(cartFooter, '--cart-footer-height');
   }
 </script>

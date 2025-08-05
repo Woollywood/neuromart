@@ -1,0 +1,124 @@
+---
+import { Icon } from 'astro-icon/components';
+import type { HTMLAttributes } from 'astro/types';
+
+type Props = Omit<HTMLAttributes<'input'>, 'type'> & { required?: boolean; type?: 'filled' | 'outlined' };
+
+const { class: className, placeholder, required, type = 'filled', ...rest } = Astro.props;
+---
+
+<div class:list={['field-select', type]}>
+  <div class:list={['field-select__trigger', className]} {...rest}>
+    <div class='field-select__trigger-wrapper'>
+      <div class='field-select__placeholder-wrapper'>
+        <div class='field-select__placeholder'>{placeholder}</div>
+        {required && <div class='field-select__placeholder-required'>*</div>}
+      </div>
+      <div class='field-select__trigger-value'>оплата по безналу</div>
+    </div>
+    <Icon name='arrow-down' />
+  </div>
+</div>
+
+<style lang='scss'>
+  .field-select {
+    &__trigger {
+      width: 100%;
+      height: 48px;
+      padding: 10px 12px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+
+      @include media('lg') {
+        height: 56px;
+      }
+
+      .filled & {
+        background-color: var(--light);
+      }
+
+      .outlined & {
+        background-color: transparent;
+        @include border(1px, var(--light-2));
+      }
+
+      svg {
+        width: 16px;
+        height: 8px;
+        color: var(--secondary);
+
+        .selected & {
+          display: none;
+        }
+      }
+    }
+
+    &__trigger-wrapper {
+      position: relative;
+      height: 100%;
+      width: 100%;
+    }
+
+    &__trigger-value {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+
+      font-weight: 800;
+      font-size: 16px;
+      text-transform: uppercase;
+      color: var(--secondary);
+
+      .selected & {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+      }
+    }
+
+    &__placeholder-wrapper {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%);
+
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      transition: all 0.1s ease-in-out;
+
+      .selected & {
+        top: 0;
+        transform: translateY(-4px);
+      }
+    }
+
+    &__placeholder {
+      font-weight: 800;
+      font-size: 14px;
+      color: var(--secondary);
+      text-transform: uppercase;
+      transition: all 0.1s ease-in-out;
+
+      .selected & {
+        font-size: 12px;
+        color: var(--primary);
+      }
+    }
+
+    &__placeholder-required {
+      font-weight: 800;
+      font-size: 14px;
+      text-transform: uppercase;
+      color: var(--primary);
+    }
+  }
+</style>

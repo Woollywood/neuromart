@@ -53,3 +53,20 @@ export const overflowItems = (container: HTMLElement) => {
     overflowItemsInner();
   }
 };
+
+export const observeHeight = (target: HTMLElement, heightVariable: string) => {
+  const setCssHeaderHeight = () => {
+    const targetHeight = target.clientHeight;
+    setCssVariable(heightVariable, `${targetHeight}px`);
+  };
+
+  setCssHeaderHeight();
+  const resizeObserver = new ResizeObserver((entries) => {
+    for (const entry of entries) {
+      if (entry.target === target) {
+        setCssHeaderHeight();
+      }
+    }
+  });
+  resizeObserver.observe(target);
+};

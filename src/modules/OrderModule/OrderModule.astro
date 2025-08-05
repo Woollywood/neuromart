@@ -1,0 +1,211 @@
+---
+import Breadcrumbs from '@/components/ui/Breadcrumbs.astro';
+import Layout from '@/layouts/Layout.astro';
+import FieldInput from '@/components/ui/FieldInput.astro';
+import FieldSelect from '@/components/ui/FieldSelect.astro';
+import InputFile from '@/components/ui/InputFile.astro';
+import OrderSlider from './components/OrderSlider.astro';
+import OrderFooter from './components/OrderFooter.astro';
+
+const path: string[] = ['Магазин мужской одежды', 'корзина', 'Оформление заказа'];
+---
+
+<Layout footer={false}>
+  <div class='order'>
+    <div class='order__container container'>
+      <div class='order__wrapper'>
+        <div class='order__top'>
+          <Breadcrumbs path={path} />
+          <h1 class='order__title page-title'>оформление Заказа</h1>
+        </div>
+        <form class='order__form'>
+          <div class='order__sections'>
+            <div class='order__section order__section_recipient-details section-order'>
+              <h3 class='section-order__title'>Данные получателя</h3>
+              <div class='section-order__fields'>
+                <FieldInput required placeholder='ФИО Получателя' />
+                <FieldInput required placeholder='E-mail' />
+                <FieldInput required placeholder='Телефон' />
+                <FieldInput required placeholder='Серия и номер паспорта или ИНН (для ИП или ООО)' />
+              </div>
+            </div>
+            <div class='order__section order__section_delivery section-order'>
+              <h3 class='section-order__title'>Доставка</h3>
+              <div class='section-order__fields'>
+                <FieldSelect required placeholder='Выберите способ' />
+                <FieldInput required placeholder='Город Доставки' />
+              </div>
+            </div>
+            <div class='order__section order__section_payment section-order'>
+              <h3 class='section-order__title'>Способ оплаты</h3>
+              <div class='section-order__fields'>
+                <FieldSelect placeholder='Выберите способ оплаты' />
+                <FieldSelect placeholder='Добавить комментарии к заказу' type='outlined' />
+                <InputFile placeholder='прикрепить реквизиты' />
+              </div>
+            </div>
+            <OrderFooter />
+          </div>
+          <div class='order__section order__section_order-info section-order'>
+            <div class='section-order__top'>
+              <div class='section-order__title-wrapper'>
+                <h3 class='section-order__title'>Ваш заказ</h3>
+                <button class='section-order__change-order'>Изменить</button>
+              </div>
+              <p class='section-order__description'>8 наименований, 96 единиц на сумму 1 048 000 Руб.</p>
+            </div>
+            <OrderSlider />
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<style lang='scss'>
+  .order {
+    padding-top: 14px;
+    padding-bottom: var(--order-footer-height);
+
+    @include media('lg') {
+      padding-bottom: 16px;
+    }
+
+    &__container {
+    }
+
+    &__wrapper {
+      @include media('lg') {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        column-gap: 32px;
+      }
+    }
+
+    &__top {
+      margin-bottom: 18px;
+
+      @include media('lg') {
+        margin-bottom: 42px;
+        grid-column: 1 / span 2;
+      }
+    }
+
+    &__title {
+      margin-bottom: 0;
+    }
+
+    &__form {
+      display: contents;
+    }
+
+    &__sections {
+      display: flex;
+      flex-direction: column;
+      gap: 23px;
+      margin-bottom: 24px;
+
+      @include media('md') {
+        max-width: 375px;
+      }
+
+      @include media('lg') {
+        gap: 40px;
+        max-width: 100%;
+        margin-bottom: 0;
+      }
+    }
+
+    &__section {
+      @include media('lg') {
+        overflow: hidden;
+      }
+
+      &_recipient-details {
+        .section-order__title {
+          margin-bottom: 5px;
+        }
+      }
+
+      &_delivery {
+        .section-order__title {
+          margin-bottom: 9px;
+        }
+      }
+
+      &_payment {
+        .section-order__title {
+          margin-bottom: 5px;
+        }
+      }
+
+      &_order-info {
+        .section-order__title-wrapper {
+          margin-bottom: 8px;
+
+          @include media('lg') {
+            margin: 0;
+          }
+        }
+      }
+    }
+  }
+
+  .section-order {
+    &__title {
+      font-weight: 900;
+      font-style: italic;
+      font-size: 16px;
+      line-height: 24px;
+      text-transform: uppercase;
+      color: var(--primary);
+    }
+
+    &__fields {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    &__top {
+      margin-bottom: 8px;
+
+      @include media('lg') {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+    }
+
+    &__title-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    &__change-order {
+      height: 28px;
+      padding: 4px 8px;
+      background-color: var(--light);
+      border-radius: 8px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      font-family: var(--font-primary);
+      font-weight: 800;
+      font-size: 12px;
+      text-transform: uppercase;
+      color: var(--secondary);
+    }
+
+    &__description {
+      font-family: var(--font-secondary);
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 16px;
+      color: var(--secondary);
+    }
+  }
+</style>

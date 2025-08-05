@@ -1,0 +1,44 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+
+interface Props extends Pick<HTMLAttributes<'input'>, 'class'> {
+  label?: string;
+}
+
+const { label, class: className, ...rest } = Astro.props;
+---
+
+<div class:list={['checkbox', className]} {...rest}>
+  <input class='checkbox__input' type='checkbox' />
+  <div class='checkbox__field'></div>
+  <div class='checkbox__label'>{label}</div>
+</div>
+
+<style lang='scss'>
+  .checkbox {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 8px;
+    cursor: pointer;
+
+    &__input {
+      display: none;
+    }
+
+    &__field {
+      width: 24px;
+      height: 24px;
+      border-radius: 8px;
+      background-color: var(--light);
+    }
+
+    &__label {
+      font-family: var(--font-secondary);
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 16px;
+      color: var(--secondary);
+    }
+  }
+</style>
