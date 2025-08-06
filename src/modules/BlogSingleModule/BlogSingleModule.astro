@@ -1,0 +1,277 @@
+---
+import Breadcrumbs from '@/components/ui/Breadcrumbs.astro';
+import Layout from '@/layouts/Layout.astro';
+import SliderSection from './sections/SliderSection.astro';
+import CustomImage from '@/components/shared/CustomImage.astro';
+import { Icon } from 'astro-icon/components';
+
+const path: string[] = ['Магазин мужской одежды', 'о компании', 'новости'];
+
+const blogArchiveMain = import.meta.glob<{ default: ImageMetadata }>(
+  '/src/assets/img/blog-single/*.{jpeg,jpg,png,gif}'
+);
+---
+
+<Layout>
+  <div class='blog-single'>
+    <div class='blog-single__container container'>
+      <div class='blog-single__wrapper'>
+        <div class='blog-single__top'>
+          <Breadcrumbs path={path} />
+          <h1 class='blog-single__title page-title'>Встречайте Стайер весенний сезон 2020г !!!</h1>
+        </div>
+        <div class='blog-single__content'>
+          <div class='blog-single__main'>
+            <div class='blog-single__main-image'>
+              <CustomImage src={blogArchiveMain['/src/assets/img/blog-single/main.png']()} alt='image' />
+            </div>
+            <a href='#' class='blog-single-link'>
+              <div class='blog-single-link__text'>
+                <span>Смотреть:</span> Костюм Горка Лето Твил 128
+              </div>
+              <Icon name='arrow-down' />
+            </a>
+          </div>
+          <div class='blog-single__meet'>
+            <div class='blog-single__meet-text'>
+              <p>Встречайте Стайер весенний сезон 2020г !!! — новую коллекцию демисезонной одежды 2020 года.</p>
+              <p>
+                В коллекции представлены НОВИНКИ: Лесник ПФ: стильный костюм - дизайнерское решение на карманах, низ
+                брюк обработан под любую обувь, большой выбор комбинаций расцветок.
+              </p>
+            </div>
+            <div class='blog-single__meet-images'>
+              <div class='blog-single__meet-image'>
+                <CustomImage src={blogArchiveMain['/src/assets/img/blog-single/twin-01.png']()} alt='imageа' />
+              </div>
+              <div class='blog-single__meet-image'>
+                <CustomImage src={blogArchiveMain['/src/assets/img/blog-single/twin-02.png']()} alt='imageа' />
+              </div>
+            </div>
+            <div class='blog-single__meet-links'>
+              <a href='#' class='blog-single-link'>
+                <div class='blog-single-link__text'>
+                  <span>Смотреть:</span> Футболка Хаки Мужская
+                </div>
+                <Icon name='arrow-down' />
+              </a>
+              <a href='#' class='blog-single-link'>
+                <div class='blog-single-link__text'>
+                  <span>Смотреть:</span> Футболка Камуфлжная детская
+                </div>
+                <Icon name='arrow-down' />
+              </a>
+            </div>
+          </div>
+          <div class='blog-single__bottom'>
+            <div class='blog-single__bottom-text'>
+              <p>
+                Классическая модель Горка2 на флисе: проверенная временем, прошита в песочном цвете в ткани рип-стоп.
+                Флисовые костюмы: широкий размерный ряд с 28-30р по 60-62р, флис высокой плотности, теплый, приятен к
+                телу, на мужской модели предусмотрено усиление на коленях и локтях.
+              </p>
+              <p>Все костюмы сертифицированы, проверены ОТК.</p>
+            </div>
+            <div class='blog-single__bottom-image'>
+              <CustomImage src={blogArchiveMain['/src/assets/img/blog-single/bottom.png']()} alt='image' />
+            </div>
+            <div class='blog-single__bottom-links'>
+              <a href='#' class='blog-single__bottom-link'>предыдущая</a>
+              <a href='#' class='blog-single__bottom-link'>Следующая</a>
+            </div>
+          </div>
+        </div>
+        <SliderSection title='Просмотренные' description='Текст комментария от нейросети для расшифровки' />
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<style lang='scss'>
+  .blog-single-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    height: 32px;
+    padding: 8px 12px;
+    background-color: var(--light);
+    border-radius: 8px;
+
+    svg {
+      transform: rotate(-90deg);
+      width: 12px;
+      height: 6px;
+      color: var(--secondary);
+    }
+
+    &__text {
+      font-weight: 800;
+      font-size: 12px;
+      text-transform: uppercase;
+      color: var(--secondary);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+
+      span {
+        color: var(--primary);
+      }
+    }
+  }
+
+  .blog-single {
+    &__container {
+    }
+
+    &__wrapper {
+      padding: 14px 0 40px;
+    }
+
+    &__top {
+      margin-bottom: 12px;
+    }
+
+    &__title {
+    }
+
+    &__content {
+      p {
+        font-family: var(--font-secondary);
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 16px;
+        color: var(--secondary);
+      }
+    }
+
+    &__main {
+      margin-bottom: 20%;
+    }
+
+    &__main-image {
+      position: relative;
+      aspect-ratio: 298 / 447;
+      width: 100%;
+      border: 1px solid var(--light-2);
+      border-radius: 8px;
+      overflow: hidden;
+      margin-bottom: 4px;
+
+      img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    &__meet {
+      margin-bottom: 20px;
+    }
+
+    &__meet-text {
+      p {
+        &:not(:last-child) {
+          margin-bottom: 16px;
+        }
+      }
+
+      margin-bottom: 20px;
+    }
+
+    &__meet-images {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4px;
+      margin-bottom: 4px;
+    }
+
+    &__meet-image {
+      position: relative;
+      aspect-ratio: 160 / 240;
+      width: 100%;
+      border-radius: 8px;
+      border: 1px solid var(--light-2);
+      overflow: hidden;
+
+      img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transform: scale(0.84);
+      }
+    }
+
+    &__meet-links {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    &__bottom {
+      margin-bottom: 50px;
+    }
+
+    &__bottom-text {
+      p {
+        &:not(:last-child) {
+          margin-bottom: 16px;
+        }
+      }
+
+      margin-bottom: 24px;
+    }
+
+    &__bottom-image {
+      position: relative;
+      aspect-ratio: 292 / 438;
+      width: 100%;
+      overflow: hidden;
+      border-radius: 8px;
+      border: 1px solid var(--light-2);
+      margin-bottom: 8px;
+
+      img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    &__bottom-links {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4px;
+    }
+
+    &__bottom-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 32px;
+      padding: 4px 10px;
+      border-radius: 8px;
+      background-color: var(--light-2);
+      text-transform: uppercase;
+
+      font-weight: 700;
+      font-size: 12px;
+      text-transform: uppercase;
+      color: var(--secondary);
+    }
+  }
+
+  .blog-single-link {
+    &__text {
+    }
+  }
+</style>
