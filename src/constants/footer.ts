@@ -1,4 +1,4 @@
-import type { IAccordion } from '../components/Accordion.astro';
+import type { IAccordion } from '../components/ui/Accordion.astro';
 
 export const accordions: IAccordion[] = [
   {

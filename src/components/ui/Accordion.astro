@@ -23,7 +23,7 @@ const { label, links, ...rest } = Astro.props;
       <Icon name='arrow-down' />
     </div>
   </button>
-  <div class='accordion__body' data-component='accordion-body'>
+  <div class='accordion__body'>
     {
       links.map(({ label, href }) => (
         <a class='accordion__link' href={href}>

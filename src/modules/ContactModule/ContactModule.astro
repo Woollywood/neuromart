@@ -1,0 +1,125 @@
+---
+import Breadcrumbs from '@/components/ui/Breadcrumbs.astro';
+import Layout from '@/layouts/Layout.astro';
+import type { ISection } from './components/Section.astro';
+import Section from './components/Section.astro';
+
+const path: string[] = ['Магазин мужской одежды', 'Контакты'];
+
+const sections: ISection[] = [
+  {
+    title: 'Главный офис',
+    accordions: [
+      {
+        label: 'Бухгалтерия',
+        content: {
+          address: 'Адрес: г.Москва, Сигнальный проезд 16, строение 20 (продаж нет).',
+          phone: '+7 (499) 703-39-03',
+          text: '(продаж нет)',
+        },
+      },
+      {
+        label: 'Бухгалтерия',
+        content: {
+          address: 'Адрес: г.Москва, Сигнальный проезд 16, строение 20 (продаж нет).',
+          phone: '+7 (499) 703-39-03',
+          text: '(продаж нет)',
+        },
+      },
+    ],
+  },
+  {
+    title: 'Главный офис',
+    accordions: [
+      {
+        label: 'Бухгалтерия',
+        content: {
+          address: 'Адрес: г.Москва, Сигнальный проезд 16, строение 20 (продаж нет).',
+          phone: '+7 (499) 703-39-03',
+          text: '(продаж нет)',
+        },
+      },
+      {
+        label: 'Бухгалтерия',
+        content: {
+          address: 'Адрес: г.Москва, Сигнальный проезд 16, строение 20 (продаж нет).',
+          phone: '+7 (499) 703-39-03',
+          text: '(продаж нет)',
+        },
+      },
+    ],
+  },
+];
+---
+
+<Layout>
+  <div class='contact'>
+    <div class='contact__container container'>
+      <div class='contact__wrapper'>
+        <div class='contact__top'>
+          <Breadcrumbs path={path} />
+          <h1 class='contact__title page-title'>Контакты</h1>
+        </div>
+        <div class='contact__sections'>
+          {sections.map((section) => <Section {...section} />)}
+        </div>
+        <div class='contact__details details-contact'>
+          <h2 class='details-contact__title'>рекВизиты</h2>
+          <div class='details-contact__body'>
+            <p>
+              Общество с ограниченной ответственностью «Стайер Текс»Юр. адрес: 155250, Ивановская область, г.Родники,
+              ул. Советская, д.4а.ИНН   3701047997/ КПП   370101001ОГРН 1133701000014р/с 40702810617000004569в Отделении
+              №8639/069  СБЕРБАНКА РОССИИ г.ИвановоБИК 042406608 к/с  30101810000000000608 без НДС
+            </p>
+            <p>Генеральный директор: Коровкина Алевтина Зотиковна</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<style lang='scss'>
+  .contact {
+    &__container {
+    }
+
+    &__wrapper {
+      padding: 14px 0 38px;
+    }
+
+    &__top {
+      margin-bottom: 18px;
+    }
+
+    &__title {
+    }
+
+    &__sections {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+
+      margin-bottom: 20px;
+    }
+
+    &__details {
+    }
+  }
+
+  .details-contact {
+    &__title {
+      font-weight: 900;
+      font-style: italic;
+      font-size: 16px;
+      line-height: 24px;
+      text-transform: uppercase;
+      color: var(--primary);
+      margin-bottom: 5px;
+    }
+
+    &__body {
+      padding: 0 12px;
+    }
+  }
+</style>

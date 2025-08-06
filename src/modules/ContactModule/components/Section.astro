@@ -1,0 +1,40 @@
+---
+import type { IContactAccordion } from '@/components/ui/ContactAccordion.astro';
+import ContactAccordion from '@/components/ui/ContactAccordion.astro';
+
+export interface ISection {
+  title: string;
+  accordions: IContactAccordion[];
+}
+
+type Props = ISection;
+
+const { title, accordions } = Astro.props;
+---
+
+<div class='contact-section'>
+  <h2 class='contact-section__title'>{title}</h2>
+  <div class='contact-section__accordions'>
+    {accordions.map((accordion) => <ContactAccordion {...accordion} />)}
+  </div>
+</div>
+
+<style lang='scss'>
+  .contact-section {
+    &__title {
+      font-weight: 900;
+      font-style: italic;
+      font-size: 16px;
+      line-height: 24px;
+      text-transform: uppercase;
+      color: var(--primary);
+      margin-bottom: 5px;
+    }
+
+    &__accordions {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+  }
+</style>

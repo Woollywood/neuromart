@@ -1,0 +1,150 @@
+---
+import { Icon } from 'astro-icon/components';
+
+interface IAccordionLink {
+  label: string;
+  href: string;
+}
+
+export interface IContactAccordion {
+  label: string;
+  content: {
+    address: string;
+    text: string;
+    phone: string;
+  };
+}
+
+type Props = IContactAccordion;
+
+const {
+  label,
+  content: { address, text, phone },
+  ...rest
+} = Astro.props;
+---
+
+<div class='contact-accordion' data-component='contact-accordion' {...rest}>
+  <button class='contact-accordion__trigger' data-component='contact-accordion-trigger'>
+    <span>{label}</span>
+    <div class='contact-accordion__trigger-icon'>
+      <Icon name='arrow-down' />
+    </div>
+  </button>
+  <div class='contact-accordion__body'>
+    <div class='contact-accordion__address'>{address} <span>{text}</span></div>
+    <a href={`tel:${phone}`} class='contact-accordion__phone'>{phone}</a>
+    <div class='contact-accordion__map-frame'></div>
+  </div>
+</div>
+
+<style lang='scss'>
+  .contact-accordion {
+    &__trigger {
+      cursor: pointer;
+      padding: 6px 12px;
+      border-radius: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: var(--light);
+      width: 100%;
+      height: 32px;
+
+      font-family: var(--font-primary);
+      color: var(--secondary);
+      font-weight: 800;
+      font-size: 12px;
+      text-transform: uppercase;
+
+      .open & {
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+      }
+
+      @include media('md') {
+        font-size: 13px;
+      }
+
+      @include media('xl') {
+        font-size: 16px;
+        height: 40px;
+      }
+    }
+
+    &__trigger-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 8px;
+      height: 4px;
+
+      .open & {
+        transform: rotate(180deg);
+      }
+    }
+
+    &__body {
+      display: none;
+      background-color: var(--light);
+      padding: 0 12px 12px;
+
+      .open & {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+    }
+
+    &__address {
+      font-family: var(--font-secondary);
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 16px;
+      color: var(--secondary);
+
+      margin-bottom: 12px;
+      margin-right: 36px;
+
+      span {
+        font-style: italic;
+      }
+    }
+
+    &__phone {
+      height: 32px;
+      padding: 8px 10px;
+      background-color: transparent;
+      @include border(1px, var(--primary));
+      border-radius: 8px;
+
+      align-self: flex-start;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+
+      font-weight: 800;
+      font-size: 14px;
+      text-transform: uppercase;
+      color: var(--secondary);
+    }
+
+    &__map-frame {
+      position: relative;
+      aspect-ratio: 335 / 192;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+  }
+</style>
+
+<script>
+  document.querySelectorAll<HTMLDivElement>("[data-component='contact-accordion']").forEach((item) => {
+    item
+      .querySelector<HTMLDivElement>("[data-component='contact-accordion-trigger']")
+      ?.addEventListener('click', () => {
+        item.classList.toggle('open');
+      });
+  });
+</script>
