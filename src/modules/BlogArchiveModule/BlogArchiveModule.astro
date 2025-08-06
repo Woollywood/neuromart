@@ -1,0 +1,100 @@
+---
+import Breadcrumbs from '@/components/ui/Breadcrumbs.astro';
+import Layout from '@/layouts/Layout.astro';
+import type { ICard } from './components/Card.astro';
+import Card from './components/Card.astro';
+import Pagination from '@/components/ui/Pagination.astro';
+import SliderSection from './sections/SliderSection.astro';
+
+const path: string[] = ['Магазин мужской одежды', 'о компании', 'новости'];
+
+const blogArchiveImages = import.meta.glob<{ default: ImageMetadata }>(
+  '/src/assets/img/blog-archive/*.{jpeg,jpg,png,gif}'
+);
+
+const cards: ICard[] = [
+  { label: 'Новинка / 05.01.25', title: 'НОВИНКА!!! Костюм "Горка 3" и Брюки "Горка 3"' },
+  {
+    label: 'Новинка / 05.01.25',
+    image: blogArchiveImages['/src/assets/img/blog-archive/blog-archive.png'](),
+    title: 'Костюм "Горка-3" на флисе',
+  },
+  {
+    label: 'Новинка / 05.01.25',
+    image: blogArchiveImages['/src/assets/img/blog-archive/blog-archive.png'](),
+    title: 'Костюм "Горка-3" на флисе',
+  },
+  {
+    label: 'Новинка / 05.01.25',
+    image: blogArchiveImages['/src/assets/img/blog-archive/blog-archive.png'](),
+    title: 'Костюм "Горка-3" на флисе',
+  },
+  {
+    label: 'Новинка / 05.01.25',
+    image: blogArchiveImages['/src/assets/img/blog-archive/blog-archive.png'](),
+    title: 'Костюм "Горка-3" на флисе',
+  },
+  { label: 'Новинка / 05.01.25', title: 'НОВИНКА!!! Костюм "Горка 3" и Брюки "Горка 3"' },
+  {
+    label: 'Новинка / 05.01.25',
+    image: blogArchiveImages['/src/assets/img/blog-archive/blog-archive.png'](),
+    title: 'Костюм "Горка-3" на флисе',
+  },
+  {
+    label: 'Новинка / 05.01.25',
+    image: blogArchiveImages['/src/assets/img/blog-archive/blog-archive.png'](),
+    title: 'Костюм "Горка-3" на флисе',
+  },
+];
+---
+
+<Layout>
+  <div class='blog-archive'>
+    <div class='blog-archive__container container'>
+      <div class='blog-archive__wrapper'>
+        <div class='blog-archive__top'>
+          <Breadcrumbs path={path} />
+          <h1 class='blog-archive__title page-title'>Новости</h1>
+        </div>
+        <div class='blog-archive__card-wrapper'>
+          <div class='blog-archive__cards'>
+            {cards.map((card) => <Card {...card} />)}
+          </div>
+          <Pagination />
+        </div>
+        <SliderSection title='Просмотренные' description='Текст комментария от нейросети для расшифровки' />
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<style lang='scss'>
+  .blog-archive {
+    &__container {
+    }
+
+    &__wrapper {
+      padding: 14px 0 40px;
+    }
+
+    &__top {
+      margin-bottom: 16px;
+    }
+
+    &__title {
+    }
+
+    &__card-wrapper {
+      margin-bottom: 50px;
+    }
+
+    &__cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px;
+      margin-bottom: 8px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--light-2);
+    }
+  }
+</style>
