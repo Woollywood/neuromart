@@ -57,14 +57,14 @@ const { image, name, oldPrice, price, count, totalPrice } = item;
           <div class='cart-item__dimension dimension-cart'>
             <div class='dimension-cart__row'>
               <div class:list={['dimension-cart__label', idx !== 0 && 'invisible']}>Размер:</div>
-              <div class='dimension-cart__select'>
+              <div class='dimension-cart__select field-select'>
                 <div class='dimension-cart__select-trigger dimension-cart__field'>
                   <span>36</span>
                   <Icon name='arrow-down' />
                 </div>
               </div>
               <button class='dimension-cart__action'>-</button>
-              <div class='dimension-cart__field'>5</div>
+              <div class='dimension-cart__field field-normal'>5</div>
               <button class='dimension-cart__action'>+</button>
             </div>
           </div>
@@ -80,6 +80,36 @@ const { image, name, oldPrice, price, count, totalPrice } = item;
 </div>
 
 <style lang='scss'>
+  .field-select {
+    max-width: 68px;
+    width: 100%;
+
+    @include media('md') {
+      max-width: 120px;
+    }
+
+    @include media('lg') {
+      max-width: 64px;
+    }
+  }
+
+  .field-normal {
+    max-width: 80px;
+    width: 100%;
+
+    @include media('md') {
+      max-width: 120px;
+    }
+
+    @include media('lg') {
+      max-width: 64px;
+    }
+
+    @include media('xl') {
+      max-width: 87px;
+    }
+  }
+
   .cart-item {
     padding: 12px 0 16px;
     display: grid;
@@ -212,6 +242,7 @@ const { image, name, oldPrice, price, count, totalPrice } = item;
       }
 
       @include media('xl') {
+        width: calc(64px + 8px + 16px + 48px);
         height: 40px;
         font-size: 16px;
       }
@@ -346,7 +377,6 @@ const { image, name, oldPrice, price, count, totalPrice } = item;
 
     &__select-trigger {
       height: 32px;
-      width: 68px !important;
       padding: 8px;
       display: flex;
       align-items: center;
@@ -359,10 +389,6 @@ const { image, name, oldPrice, price, count, totalPrice } = item;
       font-size: 12px;
       text-transform: uppercase;
       color: var(--secondary);
-
-      @include media('md') {
-        width: 120px !important;
-      }
 
       svg {
         width: 6px;
@@ -377,7 +403,6 @@ const { image, name, oldPrice, price, count, totalPrice } = item;
 
     &__field {
       height: 32px;
-      width: 80px;
       padding: 8px;
       display: flex;
       align-items: center;
@@ -391,22 +416,20 @@ const { image, name, oldPrice, price, count, totalPrice } = item;
       color: var(--secondary);
 
       @include media('md') {
-        width: 120px;
         font-size: 13px;
       }
 
       @include media('lg') {
         font-size: 14px;
-        width: 64px !important;
       }
 
       @include media('xl') {
-        width: 86px !important;
         font-size: 16px;
       }
     }
 
     &__action {
+      flex-shrink: 0;
       width: 32px;
       height: 32px;
       display: flex;

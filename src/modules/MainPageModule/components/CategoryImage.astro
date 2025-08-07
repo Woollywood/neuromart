@@ -15,8 +15,8 @@ const { backgroundImage, description } = Astro.props;
 <div class='category-image'>
   <div class='category-image__background'>
     <CustomImage src={backgroundImage} alt='image' data-parallax />
-    <BackgroundGradient class='category-image__gradient' />
   </div>
+  <BackgroundGradient class='category-image__gradient' />
   <div class='category-image__content'>
     {description && <p class='category-image__description'>{description}</p>}
     <slot />
@@ -27,16 +27,14 @@ const { backgroundImage, description } = Astro.props;
   .category-image {
     position: relative;
     display: flex;
-    align-items: flex-end;
-    justify-content: center;
+    flex-direction: column;
     width: 100%;
-    aspect-ratio: 359 / 524;
     border-radius: 12px;
     overflow: hidden;
+    background-color: black;
 
     @include media('md') {
       border-radius: 0;
-      aspect-ratio: 768 / 1024;
     }
 
     @include media('lg') {
@@ -50,11 +48,9 @@ const { backgroundImage, description } = Astro.props;
     }
 
     &__background {
-      position: absolute;
-      top: 0;
-      left: 0;
+      position: relative;
+      aspect-ratio: 359 / 524;
       width: 100%;
-      height: 100%;
 
       img {
         position: absolute;
@@ -74,6 +70,7 @@ const { backgroundImage, description } = Astro.props;
       z-index: 10;
       padding: 16px 12px;
       width: 100%;
+      margin-top: -20%;
 
       @include media('md') {
         padding: 16px 40px 40px;
