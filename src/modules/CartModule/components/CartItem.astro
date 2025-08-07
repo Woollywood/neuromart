@@ -45,7 +45,10 @@ const { image, name, oldPrice, price, count, totalPrice } = item;
         <span>X</span>
         <span>{count}</span>
         <span>=</span>
-        <span>{totalPrice}</span>
+        <span>
+          {totalPrice}
+          <span class='price-info__old-price_currency'>руб</span>
+        </span>
       </div>
     </div>
     <div class='cart-item__dimensions'>
@@ -204,6 +207,10 @@ const { image, name, oldPrice, price, count, totalPrice } = item;
         font-size: 13px;
       }
 
+      @include media('lg') {
+        width: calc(64px + 8px + 16px + 44px);
+      }
+
       @include media('xl') {
         height: 40px;
         font-size: 16px;
@@ -279,12 +286,21 @@ const { image, name, oldPrice, price, count, totalPrice } = item;
       font-size: 14px;
     }
 
-    @include media('lg') {
+    @include media('xl') {
       font-size: 16px;
     }
 
     &__old-price {
       color: var(--primary);
+
+      &_currency {
+        font-size: 10px;
+        text-transform: uppercase;
+
+        @include media('xl') {
+          font-size: 12px;
+        }
+      }
     }
   }
 
@@ -397,7 +413,7 @@ const { image, name, oldPrice, price, count, totalPrice } = item;
       align-items: center;
       justify-content: center;
       border-radius: 8px;
-      background-color: var(--light-2);
+      background-color: var(--light);
 
       font-family: var(--font-primary);
       font-weight: 900;

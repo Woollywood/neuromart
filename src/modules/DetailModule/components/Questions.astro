@@ -151,6 +151,11 @@ const questions: Question[] = [
         font-size: 13px;
       }
 
+      @include media('xl') {
+        font-size: 16px;
+        height: 40px;
+      }
+
       svg {
         width: 8px;
         height: 4px;
@@ -174,6 +179,10 @@ const questions: Question[] = [
       min-width: auto;
     }
 
+    @include media('xl') {
+      padding: 16px;
+    }
+
     &__question {
       font-family: var(--font-secondary);
       font-weight: 700;
@@ -181,6 +190,11 @@ const questions: Question[] = [
       line-height: 16px;
       color: var(--secondary);
       margin-bottom: 4px;
+
+      @include media('xl') {
+        font-size: 16px;
+        margin-bottom: 8px;
+      }
 
       > span {
         font-style: italic;
@@ -198,6 +212,10 @@ const questions: Question[] = [
 
       @include media('md') {
         margin-bottom: 24px;
+      }
+
+      @include media('xl') {
+        margin-bottom: 28px;
       }
     }
 

@@ -90,9 +90,13 @@ const slides: Slide[] = [
   }
 
   .order-slider {
-    padding: 16px 8px;
+    padding: 16px 0;
     border: 1px solid var(--light);
     border-radius: 8px;
+
+    @include media('lg') {
+      padding: 19px 0;
+    }
 
     &__wrapper {
     }
@@ -151,6 +155,6 @@ const slides: Slide[] = [
 
   const orderSlider = document.querySelector<HTMLDivElement>("[data-component='order-slider']");
   if (orderSlider) {
-    new Splide(orderSlider, { type: 'loop', arrows: false, pagination: false, autoWidth: true, gap: 4 }).mount();
+    new Splide(orderSlider, { arrows: false, pagination: false, autoWidth: true, gap: 4 }).mount();
   }
 </script>

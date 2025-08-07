@@ -44,7 +44,7 @@ const { class: className, ...rest } = Astro.props;
 
 <style lang='scss'>
   .header {
-    position: fixed;
+    position: sticky;
     overflow: hidden;
     top: 0;
     left: 0;
@@ -73,7 +73,7 @@ const { class: className, ...rest } = Astro.props;
       }
 
       @include media('xl') {
-        padding: 16px;
+        padding: 16px 0;
         gap: 16px;
       }
     }
@@ -151,9 +151,14 @@ const { class: className, ...rest } = Astro.props;
       grid-template-columns: 1fr auto;
       align-items: center;
       gap: 8px;
-      padding-right: 8px;
+      padding-right: 4px;
+
+      @include media('md') {
+        padding-right: 8px;
+      }
 
       @include media('lg') {
+        padding: 0;
         flex-grow: 1;
         gap: 16px;
       }
@@ -211,25 +216,3 @@ const { class: className, ...rest } = Astro.props;
     }
   }
 </style>
-
-<script>
-  import { setCssVariable } from '@/utils/styles';
-
-  const header = document.querySelector<HTMLHeadElement>("[data-component='header']");
-  if (header) {
-    const setCssHeaderHeight = () => {
-      const headerHeight = header.clientHeight;
-      setCssVariable('--header-height', `${headerHeight}px`);
-    };
-
-    setCssHeaderHeight();
-    const resizeObserver = new ResizeObserver((entries) => {
-      for (const entry of entries) {
-        if (entry.target === header) {
-          setCssHeaderHeight();
-        }
-      }
-    });
-    resizeObserver.observe(header);
-  }
-</script>

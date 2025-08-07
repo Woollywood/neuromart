@@ -80,11 +80,11 @@ const tags: string[] = [
       петлю и пуговицу,съёмным капюшоном - по лицевому вырезу стягивается шнуром.
     </p>
     <div class='details__tags'>
-      <div class='details__tag fill'>
+      <a href="#" class='details__tag fill'>
         <Icon name='document' />
         <span>Полное описание</span>
-      </div>
-      {tags.map((tag) => <div class='details__tag'>{tag}</div>)}
+      </a>
+      {tags.map((tag) => <a href="#" class='details__tag'>{tag}</a>)}
     </div>
   </div>
 </div>
@@ -200,10 +200,29 @@ const tags: string[] = [
       font-size: 12px;
       text-transform: uppercase;
       color: var(--secondary);
+      transition: color 0.3s ease-in-out;
+
+      &:hover {
+        color: var(--primary);
+      }
 
       &.fill {
         background-color: var(--light);
         @include border(1px, var(--light));
+
+        &:hover {
+          color: var(--secondary);
+        }
+      }
+
+      @include media('md') {
+        border-radius: 8px;
+        font-size: 13px;
+      }
+
+      @include media('xl') {
+        font-size: 16px;
+        height: 40px;
       }
     }
   }
@@ -224,6 +243,7 @@ const tags: string[] = [
       font-style: italic;
       font-size: 12px;
       color: var(--primary);
+      text-transform: uppercase;
     }
   }
 

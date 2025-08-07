@@ -10,7 +10,7 @@ const { tags, aboveImage = true, class: className, ...rest } = Astro.props;
 ---
 
 <div class:list={['category-tags', className, aboveImage ? 'aboveImage' : 'notAboveImage']} {...rest}>
-  {tags.map((tag) => <div class='category-tags__tag'>{tag}</div>)}
+  {tags.map((tag) => <a href="#" class='category-tags__tag'>{tag}</a>)}
 </div>
 
 <style lang='scss'>
@@ -49,15 +49,22 @@ const { tags, aboveImage = true, class: className, ...rest } = Astro.props;
       font-weight: 500;
       font-size: 14px;
       color: var(--white);
+      transition: color 0.3s ease-in-out;
+
+      &:hover {
+        color: var(--primary);
+      }
 
       @include media('md') {
         padding: 9px 8px;
       }
 
       @include media('lg') {
-        @include border(1px, var(--light-2));
-        border-radius: 8px;
+        text-transform: uppercase;
+        font-weight: 800;
         color: var(--secondary);
+        border-radius: 8px;
+        @include border(1px, var(--light-2));
       }
 
       @include media('xl') {

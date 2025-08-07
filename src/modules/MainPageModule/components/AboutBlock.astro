@@ -103,10 +103,11 @@ const links: Link[] = [
     }
 
     &__link {
+      height: 32px;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 12px;
+      padding: 8px 12px;
       border-radius: 8px;
       background-color: transparent;
       @include border(1px, var(--light-2));
@@ -130,6 +131,7 @@ const links: Link[] = [
       }
 
       @include media('xl') {
+        height: 40px;
         font-size: 16px;
       }
     }

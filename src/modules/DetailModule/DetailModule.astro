@@ -2,8 +2,8 @@
 import Layout from '@/layouts/Layout.astro';
 import Gallery from './components/Gallery.astro';
 import Details from './components/Details.astro';
-import SliderSection from './sections/SliderSection.astro';
 import Questions from './components/Questions.astro';
+import SliderSection from '@/components/shared/SliderSection.astro';
 ---
 
 <Layout>
@@ -47,7 +47,7 @@ import Questions from './components/Questions.astro';
       }
 
       @include media('xl') {
-        grid-template-columns: 1fr 466px;
+        grid-template-columns: 6fr 2fr;
       }
     }
 
