@@ -1,18 +1,20 @@
 ---
 import BackgroundGradient from '@/components/shared/BackgroundGradient.astro';
 import CustomImage from '@/components/shared/CustomImage.astro';
+import type { HTMLAttributes } from 'astro/types';
 
 export interface CategoryImageProps {
   backgroundImage: Promise<{ default: ImageMetadata }>;
   description?: string;
+  type?: 'normal' | 'contacts';
 }
 
-type Props = CategoryImageProps;
+type Props = CategoryImageProps & Pick<HTMLAttributes<'div'>, 'class'>;
 
-const { backgroundImage, description } = Astro.props;
+const { backgroundImage, description, class: className, type = 'normal', ...rest } = Astro.props;
 ---
 
-<div class='category-image'>
+<div class:list={['category-image', className, type]} {...rest}>
   <div class='category-image__background'>
     <CustomImage src={backgroundImage} alt='image' data-parallax />
   </div>
@@ -33,8 +35,18 @@ const { backgroundImage, description } = Astro.props;
     overflow: hidden;
     background-color: black;
 
+    &.contacts {
+      flex-direction: row;
+      align-items: flex-end;
+      aspect-ratio: 359 / 524;
+    }
+
     @include media('md') {
       border-radius: 0;
+
+      &.contacts {
+        aspect-ratio: 768 / 1024;
+      }
     }
 
     @include media('lg') {
@@ -44,17 +56,27 @@ const { backgroundImage, description } = Astro.props;
 
     @include customMedia(1600px) {
       border-radius: 16px;
-      aspect-ratio: 940 / 896;
+      aspect-ratio: 940 / 896 !important;
     }
 
     &__background {
       position: relative;
-      aspect-ratio: 359 / 524;
-      width: 100%;
+      .normal & {
+        aspect-ratio: 359 / 524;
+        width: 100%;
+      }
+
+      .contacts & {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
 
       @include media('lg') {
         aspect-ratio: auto;
-        
+
         position: absolute;
         top: 0;
         left: 0;
@@ -80,7 +102,10 @@ const { backgroundImage, description } = Astro.props;
       z-index: 10;
       padding: 16px 12px;
       width: 100%;
-      margin-top: -20%;
+
+      .normal & {
+        margin-top: -20%;
+      }
 
       @include media('md') {
         padding: 16px 40px 40px;
