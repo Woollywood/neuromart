@@ -33,7 +33,9 @@ const { slides, breakpoints, class: className, ...rest } = Astro.props;
                 <Picture inferSize layout='constrained' formats={['avif', 'webp']} src={image} alt='image' />
               </div>
               <CardContent title={country} subtitle={title} description={description}>
-                <CardButton text='опт' price={price} />
+                <div class="slide__action-wrapper">
+                  <CardButton text='опт' price={price} />
+                </div>
               </CardContent>
             </div>
           </div>
@@ -98,6 +100,11 @@ const { slides, breakpoints, class: className, ...rest } = Astro.props;
         height: 100%;
         object-fit: contain;
       }
+    }
+
+    &__action-wrapper {
+      display: flex;
+      justify-content: center;
     }
   }
 </style>

@@ -1,19 +1,21 @@
 ---
-interface Props {
+import type { HTMLAttributes } from 'astro/types';
+
+interface Props extends Pick<HTMLAttributes<'button'>, 'class'> {
   price: string | number;
   text: string;
   type?: 'primary' | 'secondary';
 }
 
-const { text, price, type = 'primary' } = Astro.props;
+const { text, price, type = 'primary', class: className, ...rest } = Astro.props;
 ---
 
-<div class='card-button'>
+<button class:list={['card-button', className]} {...rest}>
   <div class:list={['card-button__inner', type]}>
     {text}
     <span>{price}</span> руб
   </div>
-</div>
+</button>
 
 <style lang='scss'>
   .card-button {
@@ -32,6 +34,7 @@ const { text, price, type = 'primary' } = Astro.props;
       @include border(1px, var(--primary));
       width: 100%;
 
+      font-family: var(--font-primary);
       font-size: 11px;
       font-weight: 900;
       font-style: italic;
@@ -44,8 +47,8 @@ const { text, price, type = 'primary' } = Astro.props;
       }
 
       &.secondary {
-        background-color: var(--light-2);
-        @include border(1px, var(--light-2));
+        background-color: var(--light);
+        @include border(1px, var(--light));
       }
 
       @include media('md') {
@@ -55,10 +58,12 @@ const { text, price, type = 'primary' } = Astro.props;
       }
 
       @include media('xl') {
+        align-items: flex-end;
         padding: 10px;
       }
 
       span {
+        line-height: 11px;
         font-size: 12px;
 
         @include media('md') {
@@ -66,7 +71,8 @@ const { text, price, type = 'primary' } = Astro.props;
         }
 
         @include media('xl') {
-          font-size: 12px;
+          font-size: 14px;
+          line-height: 12px;
         }
       }
     }

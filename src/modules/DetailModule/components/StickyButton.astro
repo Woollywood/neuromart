@@ -1,0 +1,51 @@
+---
+import Button from './Button.astro';
+---
+
+<div class='sticky-button' data-component='sticky-button'>
+  <div class='sticky-button__container container'>
+    <Button />
+  </div>
+</div>
+
+<style lang='scss'>
+  .sticky-button {
+    &.hide {
+      display: none;
+    }
+
+    @include media('lg') {
+      display: none;
+    }
+
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 8px 0;
+    background-color: var(--white);
+    z-index: 10;
+
+    &__container {
+    }
+  }
+</style>
+
+<script>
+  const button = document.querySelector<HTMLButtonElement>('[data-button-position]');
+  const stickyButton = document.querySelector<HTMLButtonElement>("[data-component='sticky-button']");
+
+  const checkPosition = () => {
+    if (button && stickyButton) {
+      const buttonBox = button?.getBoundingClientRect();
+      if (window.scrollY + window.innerHeight > buttonBox.bottom + window.scrollY) {
+        stickyButton.classList.add('hide');
+      } else {
+        stickyButton.classList.remove('hide');
+      }
+    }
+  };
+
+  checkPosition();
+  window.addEventListener('scroll', checkPosition);
+</script>

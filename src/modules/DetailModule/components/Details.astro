@@ -1,6 +1,8 @@
 ---
 import Breadcrumbs from '@/components/ui/Breadcrumbs.astro';
 import { Icon } from 'astro-icon/components';
+import Button from './Button.astro';
+import StickyButton from './StickyButton.astro';
 
 const path: string[] = ['Магазин мужской одежды', 'Каталог', 'Костюм Горка Зима Финл. ПК олива'];
 
@@ -73,18 +75,25 @@ const tags: string[] = [
         ))
       }
     </div>
-    <button class='details__add-cart'>добавить в корзину</button>
+    <StickyButton />
+    <Button class='details__add-cart' data-button-position />
     <div class='details__separator'></div>
     <p class='details__description'>
       Куртка прямого силуэта, с центральной бортовой застёжкой на молнию, ветрозащитным клапаном,  застёгивающимся на
       петлю и пуговицу,съёмным капюшоном - по лицевому вырезу стягивается шнуром.
     </p>
     <div class='details__tags'>
-      <a href="#" class='details__tag fill'>
+      <a href='#' class='details__tag fill'>
         <Icon name='document' />
         <span>Полное описание</span>
       </a>
-      {tags.map((tag) => <a href="#" class='details__tag'>{tag}</a>)}
+      {
+        tags.map((tag) => (
+          <a href='#' class='details__tag'>
+            {tag}
+          </a>
+        ))
+      }
     </div>
   </div>
 </div>
@@ -134,26 +143,7 @@ const tags: string[] = [
     }
 
     &__add-cart {
-      font-family: var(--font-primary);
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      border-radius: 12px;
-      background-color: var(--primary);
-      height: 64px;
-      padding: 4px 6px;
       margin-bottom: 12px;
-
-      font-weight: 900;
-      font-style: italic;
-      font-size: 20px;
-      text-transform: uppercase;
-      color: var(--white);
-
-      @include media('md') {
-        height: 48px;
-      }
     }
 
     &__separator {

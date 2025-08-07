@@ -46,7 +46,7 @@ const path: string[] = ['Магазин мужской одежды', 'корз�
             </div>
             <OrderFooter />
           </div>
-          <div class='order__section order__section_order-info section-order'>
+          <div class='order__section order__section_order-info section-order transformed'>
             <div class='section-order__top'>
               <div class='section-order__title-wrapper'>
                 <h3 class='section-order__title'>Ваш заказ</h3>
@@ -153,6 +153,13 @@ const path: string[] = ['Магазин мужской одежды', 'корз�
   }
 
   .section-order {
+    &.transformed {
+      @include media('lg') {
+        position: relative;
+        top: -6px;
+      }
+    }
+
     &__title {
       font-weight: 900;
       font-style: italic;
@@ -172,7 +179,6 @@ const path: string[] = ['Магазин мужской одежды', 'корз�
       margin-bottom: 8px;
 
       @include media('lg') {
-        margin-top: -6px;
         display: flex;
         align-items: center;
         gap: 8px;
