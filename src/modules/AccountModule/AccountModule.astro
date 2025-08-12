@@ -1,0 +1,119 @@
+---
+import Breadcrumbs from '@/components/ui/Breadcrumbs.astro';
+import Layout from '@/layouts/Layout.astro';
+import PersonalData from './components/PersonalData.astro';
+import History, { type IHistoryCard } from './components/History.astro';
+import SliderSection from '@/components/shared/SliderSection.astro';
+
+const path: string[] = ['Магазин мужской одежды', 'личный кабинет'];
+
+const historyList: IHistoryCard[] = [
+  {
+    title: 'Заказ №65-4901-01',
+    subtitle: 'от 23.12.2024',
+    price: '4 000 000',
+    countTop: '3 наименований,',
+    countBottom: '48 штук',
+    status: 'in_progress',
+  },
+  {
+    title: 'Заказ №65-4901-01',
+    subtitle: 'от 23.12.2024',
+    price: '4 000 000',
+    countTop: '3 наименований,',
+    countBottom: '48 штук',
+    status: 'done',
+  },
+  {
+    title: 'Заказ №65-4901-01',
+    subtitle: 'от 23.12.2024',
+    price: '4 000 000',
+    countTop: '3 наименований,',
+    countBottom: '48 штук',
+    status: 'done',
+  },
+  {
+    title: 'Заказ №65-4901-01',
+    subtitle: 'от 23.12.2024',
+    price: '4 000 000',
+    countTop: '3 наименований,',
+    countBottom: '48 штук',
+    status: 'done',
+  },
+  {
+    title: 'Заказ №65-4901-01',
+    subtitle: 'от 23.12.2024',
+    price: '4 000 000',
+    countTop: '3 наименований,',
+    countBottom: '48 штук',
+    status: 'done',
+  },
+];
+---
+
+<Layout>
+  <div class='account' data-component='account'>
+    <div class='account__container container'>
+      <div class='account__wrapper'>
+        <div class='account__top'>
+          <Breadcrumbs path={path} />
+          <h1 class='account__title page-title'>Личный кабинет</h1>
+        </div>
+      </div>
+      <PersonalData class='account__personal-data' />
+      <div class='account__content'>
+        <History class='account__history' cards={historyList} />
+        <SliderSection
+          class='account__bought'
+          title='Покупали ранее'
+          description='Текст комментария от нейросети для расшифровки'
+        />
+        <SliderSection
+          class='account__recommendatitions'
+          title='Рекомендуем к покупке'
+          description='Текст комментария от нейросети для расшифровки'
+        />
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<style lang='scss'>
+  .account {
+    &__container {
+    }
+
+    &__wrapper {
+    }
+
+    &__top {
+    }
+
+    &__title {
+    }
+
+    &__personal-data {
+    }
+
+    &__content {
+      margin-top: 30px;
+
+      .modal-opened & {
+        margin: 0;
+        display: none;
+      }
+    }
+
+    &__history {
+      margin-bottom: 26px;
+    }
+
+    &__bought {
+      margin-bottom: 30px;
+    }
+
+    &__recommendatitions {
+      margin-bottom: 48px;
+    }
+  }
+</style>

@@ -1,0 +1,134 @@
+---
+import FieldInput from '@/components/ui/FieldInput.astro';
+import { Icon } from 'astro-icon/components';
+import type { HTMLAttributes } from 'astro/types';
+
+type Props = Pick<HTMLAttributes<'div'>, 'class'>;
+
+const { class: className, ...rest } = Astro.props;
+---
+
+<div class:list={['personal-data', className]} data-component='personal-data' {...rest}>
+  <button class='personal-data__trigger' data-component='personal-data-trigger'>
+    <span>Персональные данные</span>
+    <Icon name='arrow-down' />
+  </button>
+  <div class='personal-data__content' data-component='personal-data-content'>
+    <div class='personal-data__dates'>
+      <div class='personal-data__date'>Дата обновления: 16.12.2024 14:38:10</div>
+      <div class='personal-data__date'>Последняя авторизация: 11.04.2025 13:24:51</div>
+    </div>
+    <form class='personal-data__form'>
+      <div class='personal-data__form-fields'>
+        <FieldInput required placeholder='ФИО Получателя' value='Иванов Иван Иванович' />
+        <FieldInput required type='email' placeholder='E-mail' value='Ivanov@mail.ru' />
+        <FieldInput required placeholder='Телефон' value='+7 (900) 000-00-00' />
+        <FieldInput placeholder='НОВЫЙ Пароль' />
+        <FieldInput placeholder='Подтверждение нового пароля' />
+      </div>
+      <button class='personal-data__submit-button'>Сохранить</button>
+    </form>
+  </div>
+</div>
+
+<style lang='scss'>
+  .personal-data {
+    &__trigger {
+      width: 100%;
+      height: 32px;
+      padding: 8px 12px;
+      border-radius: 8px;
+      background-color: var(--light);
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+
+      font-family: var(--font-primary);
+      font-weight: 800;
+      font-size: 12px;
+      text-transform: uppercase;
+      color: var(--secondary);
+
+      svg {
+        width: 10px;
+        height: 6px;
+        color: var(--secondary);
+
+        .modal-opened & {
+          transform: rotate(-90deg);
+        }
+      }
+    }
+
+    &__content {
+      display: none;
+
+      .modal-opened & {
+        display: block;
+
+        margin-top: 16px;
+        margin-bottom: 64px;
+      }
+    }
+
+    &__dates {
+      padding: 0 12px;
+      margin-bottom: 19px;
+    }
+
+    &__date {
+      font-family: var(--font-secondary);
+      font-weight: 500;
+      font-size: 12px;
+      line-height: 16px;
+      color: var(--secondary);
+    }
+
+    &__form {
+    }
+
+    &__form-fields {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+
+      margin-bottom: 16px;
+    }
+
+    &__submit-button {
+      width: 100%;
+      height: 64px;
+      padding: 10px 12px;
+      border-radius: 12px;
+      background-color: var(--primary);
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      font-family: var(--primary);
+      font-weight: 900;
+      font-style: italic;
+      font-size: 20px;
+      text-transform: uppercase;
+      color: var(--white);
+    }
+  }
+</style>
+
+<script>
+  const personalData = document.querySelector<HTMLDivElement>("[data-component='personal-data']");
+  const account = document.querySelector<HTMLDivElement>("[data-component='account']");
+  const trigger = document.querySelector<HTMLButtonElement>("[data-component='personal-data-trigger']");
+
+  console.log('');
+
+  if (account && trigger && personalData) {
+    trigger.addEventListener('click', () => {
+      personalData.classList.toggle('modal-opened');
+      account.classList.toggle('modal-opened');
+    });
+  }
+</script>
