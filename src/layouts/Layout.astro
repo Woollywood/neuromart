@@ -12,7 +12,7 @@ const { footer = true } = Astro.props;
 ---
 
 <RootLayout>
-  <div class='layout'>
+  <div class:list={['layout', { footer }]}>
     <Header class='layout__header' />
     <main class='layout__main'>
       <slot />
@@ -28,10 +28,15 @@ const { footer = true } = Astro.props;
     min-height: 100svh;
     max-width: 100vw;
 
+    &.footer {
+      grid-template-rows: auto 1fr auto;
+    }
+
     &__header {
     }
 
     &__main {
+      height: 100%;
       max-width: 100vw;
     }
 

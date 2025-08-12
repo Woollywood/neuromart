@@ -16,16 +16,6 @@
 
   --font-primary: 'Sofia Sans Condensed Variable', sans-serif;
   --font-secondary: 'Source Sans 3 Variable', sans-serif;
-
-  --header-height: 76px;
-
-  @include media('md') {
-    --header-height: 84px;
-  }
-
-  @include media('xl') {
-    --header-height: 120px;
-  }
 }
 
 .container {

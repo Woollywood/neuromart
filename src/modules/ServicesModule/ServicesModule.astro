@@ -1,0 +1,119 @@
+---
+import Breadcrumbs from '@/components/ui/Breadcrumbs.astro';
+import Layout from '@/layouts/Layout.astro';
+import { Icon } from 'astro-icon/components';
+import type { ICard } from './components/Card.astro';
+import Card from './components/Card.astro';
+
+const path: string[] = ['Магазин мужской одежды', 'услуги'];
+
+const cards: ICard[] = [
+  { title: 'Шелкография', href: '#' },
+  { title: 'Сублимация', href: '#' },
+  { title: 'Тиснение', href: '#' },
+  { title: 'Термотрансфер', href: '#' },
+  { title: 'РУчная фасовка', href: '#', cols: 2 },
+];
+---
+
+<Layout>
+  <div class='services'>
+    <div class='services__container container'>
+      <div class='services__wrapper'>
+        <div class='services__top'>
+          <Breadcrumbs path={path} />
+          <h1 class='services__title page-title'>Услуги</h1>
+        </div>
+        <div class='services__header header-services'>
+          <h2 class='header-services__title services-title'>Связаться с нами</h2>
+          <a href='#' class='services-header__link'>
+            <span>Обсудить ваш заказ — отправьте заявку</span>
+            <Icon name='arrow-down' />
+          </a>
+        </div>
+        <div class='services__cards-wrapper'>
+          <h2 class='services__cards-title services-title'>Методы нанесения логотипа</h2>
+          <div class='services__cards'>
+            {cards.map((card) => <Card {...card} />)}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<style lang='scss'>
+  .services-title {
+    font-weight: 900;
+    font-style: italic;
+    font-size: 16px;
+    line-height: 24px;
+    text-transform: uppercase;
+    color: var(--primary);
+  }
+
+  .services {
+    padding: 14px 0 48px;
+
+    &__container {
+    }
+
+    &__wrapper {
+    }
+
+    &__top {
+      margin-bottom: 18px;
+    }
+
+    &__title {
+    }
+
+    &__header {
+      margin-bottom: 19px;
+    }
+
+    &__cards-wrapper {
+    }
+
+    &__cards-title {
+      margin-bottom: 5px;
+    }
+
+    &__cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4px;
+    }
+  }
+
+  .header-services {
+    &__title {
+      margin-bottom: 5px;
+    }
+  }
+
+  .services-header {
+    &__link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      grid-area: 16px;
+      height: 32px;
+
+      padding: 8px 12px;
+      border-radius: 8px;
+      background-color: var(--light);
+
+      font-weight: 800;
+      font-size: 12px;
+      text-transform: uppercase;
+      color: var(--secondary);
+
+      svg {
+        width: 10px;
+        height: 6px;
+        color: var(--secondary);
+      }
+    }
+  }
+</style>
