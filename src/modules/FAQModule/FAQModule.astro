@@ -1,0 +1,45 @@
+---
+import Question from '@/components/shared/Question.astro';
+import Breadcrumbs from '@/components/ui/Breadcrumbs.astro';
+import Layout from '@/layouts/Layout.astro';
+
+const path: string[] = ['Магазин мужской одежды', 'вопрос-ответ'];
+---
+
+<Layout>
+  <div class='faq'>
+    <div class='faq__container container'>
+      <div class='faq__wrapper'>
+        <div class='faq__top'>
+          <Breadcrumbs path={path} />
+          <h1 class='faq__title page-title'>Вопрос-ответ</h1>
+        </div>
+        <div class='faq__content'>
+          <Question class='faq__wrapper' />
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<style lang='scss'>
+  .faq {
+    padding: 14px 0 48px;
+
+    &__container {
+    }
+
+    &__wrapper {
+    }
+
+    &__top {
+      margin-bottom: 8px;
+    }
+
+    &__title {
+    }
+
+    &__content {
+    }
+  }
+</style>

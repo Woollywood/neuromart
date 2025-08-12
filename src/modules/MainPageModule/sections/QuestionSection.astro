@@ -1,34 +1,10 @@
 ---
-import { Icon } from 'astro-icon/components';
-
-const tags: string[] = [
-  'опт',
-  'весна',
-  'для рыбалки',
-  'влагозащитные',
-  'противомоскитные',
-  'подобрать костюмы',
-  'выгодные предложения',
-];
+import Question from '@/components/shared/Question.astro';
 ---
 
 <section class='question'>
   <div class='question__container container'>
-    <div class='question__wrapper'>
-      <div class='question__tags'>
-        {tags.map((tag) => <div class='question__tag'>{tag}</div>)}
-      </div>
-      <p class='question__text'>
-        Здравствуйте! Я — менеджер магазина СтайрТекс, Введите, что ищете, или задайте вопрос.
-      </p>
-      <div class='question__bottom'>
-        <p class='question__hint'>среднее время ответа 15 секунд</p>
-        <div class='question__input input-question'>
-          <Icon name='stars' />
-          <input type='text' placeholder='Скажите, что ищете или задайте вопроc...' class='input-question__input' />
-        </div>
-      </div>
-    </div>
+    <Question class='question__wrapper' />
   </div>
 </section>
 
@@ -52,88 +28,5 @@ const tags: string[] = [
       border-radius: 12px;
       padding: 8px;
     }
-
-    &__tags {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 4px;
-
-      margin-bottom: 16px;
-    }
-
-    &__tag {
-      border-radius: 6px;
-      background-color: var(--white);
-      padding: 4px 8px;
-
-      font-family: var(--font-secondary);
-      font-weight: 500;
-      font-size: 14px;
-      color: var(--secondary);
-    }
-
-    &__text {
-      padding: 0 8px;
-
-      font-family: var(--font-secondary);
-      font-weight: 500;
-      font-size: 14px;
-      line-height: 16px;
-      color: var(--secondary);
-
-      margin-bottom: 16px;
-    }
-
-    &__bottom {
-    }
-
-    &__hint {
-      text-align: right;
-
-      font-family: var(--font-secondary);
-      font-weight: 500;
-      font-size: 10px;
-      line-height: 16px;
-      color: var(--primary);
-    }
-
-    &__input {
-    }
-  }
-  .input-question {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    color: var(--primary);
-    background-color: var(--white);
-    padding: 6px 8px;
-    border-radius: 8px;
-
-    svg {
-      width: 28px;
-      height: 20px;
-    }
-
-    &__input {
-      width: 100%;
-      font-family: var(--font-secondary);
-      font-weight: 500;
-      font-size: 14px;
-
-      &::placeholder {
-        color: var(--primary);
-      }
-    }
   }
 </style>
-
-<script>
-  const inputWrapper = document.querySelector<HTMLDivElement>('.question__input');
-  const input = inputWrapper?.querySelector<HTMLInputElement>('input');
-
-  inputWrapper?.addEventListener('click', () => {
-    input?.focus();
-  });
-</script>
