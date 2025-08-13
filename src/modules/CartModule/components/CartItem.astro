@@ -398,6 +398,13 @@ const { image, name, oldPrice, price, count, totalPrice } = item;
           width: 12px;
           height: 6px;
         }
+
+        @include media('xl') {
+          width: 14px;
+          height: 8px;
+        }
+
+
       }
     }
 
@@ -424,7 +431,9 @@ const { image, name, oldPrice, price, count, totalPrice } = item;
       }
 
       @include media('xl') {
+        height: 40px;
         font-size: 16px;
+        padding: 8px 12px;
       }
     }
 

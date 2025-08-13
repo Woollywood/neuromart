@@ -60,6 +60,7 @@ const { tags, aboveImage = true, class: className, ...rest } = Astro.props;
       }
 
       @include media('lg') {
+        font-family: var(--font-primary);
         text-transform: uppercase;
         font-weight: 800;
         color: var(--secondary);
