@@ -22,14 +22,16 @@ const { text, price, type = 'primary', class: className, ...rest } = Astro.props
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 100%;
 
     &__inner {
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 4px;
+      height: 32px;
 
-      padding: 10px 4px;
+      padding: 8px 10px;
       border-radius: 8px;
       @include border(1px, var(--primary));
       width: 100%;
@@ -64,14 +66,15 @@ const { text, price, type = 'primary', class: className, ...rest } = Astro.props
 
       span {
         line-height: 11px;
-        font-size: 12px;
+        font-size: 16px;
+        white-space: nowrap;
 
         @include media('md') {
           font-size: 20px;
         }
 
         @include media('xl') {
-          font-size: 14px;
+          font-size: 16px;
           line-height: 12px;
         }
       }

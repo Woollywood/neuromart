@@ -5,12 +5,13 @@ interface Props extends Pick<HTMLAttributes<'div'>, 'class'> {
   title: string;
   subtitle: string;
   description: string;
+  leadingSize?: 'sm' | 'md';
 }
 
-const { title, subtitle, description, class: className, ...rest } = Astro.props;
+const { title, subtitle, description, leadingSize = 'md', class: className, ...rest } = Astro.props;
 ---
 
-<div class:list={['card-content', className]} {...rest}>
+<div class:list={['card-content', className, leadingSize]} {...rest}>
   <p class='card-content__title'>{title}</p>
   <h2 class='card-content__subtitle'>{subtitle}</h2>
   <p class='card-content__description'>{description}</p>
@@ -61,16 +62,25 @@ const { title, subtitle, description, class: className, ...rest } = Astro.props;
       text-align: center;
       text-transform: uppercase;
       color: var(--secondary);
-      @include leading(2);
-
       margin-bottom: 2px;
+
+      .sm & {
+        @include leading(1);
+      }
+
+      .md & {
+        @include leading(2);
+
+        @include media('lg') {
+          @include leading(1);
+        }
+      }
 
       @include media('md') {
         font-size: 13px;
       }
 
       @include media('lg') {
-        @include leading(1);
         font-size: 14px;
       }
 
@@ -86,9 +96,23 @@ const { title, subtitle, description, class: className, ...rest } = Astro.props;
       text-transform: uppercase;
       color: var(--primary);
       text-align: center;
-      @include leading(3);
-
       margin-bottom: 6px;
+
+      .sm & {
+        @include leading(2);
+      }
+
+      .md & {
+        @include leading(3);
+
+        @include media('md') {
+          @include leading(2);
+        }
+
+        @include media('xl') {
+          @include leading(1);
+        }
+      }
 
       @include media('md') {
         font-size: 12px;
@@ -96,12 +120,7 @@ const { title, subtitle, description, class: className, ...rest } = Astro.props;
       }
 
       @include media('lg') {
-        @include leading(2);
         font-size: 11px;
-      }
-
-      @include media('xl') {
-        @include leading(1);
       }
     }
   }

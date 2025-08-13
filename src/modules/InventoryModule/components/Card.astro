@@ -17,7 +17,7 @@ const { country, title, description, image, price, retail } = Astro.props;
   <div class='card__image'>
     <CustomImage src={image} alt='image' />
   </div>
-  <CardContent class='card__content' title={country} subtitle={title} description={description}>
+  <CardContent leadingSize='sm' class='card__content' title={country} subtitle={title} description={description}>
     <div class='card__footer'>
       <div class='card__actions'>
         <CardButton text='розница' price={retail} type='secondary' />
