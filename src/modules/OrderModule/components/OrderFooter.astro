@@ -85,7 +85,5 @@ import Checkbox from '@/components/ui/Checkbox.astro';
   import { observeHeight } from '@/utils/styles';
 
   const orderFooter = document.querySelector<HTMLDivElement>("[data-component='order-footer']");
-  if (orderFooter) {
-    observeHeight(orderFooter, '--order-footer-height');
-  }
+  observeHeight(orderFooter!, '--order-footer-height');
 </script>

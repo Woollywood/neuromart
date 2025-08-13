@@ -2,6 +2,7 @@
 import Select from '@/components/ui/Select.astro';
 import { Icon } from 'astro-icon/components';
 import type { HTMLAttributes } from 'astro/types';
+import FiltersModal from './FiltersModal.astro';
 
 const topCategories: string[] = ['Зима', 'Демисезон'];
 const bottomCategories: string[] = ['Нешуршащая', 'Непромокаемая', 'Дышащая', 'Морозоустойчивая'];
@@ -11,13 +12,10 @@ type Props = Pick<HTMLAttributes<'div'>, 'class'>;
 const { class: className, ...rest } = Astro.props;
 ---
 
-<div class:list={['filters', className]} {...rest}>
+<div class:list={['filters', className]} {...rest} data-component='filters'>
   <div class='filters__top'>
     <div class='filters__actions'>
-      <button class='filters__button filters__button_all'>
-        <Icon name='filters' />
-        <span>Все фильтры</span>
-      </button>
+      <FiltersModal class='filters__filter-button' />
       <Select />
     </div>
     <div class='filters__block'>
@@ -35,6 +33,12 @@ const { class: className, ...rest } = Astro.props;
     display: flex;
     flex-wrap: wrap;
     gap: 4px;
+
+    &.opened {
+      @include media('lg') {
+        display: none;
+      }
+    }
 
     @include media('lg') {
       gap: 0;
@@ -71,6 +75,19 @@ const { class: className, ...rest } = Astro.props;
       gap: 4px;
     }
 
+    &__filter-button {
+      font-size: 12px;
+      background-color: var(--light-2);
+
+      @include media('lg') {
+        font-size: 14px;
+      }
+
+      @include media('xl') {
+        font-size: 16px;
+      }
+    }
+
     &__button {
       font-family: var(--font-primary);
       padding: 6px 12px;
@@ -87,6 +104,11 @@ const { class: className, ...rest } = Astro.props;
       text-transform: uppercase;
       color: var(--secondary);
       height: 32px;
+      transition: color 0.3s ease-in-out;
+
+      &:hover {
+        color: var(--primary);
+      }
 
       @include media('md') {
         font-size: 13px;
@@ -101,19 +123,6 @@ const { class: className, ...rest } = Astro.props;
         color: var(--primary);
         width: 18px;
         height: 18px;
-      }
-
-      &_all {
-        font-size: 12px;
-        background-color: var(--light-2);
-
-        @include media('lg') {
-          font-size: 14px;
-        }
-
-        @include media('xl') {
-          font-size: 16px;
-        }
       }
 
       &_more {

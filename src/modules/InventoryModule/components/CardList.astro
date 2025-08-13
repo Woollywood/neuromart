@@ -22,12 +22,4 @@ const content: CardProp = {
 const cardList: CardProp[] = Array.from({ length: 12 }).map(() => content);
 ---
 
-<div class:list={['card-list', className]} {...rest}>
-  {cardList.map((card) => <Card {...card} />)}
-</div>
-
-<style lang="scss">
-  .card-list {
-    display: contents;
-  }
-</style>
+{cardList.map((card) => <Card {...card} />)}

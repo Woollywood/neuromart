@@ -1,0 +1,88 @@
+---
+import { Icon } from 'astro-icon/components';
+
+export interface IFilterAccordion {
+  label: string;
+  filters: string[];
+}
+
+type Props = IFilterAccordion;
+
+const { label, filters } = Astro.props;
+---
+
+<div class='filter-accordion' data-component='filter-filter-accordion'>
+  <button class='accordion-trigger filter-accordion__trigger' type='button' data-component='accordion-trigger'>
+    <span>{label}</span>
+    <div class='accordion-trigger__icon filter-accordion__icon'>
+      <Icon name='arrow-down' />
+    </div>
+  </button>
+  <div class='filter-accordion__body'>
+    {
+      filters.map((filter) => (
+        <button type='button' class='filter-accordion__filter'>
+          {filter}
+        </button>
+      ))
+    }
+  </div>
+</div>
+
+<style lang='scss'>
+  .filter-accordion {
+    &__body {
+      display: none;
+
+      .open & {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 4px;
+      }
+    }
+
+    &__trigger {
+      color: var(--primary);
+    }
+
+    &__icon {
+      color: var(--primary);
+    }
+
+    &__filter {
+      height: 32px;
+      padding: 10px 12px;
+      border-radius: 8px;
+      background-color: var(--white);
+      @include border(1px, var(--light-2));
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      font-family: var(--font-primary);
+      font-weight: 800;
+      font-size: 12px;
+      text-transform: uppercase;
+      color: var(--secondary);
+      transition: color 0.3s ease-in-out;
+
+      &:hover {
+        color: var(--primary);
+      }
+
+      @include media('lg') {
+        height: 40px;
+        font-size: 16px;
+      }
+    }
+  }
+</style>
+
+<script>
+  document.querySelectorAll<HTMLDivElement>("[data-component='filter-filter-accordion']").forEach((item) => {
+    item.querySelector<HTMLDivElement>("[data-component='accordion-trigger']")?.addEventListener('click', () => {
+      item.classList.toggle('open');
+    });
+  });
+</script>

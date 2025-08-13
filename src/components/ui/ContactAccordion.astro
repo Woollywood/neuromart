@@ -25,9 +25,9 @@ const {
 ---
 
 <div class='contact-accordion' data-component='contact-accordion' {...rest}>
-  <button class='contact-accordion__trigger' data-component='contact-accordion-trigger'>
+  <button class='accordion-trigger contact-accordion__trigger' data-component='contact-accordion-trigger'>
     <span>{label}</span>
-    <div class='contact-accordion__trigger-icon'>
+    <div class='accordion-trigger__icon contact-accordion__trigger-icon'>
       <Icon name='arrow-down' />
     </div>
   </button>
@@ -41,46 +41,16 @@ const {
 <style lang='scss'>
   .contact-accordion {
     &__trigger {
-      cursor: pointer;
-      padding: 6px 12px;
-      border-radius: 8px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background-color: var(--light);
-      width: 100%;
-      height: 32px;
-
-      font-family: var(--font-primary);
-      color: var(--secondary);
-      font-weight: 800;
-      font-size: 12px;
-      text-transform: uppercase;
-
       .open & {
         border-bottom-left-radius: 0;
         border-bottom-right-radius: 0;
-      }
-
-      @include media('md') {
-        font-size: 13px;
-      }
-
-      @include media('xl') {
-        font-size: 16px;
-        height: 40px;
+        margin: 0;
       }
     }
 
     &__trigger-icon {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 8px;
-      height: 4px;
-
       .open & {
-        transform: rotate(180deg);
+        transform: rotate(-90deg);
       }
     }
 

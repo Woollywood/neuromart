@@ -293,13 +293,15 @@ const contacts: string[] = ['+7-906-512-25-55', '+7-906-512-25-55'];
 </style>
 
 <script>
+  import { modalToggle } from '@/utils/modal';
+
   document.querySelectorAll<HTMLDivElement>("[data-component='hamburger']").forEach((item) => {
     item.querySelectorAll<HTMLButtonElement>('[data-hamburger-button]').forEach((button) => {
       button.addEventListener('click', () => {
         item.classList.toggle('open');
         document.querySelector("[data-component='header-modal']")?.classList.toggle('open');
         document.querySelector("[data-component='header']")?.classList.toggle('open');
-        document.body.classList.toggle('scroll-lock');
+        modalToggle();
       });
     });
   });

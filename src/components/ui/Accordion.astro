@@ -17,9 +17,9 @@ const { label, links, ...rest } = Astro.props;
 ---
 
 <div class='accordion' data-component='accordion' {...rest}>
-  <button class='accordion__trigger' data-component='accordion-trigger'>
+  <button class='accordion-trigger' data-component='accordion-trigger'>
     <span>{label}</span>
-    <div class='accordion__trigger-icon'>
+    <div class='accordion-trigger__icon'>
       <Icon name='arrow-down' />
     </div>
   </button>
@@ -36,53 +36,6 @@ const { label, links, ...rest } = Astro.props;
 
 <style lang='scss'>
   .accordion {
-    &__trigger {
-      cursor: pointer;
-      padding: 6px 12px;
-      border-radius: 8px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background-color: var(--light);
-      width: 100%;
-      height: 32px;
-
-      font-family: var(--font-primary);
-      color: var(--secondary);
-      font-weight: 800;
-      font-size: 12px;
-      text-transform: uppercase;
-
-      @include media('md') {
-        font-size: 13px;
-      }
-
-      @include media('xl') {
-        font-size: 16px;
-        height: 40px;
-      }
-
-      .open & {
-        margin-bottom: 4px;
-
-        @include media('lg') {
-          margin-bottom: 8px;
-        }
-      }
-    }
-
-    &__trigger-icon {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 8px;
-      height: 4px;
-
-      .open & {
-        transform: rotate(180deg);
-      }
-    }
-
     &__body {
       display: none;
 

@@ -192,7 +192,5 @@ const phone = '+7 (495) 782-28-93';
   import { observeHeight } from '@/utils/styles';
 
   const cartFooter = document.querySelector<HTMLDivElement>("[data-component='cart-footer']");
-  if (cartFooter) {
-    observeHeight(cartFooter, '--cart-footer-height');
-  }
+  observeHeight(cartFooter!, '--cart-footer-height');
 </script>

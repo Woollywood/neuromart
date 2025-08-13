@@ -10,16 +10,18 @@ const path: string[] = ['Магазин мужской одежды', 'одеж�
 ---
 
 <Layout>
-  <div class='inventory'>
+  <div class='inventory' data-component='inventory'>
     <div class='inventory__container container'>
       <div class='inventory__grid'>
-        <div class='inventory__header'>
-          <Breadcrumbs path={path} />
-          <h1 class='inventory__title page-title'>Костюмы</h1>
-          <p class='inventory__description'>
-            C отрезной нагрудной частью,  центральной застёжкой на молнию. На передних половинках обработаны два
-            объёмных накладных боковых кармана, на нагрудной части  накладной карман с клапаном.
-          </p>
+        <div class='inventory__header' data-component='inventory-header'>
+          <div class='inventory__header-content'>
+            <Breadcrumbs class='inventory__breadcrumbs' path={path} />
+            <h1 class='inventory__title page-title'>Костюмы</h1>
+            <p class='inventory__description'>
+              C отрезной нагрудной частью,  центральной застёжкой на молнию. На передних половинках обработаны два
+              объёмных накладных боковых кармана, на нагрудной части  накладной карман с клапаном.
+            </p>
+          </div>
           <Filters class='inventory__filters' />
         </div>
         <CardList class='inventory__card-list' />
@@ -52,6 +54,20 @@ const path: string[] = ['Магазин мужской одежды', 'одеж�
       padding-top: 16px;
     }
 
+    &.opened {
+      .inventory__breadcrumbs {
+        display: none;
+      }
+
+      .inventory__header {
+        overflow: visible;
+      }
+
+      .inventory__header-content {
+        display: none;
+      }
+    }
+
     &__container {
     }
 
@@ -70,11 +86,16 @@ const path: string[] = ['Магазин мужской одежды', 'одеж�
     &__row {
     }
 
+    &__breadcrumbs {
+    }
+
     &__header {
+      position: relative;
       overflow: hidden;
       grid-column: 1 / span 2;
 
       @include media('lg') {
+        overflow: auto;
         grid-column: 1 / span 1;
       }
     }
