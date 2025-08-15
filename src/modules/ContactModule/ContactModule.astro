@@ -60,18 +60,20 @@ const sections: ISection[] = [
           <Breadcrumbs path={path} />
           <h1 class='contact__title page-title'>Контакты</h1>
         </div>
-        <div class='contact__sections'>
-          {sections.map((section) => <Section {...section} />)}
-        </div>
-        <div class='contact__details details-contact'>
-          <h2 class='details-contact__title'>рекВизиты</h2>
-          <div class='details-contact__body'>
-            <p>
-              Общество с ограниченной ответственностью «Стайер Текс»Юр. адрес: 155250, Ивановская область, г.Родники,
-              ул. Советская, д.4а.ИНН   3701047997/ КПП   370101001ОГРН 1133701000014р/с 40702810617000004569в Отделении
-              №8639/069  СБЕРБАНКА РОССИИ г.ИвановоБИК 042406608 к/с  30101810000000000608 без НДС
-            </p>
-            <p>Генеральный директор: Коровкина Алевтина Зотиковна</p>
+        <div class='contact__cols'>
+          <div class='contact__sections'>
+            {sections.map((section) => <Section {...section} />)}
+          </div>
+          <div class='contact__details details-contact'>
+            <h2 class='details-contact__title'>рекВизиты</h2>
+            <div class='details-contact__body'>
+              <p>
+                Общество с ограниченной ответственностью «Стайер Текс»Юр. адрес: 155250, Ивановская область, г.Родники,
+                ул. Советская, д.4а.ИНН   3701047997/ КПП   370101001ОГРН 1133701000014р/с 40702810617000004569в
+                Отделении №8639/069  СБЕРБАНКА РОССИИ г.ИвановоБИК 042406608 к/с  30101810000000000608 без НДС
+              </p>
+              <p>Генеральный директор: Коровкина Алевтина Зотиковна</p>
+            </div>
           </div>
         </div>
       </div>
@@ -81,15 +83,32 @@ const sections: ISection[] = [
 
 <style lang='scss'>
   .contact {
+    padding: 14px 0 38px;
+
+    @include media('lg') {
+      padding: 20px 0 76px;
+    }
+
     &__container {
     }
 
     &__wrapper {
-      padding: 14px 0 38px;
     }
 
     &__top {
       margin-bottom: 18px;
+    }
+
+    &__cols {
+      @include media('lg') {
+        display: grid;
+        grid-template-columns: 600px 1fr;
+        gap: 32px;
+      }
+
+      @include media('xl') {
+        grid-template-columns: 796px 1fr;
+      }
     }
 
     &__title {
@@ -119,7 +138,15 @@ const sections: ISection[] = [
     }
 
     &__body {
+      font-family: var(--font-secondary);
       padding: 0 12px;
+      font-size: 12px;
+      color: var(--secondary);
+      font-weight: 500;
+
+      @include media('lg') {
+        padding: 0;
+      }
     }
   }
 </style>

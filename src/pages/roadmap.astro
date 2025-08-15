@@ -77,7 +77,11 @@ const allPagesCount = pages.length;
 
     &__info-item {
       font-weight: 900;
-      font-size: 18px;
+      font-size: 64px;
+
+      @include media('lg') {
+        font-size: 36px;
+      }
 
       span {
         font-weight: 500;
@@ -94,7 +98,11 @@ const allPagesCount = pages.length;
 
     &__page {
       font-weight: 500;
-      font-size: 24px;
+      font-size: 64px;
+
+      @include media('lg') {
+        font-size: 36px;
+      }
 
       &_in-progress {
       }

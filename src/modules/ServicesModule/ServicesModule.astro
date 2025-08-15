@@ -9,9 +9,10 @@ const path: string[] = ['Магазин мужской одежды', 'услу�
 
 const cards: ICard[] = [
   { title: 'Шелкография', href: '#' },
-  { title: 'Сублимация', href: '#' },
+  { title: 'Сублимация Сублимация Сублимация Сублимация Сублимация Сублимация', href: '#' },
   { title: 'Тиснение', href: '#' },
   { title: 'Термотрансфер', href: '#' },
+  { title: 'РУчная фасовка', href: '#', cols: 2 },
   { title: 'РУчная фасовка', href: '#', cols: 2 },
 ];
 ---
@@ -26,10 +27,12 @@ const cards: ICard[] = [
         </div>
         <div class='services__header header-services'>
           <h2 class='header-services__title services-title'>Связаться с нами</h2>
-          <a href='#' class='services-header__link'>
-            <span>Обсудить ваш заказ — отправьте заявку</span>
-            <Icon name='arrow-down' />
-          </a>
+          <div class="services-header__link-wrapper">
+            <a href='#' class='services-header__link'>
+              <span>Обсудить ваш заказ — отправьте заявку</span>
+              <Icon name='arrow-down' />
+            </a>
+          </div>
         </div>
         <div class='services__cards-wrapper'>
           <h2 class='services__cards-title services-title'>Методы нанесения логотипа</h2>
@@ -54,6 +57,10 @@ const cards: ICard[] = [
 
   .services {
     padding: 14px 0 48px;
+
+    @include media('lg') {
+      padding: 20px 0 76px;
+    }
 
     &__container {
     }
@@ -83,6 +90,11 @@ const cards: ICard[] = [
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 4px;
+
+      @include media('lg') {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 8px;
+      }
     }
   }
 
@@ -93,6 +105,14 @@ const cards: ICard[] = [
   }
 
   .services-header {
+    &__link-wrapper {
+      @include media('lg') {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 8px;
+      }
+    }
+
     &__link {
       display: flex;
       align-items: center;

@@ -4,31 +4,19 @@ import type { ImageMetadata } from 'astro';
 import { Icon } from 'astro-icon/components';
 import type { HTMLAttributes } from 'astro/types';
 
-type Props = Pick<HTMLAttributes<'div'>, 'class'>;
-
-const { class: className, ...rest } = Astro.props;
-
-const hitsImgs = import.meta.glob<{ default: ImageMetadata }>('/src/assets/img/home/hits/*.{jpeg,jpg,png,gif}');
-
-interface CartItem {
+export interface ICartProps {
   image: Promise<{ default: ImageMetadata }>;
   name: string;
   oldPrice: string;
   price: string;
   count: string;
   totalPrice: string;
+  dimensionCount?: number;
 }
 
-const item: CartItem = {
-  image: hitsImgs['/src/assets/img/home/hits/hits-slide-image.png'](),
-  name: 'Костюм Горка Зима Финл. ПК олива',
-  oldPrice: '13 000',
-  price: '5 200',
-  count: '9',
-  totalPrice: '41 600',
-};
+type Props = ICartProps & Pick<HTMLAttributes<'div'>, 'class'>;
 
-const { image, name, oldPrice, price, count, totalPrice } = item;
+const { class: className, image, name, oldPrice, price, count, totalPrice, dimensionCount = 3, ...rest } = Astro.props;
 ---
 
 <div class:list={['cart-item', className]} {...rest}>
@@ -53,7 +41,7 @@ const { image, name, oldPrice, price, count, totalPrice } = item;
     </div>
     <div class='cart-item__dimensions'>
       {
-        Array.from({ length: 3 }).map((_, idx) => (
+        Array.from({ length: dimensionCount }).map((_, idx) => (
           <div class='cart-item__dimension dimension-cart'>
             <div class='dimension-cart__row'>
               <div class:list={['dimension-cart__label', idx !== 0 && 'invisible']}>Размер:</div>
@@ -169,6 +157,7 @@ const { image, name, oldPrice, price, count, totalPrice } = item;
       text-transform: uppercase;
       color: var(--secondary);
       margin-bottom: 4px;
+      @include leading(1);
 
       @include media('md') {
         font-size: 13px;
@@ -191,9 +180,10 @@ const { image, name, oldPrice, price, count, totalPrice } = item;
       margin-bottom: 14px;
 
       @include media('lg') {
-        display: flex;
-        justify-content: space-between;
-        gap: 12px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: flex-start;
+        gap: 24px;
         margin-bottom: 12px;
       }
     }
@@ -290,10 +280,15 @@ const { image, name, oldPrice, price, count, totalPrice } = item;
 
       &_desktop {
         display: none;
+        margin-left: 16px;
 
         @include media('md') {
           grid-column: 3 / span 2;
           display: flex;
+        }
+
+        @include media('lg') {
+          margin: 0;
         }
       }
     }
@@ -308,6 +303,7 @@ const { image, name, oldPrice, price, count, totalPrice } = item;
     font-size: 14px;
     text-transform: uppercase;
     color: var(--secondary);
+    white-space: nowrap;
 
     @include media('md') {
       font-size: 13px;
@@ -403,8 +399,6 @@ const { image, name, oldPrice, price, count, totalPrice } = item;
           width: 14px;
           height: 8px;
         }
-
-
       }
     }
 
@@ -454,6 +448,8 @@ const { image, name, oldPrice, price, count, totalPrice } = item;
       color: var(--secondary);
 
       @include media('xl') {
+        width: 40px;
+        height: 40px;
         font-size: 24px;
       }
     }

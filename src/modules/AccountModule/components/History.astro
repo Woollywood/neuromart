@@ -64,12 +64,19 @@ const { cards, class: className, ...rest } = Astro.props;
   .history {
     &__top {
       margin-bottom: 8px;
+      text-align: left;
     }
 
     &__title {
+      @include media('lg') {
+        text-align: left;
+      }
     }
 
     &__subtitle {
+      @include media('lg') {
+        text-align: left;
+      }
     }
 
     &__slider {
@@ -77,6 +84,10 @@ const { cards, class: className, ...rest } = Astro.props;
 
     &__slider-track {
       overflow: visible;
+
+      @include media('lg') {
+        overflow: hidden;
+      }
     }
 
     &__slider-list {
@@ -88,12 +99,20 @@ const { cards, class: className, ...rest } = Astro.props;
 
   .card-history {
     width: 108px;
-    min-height: 160px;
     padding: 16px 8px 10px;
     border-radius: 8px;
     overflow: hidden;
     background-color: var(--light);
     @include border(1px, #d5cbbc);
+
+    @include media('md') {
+      width: calc((100vw / 4 - 4px * 3));
+    }
+
+    @include media('lg') {
+      padding: 20px 12px 8px;
+      width: calc((100vw / 4 - 4px * 3 + 1px));
+    }
 
     &__header {
     }
@@ -105,6 +124,10 @@ const { cards, class: className, ...rest } = Astro.props;
       color: var(--secondary);
       margin-bottom: 3px;
       text-align: center;
+
+      @include media('lg') {
+        font-size: 24px;
+      }
     }
 
     &__subtitle {
@@ -113,6 +136,10 @@ const { cards, class: className, ...rest } = Astro.props;
       text-transform: uppercase;
       color: var(--primary);
       text-align: center;
+
+      @include media('lg') {
+        font-size: 16px;
+      }
     }
 
     &__sep {
@@ -127,6 +154,10 @@ const { cards, class: className, ...rest } = Astro.props;
       &_md {
         width: 100%;
         margin: 12px auto 8px;
+
+        @include media('lg') {
+          margin: 24px auto 8px;
+        }
       }
     }
 
@@ -142,8 +173,16 @@ const { cards, class: className, ...rest } = Astro.props;
       text-transform: uppercase;
       color: var(--secondary);
 
+      @include media('lg') {
+        font-size: 18px;
+      }
+
       span {
         font-size: 16px;
+
+        @include media('lg') {
+          font-size: 24px;
+        }
       }
     }
 
@@ -156,6 +195,13 @@ const { cards, class: className, ...rest } = Astro.props;
       font-size: 10px;
       text-transform: uppercase;
       color: var(--primary);
+
+      @include media('lg') {
+        flex-direction: row;
+        justify-content: center;
+        font-size: 16px;
+        gap: 4px;
+      }
     }
 
     &__count-row {
@@ -169,6 +215,10 @@ const { cards, class: className, ...rest } = Astro.props;
       font-weight: 800;
       font-size: 12px;
       text-transform: uppercase;
+
+      @include media('lg') {
+        font-size: 16px;
+      }
 
       &.in_progress {
         color: var(--secondary);
@@ -186,6 +236,11 @@ const { cards, class: className, ...rest } = Astro.props;
 
   const slider = document.querySelector<HTMLDivElement>("[data-component='history-slider']");
   if (slider) {
-    new Splide(slider, { pagination: false, arrows: false, autoWidth: true, gap: 4 }).mount();
+    new Splide(slider, {
+      pagination: false,
+      arrows: false,
+      gap: 4,
+      autoWidth: true,
+    }).mount();
   }
 </script>

@@ -43,6 +43,10 @@ const { label, links, ...rest } = Astro.props;
         display: flex;
         flex-direction: column;
         gap: 4px;
+
+        @include media('lg') {
+          gap: 8px;
+        }
       }
     }
 

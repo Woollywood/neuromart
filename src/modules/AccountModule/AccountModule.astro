@@ -48,6 +48,38 @@ const historyList: IHistoryCard[] = [
     countBottom: '48 штук',
     status: 'done',
   },
+  {
+    title: 'Заказ №65-4901-01',
+    subtitle: 'от 23.12.2024',
+    price: '4 000 000',
+    countTop: '3 наименований,',
+    countBottom: '48 штук',
+    status: 'done',
+  },
+  {
+    title: 'Заказ №65-4901-01',
+    subtitle: 'от 23.12.2024',
+    price: '4 000 000',
+    countTop: '3 наименований,',
+    countBottom: '48 штук',
+    status: 'done',
+  },
+  {
+    title: 'Заказ №65-4901-01',
+    subtitle: 'от 23.12.2024',
+    price: '4 000 000',
+    countTop: '3 наименований,',
+    countBottom: '48 штук',
+    status: 'done',
+  },
+  {
+    title: 'Заказ №65-4901-01',
+    subtitle: 'от 23.12.2024',
+    price: '4 000 000',
+    countTop: '3 наименований,',
+    countBottom: '48 штук',
+    status: 'done',
+  },
 ];
 ---
 
@@ -60,7 +92,9 @@ const historyList: IHistoryCard[] = [
           <h1 class='account__title page-title'>Личный кабинет</h1>
         </div>
       </div>
-      <PersonalData class='account__personal-data' />
+      <div class='account__personal-data-wrapper'>
+        <PersonalData class='account__personal-data' />
+      </div>
       <div class='account__content'>
         <History class='account__history' cards={historyList} />
         <SliderSection
@@ -80,7 +114,12 @@ const historyList: IHistoryCard[] = [
 
 <style lang='scss'>
   .account {
+    padding: 14px 0 48px;
     overflow: hidden;
+
+    @include media('lg') {
+      padding: 20px 0 76px;
+    }
 
     &__container {
     }
@@ -94,11 +133,22 @@ const historyList: IHistoryCard[] = [
     &__title {
     }
 
+    &__personal-data-wrapper {
+      @include media('md') {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+
     &__personal-data {
     }
 
     &__content {
       margin-top: 30px;
+
+      @include media('lg') {
+        margin-top: 38px;
+      }
 
       .modal-opened & {
         margin: 0;
@@ -108,14 +158,21 @@ const historyList: IHistoryCard[] = [
 
     &__history {
       margin-bottom: 26px;
+
+      @include media('lg') {
+        margin-bottom: 38px;
+      }
     }
 
     &__bought {
       margin-bottom: 30px;
+
+      @include media('lg') {
+        margin-bottom: 38px;
+      }
     }
 
     &__recommendatitions {
-      margin-bottom: 48px;
     }
   }
 </style>

@@ -1,11 +1,141 @@
 ---
 import Breadcrumbs from '@/components/ui/Breadcrumbs.astro';
 import Layout from '@/layouts/Layout.astro';
-import CartItem from './components/CartItem.astro';
+import CartItem, { type ICartProps } from './components/CartItem.astro';
 import CartFooter from './components/CartFooter.astro';
 import CartPrice from './components/CartPrice.astro';
 
 const path: string[] = ['Магазин мужской одежды', 'Каталог', 'корзина'];
+
+const hitsImgs = import.meta.glob<{ default: ImageMetadata }>('/src/assets/img/home/hits/*.{jpeg,jpg,png,gif}');
+
+const carts: ICartProps[] = [
+  {
+    image: hitsImgs['/src/assets/img/home/hits/hits-slide-image.png'](),
+    name: 'Костюм Горка Зима Финл. ПК олива Костюм Горка Зима Финл. ПК олива Костюм Горка Зима Финл. ПК олива',
+    oldPrice: '13 000 000',
+    price: '5 200',
+    count: '9',
+    totalPrice: '41 600',
+    dimensionCount: 10,
+  },
+  {
+    image: hitsImgs['/src/assets/img/home/hits/hits-slide-image.png'](),
+    name: 'Костюм Горка Зима Финл. ПК олива',
+    oldPrice: '13 000',
+    price: '5 200 000',
+    count: '9',
+    totalPrice: '41 600',
+    dimensionCount: 1,
+  },
+  {
+    image: hitsImgs['/src/assets/img/home/hits/hits-slide-image.png'](),
+    name: 'Костюм Горка Зима Финл. ПК олива',
+    oldPrice: '13 000',
+    price: '5 200',
+    count: '900',
+    totalPrice: '41 600',
+    dimensionCount: 15,
+  },
+  {
+    image: hitsImgs['/src/assets/img/home/hits/hits-slide-image.png'](),
+    name: 'Костюм Горка',
+    oldPrice: '13',
+    price: '5',
+    count: '1',
+    totalPrice: '41',
+  },
+  {
+    image: hitsImgs['/src/assets/img/home/hits/hits-slide-image.png'](),
+    name: 'Костюм Горка',
+    oldPrice: '13',
+    price: '5',
+    count: '1',
+    totalPrice: '41',
+    dimensionCount: 0
+  },
+  {
+    image: hitsImgs['/src/assets/img/home/hits/hits-slide-image.png'](),
+    name: 'Костюм Горка',
+    oldPrice: '13',
+    price: '5',
+    count: '1',
+    totalPrice: '41',
+    dimensionCount: 0
+  },
+  {
+    image: hitsImgs['/src/assets/img/home/hits/hits-slide-image.png'](),
+    name: 'Костюм Горка',
+    oldPrice: '13',
+    price: '5',
+    count: '1',
+    totalPrice: '41',
+    dimensionCount: 0
+  },
+  {
+    image: hitsImgs['/src/assets/img/home/hits/hits-slide-image.png'](),
+    name: 'Костюм Горка',
+    oldPrice: '13',
+    price: '5',
+    count: '1',
+    totalPrice: '41',
+    dimensionCount: 0
+  },
+  {
+    image: hitsImgs['/src/assets/img/home/hits/hits-slide-image.png'](),
+    name: 'Костюм Горка',
+    oldPrice: '13',
+    price: '5',
+    count: '1',
+    totalPrice: '41',
+    dimensionCount: 0
+  },
+  {
+    image: hitsImgs['/src/assets/img/home/hits/hits-slide-image.png'](),
+    name: 'Костюм Горка',
+    oldPrice: '13',
+    price: '5',
+    count: '1',
+    totalPrice: '41',
+    dimensionCount: 0
+  },
+  {
+    image: hitsImgs['/src/assets/img/home/hits/hits-slide-image.png'](),
+    name: 'Костюм Горка',
+    oldPrice: '13',
+    price: '5',
+    count: '1',
+    totalPrice: '41',
+    dimensionCount: 0
+  },
+  {
+    image: hitsImgs['/src/assets/img/home/hits/hits-slide-image.png'](),
+    name: 'Костюм Горка',
+    oldPrice: '13',
+    price: '5',
+    count: '1',
+    totalPrice: '41',
+    dimensionCount: 0
+  },
+  {
+    image: hitsImgs['/src/assets/img/home/hits/hits-slide-image.png'](),
+    name: 'Костюм Горка',
+    oldPrice: '13 000 000',
+    price: '500000',
+    count: '1',
+    totalPrice: '41',
+    dimensionCount: 0
+  },
+  {
+    image: hitsImgs['/src/assets/img/home/hits/hits-slide-image.png'](),
+    name: 'Костюм Горка',
+    oldPrice: '13 000',
+    price: '500',
+    count: '100',
+    totalPrice: '41',
+    dimensionCount: 0
+  },
+];
 ---
 
 <Layout footer={false}>
@@ -18,7 +148,7 @@ const path: string[] = ['Магазин мужской одежды', 'Ката�
         </div>
         <div class='cart__body'>
           <div class='cart__items'>
-            {Array.from({ length: 20 }).map(() => <CartItem />)}
+            {carts.map((cart) => <CartItem {...cart} />)}
           </div>
           <div class='cart__body-bottom'>
             <div class='cart__sticky'>
@@ -73,7 +203,7 @@ const path: string[] = ['Магазин мужской одежды', 'Ката�
     &__sticky {
       @include media('lg') {
         position: sticky;
-        top: 0;
+        top: var(--header-height);
         border-top: 1px solid var(--light-2);
       }
     }

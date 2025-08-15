@@ -13,35 +13,29 @@ const blogArchiveImages = import.meta.glob<{ default: ImageMetadata }>(
 );
 
 const cards: ICard[] = [
-  { label: 'Новинка / 05.01.25', title: 'НОВИНКА!!! Костюм "Горка 3" и Брюки "Горка 3"' },
+  { title: 'НОВИНКА!!! Костюм "Горка 3" и Брюки "Горка 3"' },
   {
-    label: 'Новинка / 05.01.25',
+    image: blogArchiveImages['/src/assets/img/blog-archive/blog-archive.png'](),
+    title: 'Костюм "Горка-3" на флисе Костюм "Горка-3" на флисе Костюм "Горка-3" на флисе',
+  },
+  {
+    image: blogArchiveImages['/src/assets/img/blog-archive/blog-archive.png'](),
+    title: 'Костюм "Горка-3" на флисе Костюм "Горка-3" на флисе Костюм "Горка-3" на флисе',
+  },
+  {
     image: blogArchiveImages['/src/assets/img/blog-archive/blog-archive.png'](),
     title: 'Костюм "Горка-3" на флисе',
   },
   {
-    label: 'Новинка / 05.01.25',
+    image: blogArchiveImages['/src/assets/img/blog-archive/blog-archive.png'](),
+    title: 'Костюм "Горка-3" на флисе',
+  },
+  { title: 'НОВИНКА!!! Костюм "Горка 3" и Брюки "Горка 3"' },
+  {
     image: blogArchiveImages['/src/assets/img/blog-archive/blog-archive.png'](),
     title: 'Костюм "Горка-3" на флисе',
   },
   {
-    label: 'Новинка / 05.01.25',
-    image: blogArchiveImages['/src/assets/img/blog-archive/blog-archive.png'](),
-    title: 'Костюм "Горка-3" на флисе',
-  },
-  {
-    label: 'Новинка / 05.01.25',
-    image: blogArchiveImages['/src/assets/img/blog-archive/blog-archive.png'](),
-    title: 'Костюм "Горка-3" на флисе',
-  },
-  { label: 'Новинка / 05.01.25', title: 'НОВИНКА!!! Костюм "Горка 3" и Брюки "Горка 3"' },
-  {
-    label: 'Новинка / 05.01.25',
-    image: blogArchiveImages['/src/assets/img/blog-archive/blog-archive.png'](),
-    title: 'Костюм "Горка-3" на флисе',
-  },
-  {
-    label: 'Новинка / 05.01.25',
     image: blogArchiveImages['/src/assets/img/blog-archive/blog-archive.png'](),
     title: 'Костюм "Горка-3" на флисе',
   },
@@ -70,11 +64,16 @@ const cards: ICard[] = [
 
 <style lang='scss'>
   .blog-archive {
+    padding: 14px 0 40px;
+
+    @include media('lg') {
+      padding: 20px 0 74px;
+    }
+
     &__container {
     }
 
     &__wrapper {
-      padding: 14px 0 40px;
     }
 
     &__top {
@@ -95,6 +94,10 @@ const cards: ICard[] = [
       margin-bottom: 8px;
       padding-bottom: 8px;
       border-bottom: 1px solid var(--light-2);
+
+      @include media('lg') {
+        grid-template-columns: repeat(4, 1fr);
+      }
     }
   }
 </style>

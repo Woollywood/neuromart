@@ -21,65 +21,95 @@ const blogArchiveMain = import.meta.glob<{ default: ImageMetadata }>(
           <h1 class='blog-single__title page-title'>Встречайте Стайер весенний сезон 2020г !!!</h1>
         </div>
         <div class='blog-single__content'>
-          <div class='blog-single__main'>
-            <div class='blog-single__main-image'>
-              <CustomImage src={blogArchiveMain['/src/assets/img/blog-single/main.png']()} alt='image' />
-            </div>
-            <a href='#' class='blog-single-link'>
-              <div class='blog-single-link__text'>
-                <span>Смотреть:</span> Костюм Горка Лето Твил 128
+          <div class='blog-single__content-sticky'>
+            <div class='blog-single__main'>
+              <div class='blog-single__main-image'>
+                <CustomImage src={blogArchiveMain['/src/assets/img/blog-single/main.png']()} alt='image' />
               </div>
-              <Icon name='arrow-down' />
-            </a>
-          </div>
-          <div class='blog-single__meet'>
-            <div class='blog-single__meet-text'>
-              <p>Встречайте Стайер весенний сезон 2020г !!! — новую коллекцию демисезонной одежды 2020 года.</p>
-              <p>
-                В коллекции представлены НОВИНКИ: Лесник ПФ: стильный костюм - дизайнерское решение на карманах, низ
-                брюк обработан под любую обувь, большой выбор комбинаций расцветок.
-              </p>
-            </div>
-            <div class='blog-single__meet-images'>
-              <div class='blog-single__meet-image'>
-                <CustomImage src={blogArchiveMain['/src/assets/img/blog-single/twin-01.png']()} alt='imageа' />
-              </div>
-              <div class='blog-single__meet-image'>
-                <CustomImage src={blogArchiveMain['/src/assets/img/blog-single/twin-02.png']()} alt='imageа' />
-              </div>
-            </div>
-            <div class='blog-single__meet-links'>
               <a href='#' class='blog-single-link'>
                 <div class='blog-single-link__text'>
-                  <span>Смотреть:</span> Футболка Хаки Мужская
-                </div>
-                <Icon name='arrow-down' />
-              </a>
-              <a href='#' class='blog-single-link'>
-                <div class='blog-single-link__text'>
-                  <span>Смотреть:</span> Футболка Камуфлжная детская
+                  <span>Смотреть:</span> Костюм Горка Лето Твил 128
                 </div>
                 <Icon name='arrow-down' />
               </a>
             </div>
           </div>
-          <div class='blog-single__bottom'>
-            <div class='blog-single__bottom-text'>
-              <p>
-                Классическая модель Горка2 на флисе: проверенная временем, прошита в песочном цвете в ткани рип-стоп.
-                Флисовые костюмы: широкий размерный ряд с 28-30р по 60-62р, флис высокой плотности, теплый, приятен к
-                телу, на мужской модели предусмотрено усиление на коленях и локтях.
-              </p>
-              <p>Все костюмы сертифицированы, проверены ОТК.</p>
+          <div class='blog-single__content-scroll'>
+            <div class='blog-single__meet'>
+              <div class='blog-single__meet-text'>
+                <p>Встречайте Стайер весенний сезон 2020г !!! — новую коллекцию демисезонной одежды 2020 года.</p>
+                <p>
+                  В коллекции представлены НОВИНКИ: Лесник ПФ: стильный костюм - дизайнерское решение на карманах, низ
+                  брюк обработан под любую обувь, большой выбор комбинаций расцветок.
+                </p>
+                <p>
+                  В коллекции представлены НОВИНКИ: Лесник ПФ: стильный костюм - дизайнерское решение на карманах, низ
+                  брюк обработан под любую обувь, большой выбор комбинаций расцветок.
+                </p>
+                <p>
+                  В коллекции представлены НОВИНКИ: Лесник ПФ: стильный костюм - дизайнерское решение на карманах, низ
+                  брюк обработан под любую обувь, большой выбор комбинаций расцветок.
+                </p>
+              </div>
+              <div class='blog-single__meet-images'>
+                <div class='blog-single__meet-image'>
+                  <CustomImage src={blogArchiveMain['/src/assets/img/blog-single/twin-01.png']()} alt='imageа' />
+                </div>
+                <div class='blog-single__meet-image'>
+                  <CustomImage src={blogArchiveMain['/src/assets/img/blog-single/twin-02.png']()} alt='imageа' />
+                </div>
+                <div class='blog-single__meet-image'>
+                  <CustomImage src={blogArchiveMain['/src/assets/img/blog-single/twin-02.png']()} alt='imageа' />
+                </div>
+                <div class='blog-single__meet-image'>
+                  <CustomImage src={blogArchiveMain['/src/assets/img/blog-single/twin-02.png']()} alt='imageа' />
+                </div>
+              </div>
+              <div class='blog-single__meet-links'>
+                <a href='#' class='blog-single-link'>
+                  <div class='blog-single-link__text'>
+                    <span>Смотреть:</span> Футболка Хаки Мужская
+                  </div>
+                  <Icon name='arrow-down' />
+                </a>
+                <a href='#' class='blog-single-link'>
+                  <div class='blog-single-link__text'>
+                    <span>Смотреть:</span> Футболка Камуфлжная детская
+                  </div>
+                  <Icon name='arrow-down' />
+                </a>
+              </div>
             </div>
-            <div class='blog-single__bottom-image'>
-              <CustomImage src={blogArchiveMain['/src/assets/img/blog-single/bottom.png']()} alt='image' />
-            </div>
-            <div class='blog-single__bottom-links'>
-              <a href='#' class='blog-single__bottom-link'>предыдущая</a>
-              <a href='#' class='blog-single__bottom-link'>Следующая</a>
+            <div class='blog-single__bottom'>
+              <div class='blog-single__bottom-text'>
+                <p>
+                  Классическая модель Горка2 на флисе: проверенная временем, прошита в песочном цвете в ткани рип-стоп.
+                  Флисовые костюмы: широкий размерный ряд с 28-30р по 60-62р, флис высокой плотности, теплый, приятен к
+                  телу, на мужской модели предусмотрено усиление на коленях и локтях.
+                </p>
+                <p>
+                  Классическая модель Горка2 на флисе: проверенная временем, прошита в песочном цвете в ткани рип-стоп.
+                  Флисовые костюмы: широкий размерный ряд с 28-30р по 60-62р, флис высокой плотности, теплый, приятен к
+                  телу, на мужской модели предусмотрено усиление на коленях и локтях.
+                </p>
+                <p>Все костюмы сертифицированы, проверены ОТК.</p>
+                <p>Все костюмы сертифицированы, проверены ОТК.</p>
+                <p>
+                  Классическая модель Горка2 на флисе: проверенная временем, прошита в песочном цвете в ткани рип-стоп.
+                  Флисовые костюмы: широкий размерный ряд с 28-30р по 60-62р, флис высокой плотности, теплый, приятен к
+                  телу, на мужской модели предусмотрено усиление на коленях и локтях.
+                </p>
+                <p>Все костюмы сертифицированы, проверены ОТК.</p>
+              </div>
+              <div class='blog-single__bottom-image'>
+                <CustomImage src={blogArchiveMain['/src/assets/img/blog-single/bottom.png']()} alt='image' />
+              </div>
             </div>
           </div>
+        </div>
+        <div class='blog-single__bottom-links'>
+          <a href='#' class='blog-single__bottom-link'>предыдущая</a>
+          <a href='#' class='blog-single__bottom-link'>Следующая</a>
         </div>
         <SliderSection title='Просмотренные' description='Текст комментария от нейросети для расшифровки' />
       </div>
@@ -143,10 +173,28 @@ const blogArchiveMain = import.meta.glob<{ default: ImageMetadata }>(
         line-height: 16px;
         color: var(--secondary);
       }
+
+      @include media('md') {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 6px;
+      }
+    }
+
+    &__content-sticky {
+    }
+
+    &__content-scroll {
     }
 
     &__main {
-      margin-bottom: 20%;
+      margin-bottom: 20px;
+
+      @include media('md') {
+        margin: 0;
+        position: sticky;
+        top: var(--header-height);
+      }
     }
 
     &__main-image {
@@ -157,6 +205,10 @@ const blogArchiveMain = import.meta.glob<{ default: ImageMetadata }>(
       border-radius: 8px;
       overflow: hidden;
       margin-bottom: 4px;
+
+      @include media('md') {
+        aspect-ratio: 626 / 466;
+      }
 
       img {
         position: absolute;
@@ -212,10 +264,14 @@ const blogArchiveMain = import.meta.glob<{ default: ImageMetadata }>(
       display: flex;
       flex-direction: column;
       gap: 4px;
+
+      @include media('lg') {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+      }
     }
 
     &__bottom {
-      margin-bottom: 50px;
     }
 
     &__bottom-text {
@@ -235,7 +291,6 @@ const blogArchiveMain = import.meta.glob<{ default: ImageMetadata }>(
       overflow: hidden;
       border-radius: 8px;
       border: 1px solid var(--light-2);
-      margin-bottom: 8px;
 
       img {
         position: absolute;
@@ -248,6 +303,10 @@ const blogArchiveMain = import.meta.glob<{ default: ImageMetadata }>(
     }
 
     &__bottom-links {
+      padding-top: 8px;
+      margin: 8px 0 50px;
+      border-top: 1px solid var(--light-2);
+
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 4px;
