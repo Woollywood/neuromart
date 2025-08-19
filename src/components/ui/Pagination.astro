@@ -35,16 +35,18 @@ const { class: className, ...rest } = Astro.props;
       height: 32px;
 
       font-weight: 700;
-      font-size: 16px;
+      font-size: 12px;
       text-transform: uppercase;
       color: var(--secondary);
 
       @include media('xl') {
+        font-size: 16px;
         height: 40px;
       }
 
       &.number {
         width: 32px;
+        font-size: 16px;
 
         @include media('xl') {
           width: 40px;
