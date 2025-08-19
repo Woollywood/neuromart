@@ -32,7 +32,7 @@ const { cards, class: className, ...rest } = Astro.props;
       <div class='history__slider-list splide__list'>
         {
           cards.map(({ title, subtitle, price, countTop, countBottom, status }) => (
-            <div class='history__slide card-history splide__slide'>
+            <div class:list={['history__slide card-history splide__slide', status]}>
               <div class='card-history__header'>
                 <div class='card-history__title'>{title}</div>
                 <div class='card-history__subtitle'>{subtitle}</div>
@@ -50,7 +50,7 @@ const { cards, class: className, ...rest } = Astro.props;
               </div>
               <div class='card-history__sep card-history__sep_md' />
               <div class='card-history__footer'>
-                <div class:list={['card-history__status', status]}>{statusDictionary[status]}</div>
+                <div class='card-history__status'>{statusDictionary[status]}</div>
               </div>
             </div>
           ))
@@ -103,7 +103,10 @@ const { cards, class: className, ...rest } = Astro.props;
     border-radius: 8px;
     overflow: hidden;
     background-color: var(--light);
-    @include border(1px, #d5cbbc);
+
+    &.in_progress {
+      @include border(1px, #d5cbbc);
+    }
 
     @include media('md') {
       width: calc((100vw / 4 - 4px * 3));
@@ -220,11 +223,11 @@ const { cards, class: className, ...rest } = Astro.props;
         font-size: 16px;
       }
 
-      &.in_progress {
+      .in_progress & {
         color: var(--secondary);
       }
 
-      &.done {
+      .done & {
         color: var(--primary);
       }
     }

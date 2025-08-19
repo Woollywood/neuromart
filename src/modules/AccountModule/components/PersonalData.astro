@@ -51,10 +51,20 @@ const { class: className, ...rest } = Astro.props;
       text-transform: uppercase;
       color: var(--secondary);
 
+      @include media('xl') {
+        height: 40px;
+        font-size: 16px;
+      }
+
       svg {
         width: 10px;
         height: 6px;
         color: var(--secondary);
+
+        @include media('xl') {
+          width: 12px;
+          height: 8px;
+        }
 
         .modal-opened & {
           transform: rotate(-90deg);

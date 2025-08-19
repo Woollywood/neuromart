@@ -27,7 +27,7 @@ const cards: ICard[] = [
         </div>
         <div class='services__header header-services'>
           <h2 class='header-services__title services-title'>Связаться с нами</h2>
-          <div class="services-header__link-wrapper">
+          <div class='services-header__link-wrapper'>
             <a href='#' class='services-header__link'>
               <span>Обсудить ваш заказ — отправьте заявку</span>
               <Icon name='arrow-down' />
@@ -129,10 +129,20 @@ const cards: ICard[] = [
       text-transform: uppercase;
       color: var(--secondary);
 
+      @include media('xl') {
+        height: 40px;
+        font-size: 16px;
+      }
+
       svg {
         width: 10px;
         height: 6px;
         color: var(--secondary);
+
+        @include media('xl') {
+          width: 12px;
+          height: 8px;
+        }
       }
     }
   }

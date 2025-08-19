@@ -32,15 +32,23 @@ const { class: className, ...rest } = Astro.props;
       padding: 8px;
       background-color: var(--light-2);
       border-radius: 8px;
+      height: 32px;
 
       font-weight: 700;
       font-size: 16px;
       text-transform: uppercase;
       color: var(--secondary);
 
+      @include media('xl') {
+        height: 40px;
+      }
+
       &.number {
         width: 32px;
-        height: 32px;
+
+        @include media('xl') {
+          width: 40px;
+        }
       }
 
       &.current {

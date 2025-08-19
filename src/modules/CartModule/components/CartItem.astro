@@ -7,7 +7,7 @@ import type { HTMLAttributes } from 'astro/types';
 export interface ICartProps {
   image: Promise<{ default: ImageMetadata }>;
   name: string;
-  oldPrice: string;
+  oldPrice?: string;
   price: string;
   count: string;
   totalPrice: string;
@@ -27,7 +27,7 @@ const { class: className, image, name, oldPrice, price, count, totalPrice, dimen
     <div class='cart-item__content-top'>
       <h3 class='cart-item__name'>{name}</h3>
       <div class='cart-item__price-info price-info'>
-        <span class='price-info__old-price'>{oldPrice} РУБ</span>
+        {oldPrice && <span class='price-info__old-price'>{oldPrice} РУБ</span>}
         {price}
         <span>РУБ</span>
         <span>X</span>
@@ -319,6 +319,7 @@ const { class: className, image, name, oldPrice, price, count, totalPrice, dimen
 
     &__old-price {
       color: var(--primary);
+      text-decoration: line-through;
 
       &_currency {
         font-size: 10px;

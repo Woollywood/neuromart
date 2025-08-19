@@ -96,6 +96,11 @@ const { image, title } = Astro.props;
         margin-bottom: 32px;
       }
 
+      @include media('xl') {
+        font-size: 36px;
+        margin-bottom: 32px;
+      }
+
       .empty-image & {
         margin-bottom: 0;
       }
@@ -103,11 +108,15 @@ const { image, title } = Astro.props;
 
     &__image {
       position: relative;
-      aspect-ratio: 145 / 198;
+      aspect-ratio: 136 / 198;
       width: 100%;
 
       @include media('lg') {
-        aspect-ratio: 220 / 330;
+        aspect-ratio: 236 / 314;
+      }
+
+      @include media('xl') {
+        aspect-ratio: 340 / 472;
       }
 
       img {

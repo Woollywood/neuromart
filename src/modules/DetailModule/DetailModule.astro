@@ -44,15 +44,21 @@ import SliderSection from '@/components/shared/SliderSection.astro';
         display: grid;
         gap: 8px;
         grid-template-columns: 1fr 306px;
+        margin-bottom: 80px;
       }
 
       @include media('xl') {
+        margin-bottom: 112px;
         grid-template-columns: 6fr 2fr;
       }
     }
 
     &__gallery {
       margin-bottom: 8px;
+
+      @include media('lg') {
+        margin: 0;
+      }
     }
 
     &__bottom {
