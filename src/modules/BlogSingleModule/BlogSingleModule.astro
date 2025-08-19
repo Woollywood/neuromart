@@ -201,6 +201,10 @@ const blogArchiveMain = import.meta.glob<{ default: ImageMetadata }>(
         grid-template-columns: 1fr 1fr;
         gap: 6px;
       }
+
+      @include media('xl') {
+        gap: 8px;
+      }
     }
 
     &__content-sticky {
@@ -280,6 +284,10 @@ const blogArchiveMain = import.meta.glob<{ default: ImageMetadata }>(
       grid-template-columns: 1fr 1fr;
       gap: 4px;
       margin-bottom: 4px;
+
+      @include media('xl') {
+        gap: 8px;
+      }
     }
 
     &__meet-image {
@@ -351,6 +359,10 @@ const blogArchiveMain = import.meta.glob<{ default: ImageMetadata }>(
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 4px;
+
+      @include media('xl') {
+        gap: 8px;
+      }
     }
 
     &__bottom-link {
