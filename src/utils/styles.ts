@@ -54,19 +54,24 @@ export const overflowItems = (container: HTMLElement) => {
   }
 };
 
-export const observeHeight = (target: HTMLElement, heightVariable: string) => {
-  const setCssHeaderHeight = () => {
-    const targetHeight = target.clientHeight;
-    setCssVariable(heightVariable, `${targetHeight}px`);
+export const observeElement = (target: HTMLElement, variable: string, cb: (target: HTMLElement) => string | number) => {
+  const setCssObservableVariable = () => {
+    setCssVariable(variable, `${cb(target)}px`);
   };
 
-  setCssHeaderHeight();
+  setCssObservableVariable();
   const resizeObserver = new ResizeObserver((entries) => {
     for (const entry of entries) {
       if (entry.target === target) {
-        setCssHeaderHeight();
+        setCssObservableVariable();
       }
     }
   });
   resizeObserver.observe(target);
 };
+
+export const observeHeight = (target: HTMLElement, heightVariable: string) =>
+  observeElement(target, heightVariable, (target) => target.clientHeight);
+
+export const observeWidth = (target: HTMLElement, heightVariable: string) =>
+  observeElement(target, heightVariable, (target) => target.clientWidth);

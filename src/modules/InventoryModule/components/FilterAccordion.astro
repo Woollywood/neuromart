@@ -31,6 +31,17 @@ const { label, filters } = Astro.props;
 
 <style lang='scss'>
   .filter-accordion {
+    .filter-accordion__trigger {
+      color: var(--secondary);
+    }
+    &.open {
+      margin-bottom: 16px;
+
+      .filter-accordion__trigger {
+        color: var(--primary);
+      }
+    }
+
     &__body {
       display: none;
 
@@ -39,10 +50,6 @@ const { label, filters } = Astro.props;
         flex-wrap: wrap;
         gap: 4px;
       }
-    }
-
-    &__trigger {
-      color: var(--primary);
     }
 
     &__icon {

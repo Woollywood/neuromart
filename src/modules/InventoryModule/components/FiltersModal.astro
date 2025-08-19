@@ -115,7 +115,7 @@ const filters: IFilterAccordion[] = [
       transform: translateY(1px);
     }
 
-    @include media('lg') {
+    @include media('xl') {
       padding: 10px 12px;
       height: 40px;
       font-size: 16px;
@@ -192,9 +192,10 @@ const filters: IFilterAccordion[] = [
         display: block;
 
         @include media('lg') {
-          position: relative;
-          top: var(--scroll-y);
+          position: fixed;
+          top: var(--header-height);
           height: calc(100vh - var(--header-height) - 32px);
+          width: var(--inventory-header-width)
         }
       }
     }
@@ -266,10 +267,10 @@ const filters: IFilterAccordion[] = [
   .modal-content {
     display: flex;
     flex-direction: column;
-    gap: 24px;
+    gap: 8px;
 
     @include media('lg') {
-      gap: 32px;
+      gap: 16px;
     }
   }
 
@@ -363,7 +364,7 @@ const filters: IFilterAccordion[] = [
 
 <script>
   import { modalToggle } from '@/utils/modal';
-  import { getMediaCssParsedVariable, MediaSizes, observeHeight, setCssVariable } from '@/utils/styles';
+  import { getMediaCssParsedVariable, MediaSizes, observeHeight, observeWidth, setCssVariable } from '@/utils/styles';
 
   const wrapper = document.querySelector<HTMLDivElement>("[data-component='filters-modal']");
   const modal = document.querySelector<HTMLDivElement>("[data-component='filters-modal-body']");
@@ -382,7 +383,7 @@ const filters: IFilterAccordion[] = [
     modal?.classList.remove('opened');
     inventory?.classList.remove('opened');
     filters?.classList.remove('opened');
-    if (getMediaCssParsedVariable(MediaSizes.MD) > windowWidth) {
+    if (getMediaCssParsedVariable(MediaSizes.LG) > windowWidth) {
       modalToggle();
     }
   });
@@ -392,13 +393,14 @@ const filters: IFilterAccordion[] = [
     modal?.classList.add('opened');
     inventory?.classList.add('opened');
     filters?.classList.add('opened');
-    if (getMediaCssParsedVariable(MediaSizes.MD) > windowWidth) {
+    if (getMediaCssParsedVariable(MediaSizes.LG) > windowWidth) {
       modalToggle();
     }
   });
 
   observeHeight(header!, '--modal-header-height');
   observeHeight(footer!, '--modal-footer-height');
+  observeWidth(inventoryHeader!, '--inventory-header-width')
 
   const observeModal = () => {
     const windowWidth = window.innerWidth;
@@ -420,7 +422,7 @@ const filters: IFilterAccordion[] = [
         }
       };
 
-      if (getMediaCssParsedVariable(MediaSizes.MD) > windowWidth) {
+      if (getMediaCssParsedVariable(MediaSizes.LG) > windowWidth) {
         mobileModal();
       } else {
         desktopModal();
