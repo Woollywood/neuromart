@@ -170,6 +170,11 @@ const filters: IFilterAccordion[] = [
     &__container {
       @include media('lg') {
         padding: 0;
+
+        .opened & {
+          position: sticky;
+          top: var(--header-height);
+        }
       }
     }
 
@@ -185,18 +190,15 @@ const filters: IFilterAccordion[] = [
       z-index: 100;
 
       @include media('lg') {
+        width: var(--inventory-header-width);
+        background: transparent;
         z-index: 10;
       }
 
       &.opened {
         display: block;
+        position: absolute;
 
-        @include media('lg') {
-          position: fixed;
-          top: var(--header-height);
-          height: calc(100vh - var(--header-height) - 32px);
-          width: var(--inventory-header-width)
-        }
       }
     }
 
@@ -214,6 +216,7 @@ const filters: IFilterAccordion[] = [
         max-height: calc(100vh - var(--header-height) - var(--modal-footer-height) - 40px);
         @include border(1px, var(--light-2));
         overflow: auto;
+        margin-bottom: 8px;
       }
     }
 
@@ -286,10 +289,7 @@ const filters: IFilterAccordion[] = [
     padding: 8px 0;
 
     @include media('lg') {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
+      position: static;
       border-radius: 12px;
       padding: 16px 0;
     }
@@ -400,7 +400,7 @@ const filters: IFilterAccordion[] = [
 
   observeHeight(header!, '--modal-header-height');
   observeHeight(footer!, '--modal-footer-height');
-  observeWidth(inventoryHeader!, '--inventory-header-width')
+  observeWidth(inventoryHeader!, '--inventory-header-width');
 
   const observeModal = () => {
     const windowWidth = window.innerWidth;

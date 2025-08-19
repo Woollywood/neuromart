@@ -31,20 +31,28 @@ const path: string[] = ['Магазин мужской одежды', 'одеж�
           description='Текст комментария от нейросети для расшифровки'
         />
         <CardList class='inventory__card-list' />
-        <Pagination class='inventory__pagination' />
-        <SliderSection
-          class='inventory__slider-section inventory__slider-section_bottom'
-          title='Просмотренные'
-          description='Текст комментария от нейросети для расшифровки'
-        />
       </div>
+      <Pagination class='inventory__pagination' />
+      <SliderSection
+        class='inventory__slider-section inventory__slider-section_bottom'
+        title='Просмотренные'
+        description='Текст комментария от нейросети для расшифровки'
+      />
     </div>
   </div>
 </Layout>
 
 <style lang='scss'>
   .inventory {
-    padding-top: 12px;
+    padding: 12px 0 40px;
+
+    @include media('md') {
+      padding: 14px 0 96px;
+    }
+
+    @include media('lg') {
+      padding: 16px 0 128px;
+    }
 
     @include media('md') {
       padding-top: 14px;
@@ -78,6 +86,8 @@ const path: string[] = ['Магазин мужской одежды', 'одеж�
       overflow: hidden;
 
       @include media('lg') {
+        overflow: visible;
+        position: relative;
         grid-template-columns: repeat(4, 1fr);
         gap: 8px;
       }
@@ -95,6 +105,7 @@ const path: string[] = ['Магазин мужской одежды', 'одеж�
       grid-column: 1 / span 2;
 
       @include media('lg') {
+        position: static;
         overflow: auto;
         grid-column: 1 / span 1;
       }
@@ -153,18 +164,6 @@ const path: string[] = ['Магазин мужской одежды', 'одеж�
 
       @include media('lg') {
         grid-column: 1 / span 4;
-      }
-
-      &_bottom {
-        margin-bottom: 40px;
-
-        @include media('md') {
-          margin-bottom: 96px;
-        }
-
-        @include media('lg') {
-          margin-bottom: 128px;
-        }
       }
     }
 
