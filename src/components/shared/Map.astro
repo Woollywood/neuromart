@@ -8,7 +8,7 @@ const props = Astro.props;
 
 <div {...props} data-component='map'></div>
 
-<script src='https://api-maps.yandex.ru/v3/?apikey=32d0cc07-0fdf-4f55-8fa8-b03a63b80dc3&lang=ru_RU'></script>
+<script src='https://api-maps.yandex.ru/v3/?apikey=32d0cc07-0fdf-4f55-8fa8-b03a63b80dc3&lang=ru_RU' is:inline></script>
 <script>
   async function initMap() {
     // @ts-ignore
