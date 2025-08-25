@@ -1,5 +1,6 @@
 ---
 import { Icon } from 'astro-icon/components';
+import Map from '../shared/Map.astro';
 
 interface IAccordionLink {
   label: string;
@@ -34,7 +35,7 @@ const {
   <div class='contact-accordion__body'>
     <div class='contact-accordion__address'>{address} <span>{text}</span></div>
     <a href={`tel:${phone}`} class='contact-accordion__phone'>{phone}</a>
-    <div class='contact-accordion__map-frame'></div>
+    <Map class='contact-accordion__map-frame' />
   </div>
 </div>
 

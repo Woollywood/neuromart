@@ -1,0 +1,33 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+
+type Props = HTMLAttributes<'div'>;
+
+const props = Astro.props;
+---
+
+<div {...props} data-component='map'></div>
+
+<script src='https://api-maps.yandex.ru/v3/?apikey=32d0cc07-0fdf-4f55-8fa8-b03a63b80dc3&lang=ru_RU'></script>
+<script>
+  async function initMap() {
+    // @ts-ignore
+    await ymaps3.ready;
+
+    const maps = document.querySelectorAll("[data-component='map']").forEach((container) => {
+      // @ts-ignore
+      const { YMap, YMapDefaultSchemeLayer } = ymaps3;
+
+      const map = new YMap(container, {
+        location: {
+          center: [37.588144, 55.733842],
+          zoom: 10,
+        },
+      });
+
+      map.addChild(new YMapDefaultSchemeLayer());
+    });
+  }
+
+  initMap();
+</script>
